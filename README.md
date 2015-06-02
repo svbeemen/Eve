@@ -1,23 +1,20 @@
-# Eve
-Project voor minor programmeren. 
 
 Eve
 ===
 
-*An app to help women keep track of their cycle. Eve had the intention to be
-used in a contraceptive manner.*
-
+**An app to help women keep track of their cycle. Eve has the intention to be
+used in a contraceptive manner.**
 
 
 In a day and age were health and quality of food are becoming more and more
 important it isn't surprising that women are thinking twice about hormonal
-anti-contraceptives. In the western world most girls start tacking the pill
+contraceptives. In the western world most girls start tacking the pill
 around age 16. By the time they are 25 they have been pumping extra hormones in
 their body for almost 10 years. Many women are looking for more natural and
 traditional forms of family planning such as the calendar-based method. The
 calendar-based method is already a widely used method for women trying to have a
 baby and their are plenty of apps to help these women keep track of their cycle
-and ovulation. These apps are however focused on seeking women to get pregnant
+and ovulation. These apps are however focused on women seeking to get pregnant
 and not women trying to prevent this. Despite this many women looking to prevent
 pregnancy are using these apps because their isn’t anything out there that
 caters to their specific needs. Eve will have a clean-cut interface, no frills,
@@ -32,8 +29,6 @@ will become better at accurately predicting the users cycle.
 
 
 [View initial sketch](Design/initialSketch.jpg)
- 
-
  
 
 ### Features
@@ -60,8 +55,6 @@ The user can set what to be informed on concerning her cycle, how and when:
 
  
 
- 
-
 ### Swift API Frameworks 
 
 -   UIKit Framework
@@ -74,8 +67,6 @@ The user can set what to be informed on concerning her cycle, how and when:
 
  
 
- 
-
 ### Potential Problems 
 
 -   Connecting to the native calendar of the platform 
@@ -83,8 +74,6 @@ The user can set what to be informed on concerning her cycle, how and when:
 -   Sending personalised notifications
 
 -   Sending notifications at time set by user 
-
- 
 
  
 
