@@ -139,3 +139,6 @@ overload of features making it difficult to navigate through. 
     -   fine tune full working app
 
     -   edit design elements 
+
+
+[Read initialSketch!](Design/initialSketch.jpg)
