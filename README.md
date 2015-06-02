@@ -30,6 +30,8 @@ they are fertile it will display world disasters such as volcanos erupting and
 nuclear bombs exploding. It will be a self-learning app that with user input
 will become better at accurately predicting the users cycle.
 
+
+[View initial sketch](Design/initialSketch.jpg)
  
 
  
@@ -139,6 +141,3 @@ overload of features making it difficult to navigate through. 
     -   fine tune full working app
 
     -   edit design elements 
-
-
-[Read initialSketch!](Design/initialSketch.jpg)
