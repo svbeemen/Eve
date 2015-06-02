@@ -4,8 +4,8 @@ Project voor minor programmeren.
 Eve
 ===
 
-**An app to help women keep track of their cycle. Eve had the intention to be
-used in a contraceptive manner. **
+*An app to help women keep track of their cycle. Eve had the intention to be
+used in a contraceptive manner.*
 
 
 
