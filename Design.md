@@ -77,7 +77,16 @@ SettingsViewController
 -   When box is touched, layer disappears and calendar view is enabled.
 
 
-## working
+## Initial Calendar
+Is an empty calendar, light grey days. A circle around the current date, indicating which day it is.
+A layer over the calendar, disabling the calendar. Show a textfield with instruction.
+When box is touched, layer disappears and calendar view is enabled.
+
+![alt text][initial calendar]
+
+ 
+
+## Working Calendar
 All date cells of the last 3 months up to and including current day date cell
 are enabled. When a date is clicked the respective cell becomes bigger and goes
 to the foreground. The cell displays extra information concerning that date and
@@ -86,12 +95,9 @@ becomes red. When clicked again the ‘+’ button displays ‘-‘ and becomes 
 When the cell is touched the new information is set to the CycleInformation
 class and which then calculates the users next cycles. This information is sent
 to the calendarCollectionViewController. This then displays the calendar in the
-respective colours. 
+respective colours.
 
-![alt text][calendar]
-![alt text][settings]
+![alt text][working calendar]
 
-[calendar]: https://github.com/svbeemen/Eve/blob/master/Docs/initialInterface.pdf
-[settings]: https://github.com/svbeemen/Eve/blob/master/Docs/calendarInterface.pdf
- 
-
+[initial calendar]: https://github.com/svbeemen/Eve/blob/master/Docs/initialInterface.png
+[working calendar]: https://github.com/svbeemen/Eve/blob/master/Docs/calendarInterface.png
