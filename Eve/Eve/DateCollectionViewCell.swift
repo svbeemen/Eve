@@ -1,5 +1,5 @@
 //
-//  DateLabelCollectionViewCell.swift
+//  DateCollectionViewCell.swift
 //  Eve
 //
 //  Created by Sangeeta van Beemen on 04/06/15 W23.
@@ -8,7 +8,10 @@
 
 import UIKit
 
-class DateLabelCollectionViewCell: UICollectionViewCell {
+
+// subclass of collectionview cell to intricate UILabelMethods
+class DateCollectionViewCell: UICollectionViewCell
+{
     @IBOutlet weak var dateLabel: UILabel!
     
 }
