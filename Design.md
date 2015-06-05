@@ -17,7 +17,7 @@
 
 ### Extra features 
 
--   The user can create an account 
+-   The user can create an account
 
 -   The app can be used in combination with other contraceptives
 
@@ -47,16 +47,37 @@ SettingsViewController
 
  
 
+### Swift API Frameworks 
+
+-   UIKit Framework
+
+-   Notification Center framework 
+
+-   EventKit Framework
+
+-   NSCalendar
+
+-   NSDate
+
+-   UICollectionView
+
+-   UICollectionViewCell
+
+ 
+
 ### CalendarCollectionView
 
-Is an empty calendar, light grey days. A circle around the current date,
-indicating which day it is. 
+## properties
+-   Is an empty calendar, light grey days. A circle around the current date,
+    indicating which day it is.
 
-A layer over the calendar, disabling the calendar. Show a textfield with
-instruction.
+-   A layer over the calendar, disabling the calendar. Show a textfield with
+    instruction.
 
-When box is touched, layer disappears and calendar view is enabled. 
+-   When box is touched, layer disappears and calendar view is enabled.
 
+
+## working
 All date cells of the last 3 months up to and including current day date cell
 are enabled. When a date is clicked the respective cell becomes bigger and goes
 to the foreground. The cell displays extra information concerning that date and
@@ -67,18 +88,10 @@ class and which then calculates the users next cycles. This information is sent
 to the calendarCollectionViewController. This then displays the calendar in the
 respective colours. 
 
+![alt text][calendar]
+![alt text][settings]
+
+[calendar]: https://github.com/svbeemen/Eve/blob/master/Docs/initialInterface.pdf
+[settings]: https://github.com/svbeemen/Eve/blob/master/Docs/calendarInterface.pdf
  
 
- 
-
-When box is touched, layer disappears and calendar view is enabled. 
-
-All date cells of the last 3 months up to and including current day date cell
-are enabled. When a date is clicked the respective cell becomes bigger and goes
-to the foreground. The cell displays extra information concerning that date and
-a ‘+’ button. When the ‘+‘ button is clicked it displays ‘-’ and the cell
-becomes red. When clicked again the ‘+’ button displays ‘-‘ and becomes grey.
-When the cell is touched the new information is set to the CycleInformation
-class and which then calculates the users next cycles. This information is sent
-to the calendarCollectionViewController. This then displays the calendar in the
-respective colours. 
