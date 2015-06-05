@@ -50,9 +50,9 @@ The user can set what to be informed on concerning her cycle, how and when:
 
  
 
-[View initial interface](Design/initialInterface.pdf)
+[View initial interface](initialInterface.pdf)
 
-[View calendar & menu interface](Design/calendarInterface.pdf)
+[View calendar & menu interface](calendarInterface.pdf)
 
  
 
