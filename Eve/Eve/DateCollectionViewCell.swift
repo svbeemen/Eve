@@ -11,7 +11,6 @@ import UIKit
 
 // subclass of collectionview cell to intricate UILabelMethods
 class DateCollectionViewCell: UICollectionViewCell
-{
+{    
     @IBOutlet weak var dateLabel: UILabel!
-    
 }

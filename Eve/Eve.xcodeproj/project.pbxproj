@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		738F9ADA8ED49C23404A1582 /* Pods_Eve.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9391C145F8C7EE99DE584F9 /* Pods_Eve.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		87368BAC1B20857F0031A3DD /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87368BAB1B20857F0031A3DD /* DateCollectionViewCell.swift */; };
+		874CC5DC1B2704730009B25B /* CalendarInfoClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874CC5DB1B2704730009B25B /* CalendarInfoClass.swift */; };
 		87A8FB5F1B1E5BC100D820A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A8FB5E1B1E5BC100D820A8 /* AppDelegate.swift */; };
 		87A8FB611B1E5BC100D820A8 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A8FB601B1E5BC100D820A8 /* CalendarViewController.swift */; };
 		87A8FB641B1E5BC100D820A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87A8FB621B1E5BC100D820A8 /* Main.storyboard */; };
@@ -27,7 +29,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		21134462A2E0758AE2B20866 /* Pods-Eve.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eve.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eve/Pods-Eve.debug.xcconfig"; sourceTree = "<group>"; };
 		87368BAB1B20857F0031A3DD /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateCollectionViewCell.swift; sourceTree = "<group>"; };
+		87380C701B26E947003D88E5 /* CVCalendarKitDemo.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CVCalendarKitDemo.playground; sourceTree = "<group>"; };
+		874CC5DB1B2704730009B25B /* CalendarInfoClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarInfoClass.swift; sourceTree = "<group>"; };
+		8752630C1B2662AD007F00A5 /* Eve-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Eve-Bridging-Header.h"; sourceTree = "<group>"; };
+		877B05991B27724800BB1CC3 /* playgroundCalendarClass.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = playgroundCalendarClass.playground; sourceTree = "<group>"; };
 		87A8FB591B1E5BC100D820A8 /* Eve.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eve.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87A8FB5D1B1E5BC100D820A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87A8FB5E1B1E5BC100D820A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +45,8 @@
 		87A8FB6E1B1E5BC200D820A8 /* EveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		87A8FB731B1E5BC200D820A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87A8FB741B1E5BC200D820A8 /* EveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EveTests.swift; sourceTree = "<group>"; };
+		B9391C145F8C7EE99DE584F9 /* Pods_Eve.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eve.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC3A0616C630390CDF2329F6 /* Pods-Eve.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eve.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eve/Pods-Eve.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				738F9ADA8ED49C23404A1582 /* Pods_Eve.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,12 +68,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A2010A6C4FE33FD1F88BF31 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				21134462A2E0758AE2B20866 /* Pods-Eve.debug.xcconfig */,
+				BC3A0616C630390CDF2329F6 /* Pods-Eve.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		87A8FB501B1E5BC100D820A8 = {
 			isa = PBXGroup;
 			children = (
 				87A8FB5B1B1E5BC100D820A8 /* Eve */,
 				87A8FB711B1E5BC200D820A8 /* EveTests */,
 				87A8FB5A1B1E5BC100D820A8 /* Products */,
+				3A2010A6C4FE33FD1F88BF31 /* Pods */,
+				EE0B44C36102D72640FC5E9E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,12 +101,16 @@
 			isa = PBXGroup;
 			children = (
 				87A8FB5E1B1E5BC100D820A8 /* AppDelegate.swift */,
+				874CC5DB1B2704730009B25B /* CalendarInfoClass.swift */,
 				87A8FB601B1E5BC100D820A8 /* CalendarViewController.swift */,
-				87A8FB621B1E5BC100D820A8 /* Main.storyboard */,
-				87A8FB651B1E5BC100D820A8 /* Images.xcassets */,
-				87A8FB671B1E5BC100D820A8 /* LaunchScreen.xib */,
-				87A8FB5C1B1E5BC100D820A8 /* Supporting Files */,
 				87368BAB1B20857F0031A3DD /* DateCollectionViewCell.swift */,
+				87A8FB621B1E5BC100D820A8 /* Main.storyboard */,
+				87A8FB671B1E5BC100D820A8 /* LaunchScreen.xib */,
+				877B05991B27724800BB1CC3 /* playgroundCalendarClass.playground */,
+				87380C701B26E947003D88E5 /* CVCalendarKitDemo.playground */,
+				87A8FB651B1E5BC100D820A8 /* Images.xcassets */,
+				8752630C1B2662AD007F00A5 /* Eve-Bridging-Header.h */,
+				87A8FB5C1B1E5BC100D820A8 /* Supporting Files */,
 			);
 			path = Eve;
 			sourceTree = "<group>";
@@ -115,6 +140,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		EE0B44C36102D72640FC5E9E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B9391C145F8C7EE99DE584F9 /* Pods_Eve.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -122,9 +155,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 87A8FB781B1E5BC200D820A8 /* Build configuration list for PBXNativeTarget "Eve" */;
 			buildPhases = (
+				C8AFD7A8482C2DD8714A35DD /* Check Pods Manifest.lock */,
 				87A8FB551B1E5BC100D820A8 /* Sources */,
 				87A8FB561B1E5BC100D820A8 /* Frameworks */,
 				87A8FB571B1E5BC100D820A8 /* Resources */,
+				2A1F971F6D57EA47E51356FC /* Embed Pods Frameworks */,
+				607E9CE02DDCCD6FBAD5723E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -210,6 +246,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2A1F971F6D57EA47E51356FC /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Eve/Pods-Eve-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		607E9CE02DDCCD6FBAD5723E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Eve/Pods-Eve-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C8AFD7A8482C2DD8714A35DD /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		87A8FB551B1E5BC100D820A8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -217,6 +301,7 @@
 			files = (
 				87A8FB611B1E5BC100D820A8 /* CalendarViewController.swift in Sources */,
 				87A8FB5F1B1E5BC100D820A8 /* AppDelegate.swift in Sources */,
+				874CC5DC1B2704730009B25B /* CalendarInfoClass.swift in Sources */,
 				87368BAC1B20857F0031A3DD /* DateCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,23 +429,30 @@
 		};
 		87A8FB791B1E5BC200D820A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21134462A2E0758AE2B20866 /* Pods-Eve.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Eve/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Eve/Eve-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		87A8FB7A1B1E5BC200D820A8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BC3A0616C630390CDF2329F6 /* Pods-Eve.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Eve/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Eve/Eve-Bridging-Header.h";
 			};
 			name = Release;
 		};
