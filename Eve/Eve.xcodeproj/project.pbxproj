@@ -7,58 +7,61 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		738F9ADA8ED49C23404A1582 /* Pods_Eve.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9391C145F8C7EE99DE584F9 /* Pods_Eve.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		87368BAC1B20857F0031A3DD /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87368BAB1B20857F0031A3DD /* DateCollectionViewCell.swift */; };
-		874CC5DC1B2704730009B25B /* CalendarInfoClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874CC5DB1B2704730009B25B /* CalendarInfoClass.swift */; };
-		87A8FB5F1B1E5BC100D820A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A8FB5E1B1E5BC100D820A8 /* AppDelegate.swift */; };
-		87A8FB611B1E5BC100D820A8 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A8FB601B1E5BC100D820A8 /* CalendarViewController.swift */; };
-		87A8FB641B1E5BC100D820A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87A8FB621B1E5BC100D820A8 /* Main.storyboard */; };
-		87A8FB661B1E5BC100D820A8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87A8FB651B1E5BC100D820A8 /* Images.xcassets */; };
-		87A8FB691B1E5BC100D820A8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87A8FB671B1E5BC100D820A8 /* LaunchScreen.xib */; };
-		87A8FB751B1E5BC200D820A8 /* EveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A8FB741B1E5BC200D820A8 /* EveTests.swift */; };
+		8705FD721B28880300015A62 /* podHeader.c in Sources */ = {isa = PBXBuildFile; fileRef = 8705FD701B28880300015A62 /* podHeader.c */; };
+		8705FD741B28886300015A62 /* CalendarClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8705FD731B28886300015A62 /* CalendarClass.swift */; };
+		8705FD761B28941C00015A62 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8705FD751B28941C00015A62 /* CalendarViewController.swift */; };
+		8705FD781B28966E00015A62 /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8705FD771B28966E00015A62 /* DateCollectionViewCell.swift */; };
+		875096621B2887480002B5FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875096611B2887480002B5FB /* AppDelegate.swift */; };
+		875096641B2887480002B5FB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875096631B2887480002B5FB /* ViewController.swift */; };
+		875096671B2887480002B5FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 875096651B2887480002B5FB /* Main.storyboard */; };
+		875096691B2887480002B5FB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 875096681B2887480002B5FB /* Images.xcassets */; };
+		8750966C1B2887480002B5FB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8750966A1B2887480002B5FB /* LaunchScreen.xib */; };
+		875096781B2887480002B5FB /* EveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875096771B2887480002B5FB /* EveTests.swift */; };
+		F4ED2AA188D814A5960D7C21 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA7868A62F982E629623F8AB /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		87A8FB6F1B1E5BC200D820A8 /* PBXContainerItemProxy */ = {
+		875096721B2887480002B5FB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 87A8FB511B1E5BC100D820A8 /* Project object */;
+			containerPortal = 875096541B2887480002B5FB /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 87A8FB581B1E5BC100D820A8;
+			remoteGlobalIDString = 8750965B1B2887480002B5FB;
 			remoteInfo = Eve;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		21134462A2E0758AE2B20866 /* Pods-Eve.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eve.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eve/Pods-Eve.debug.xcconfig"; sourceTree = "<group>"; };
-		87368BAB1B20857F0031A3DD /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateCollectionViewCell.swift; sourceTree = "<group>"; };
-		87380C701B26E947003D88E5 /* CVCalendarKitDemo.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CVCalendarKitDemo.playground; sourceTree = "<group>"; };
-		874CC5DB1B2704730009B25B /* CalendarInfoClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarInfoClass.swift; sourceTree = "<group>"; };
-		8752630C1B2662AD007F00A5 /* Eve-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Eve-Bridging-Header.h"; sourceTree = "<group>"; };
-		877B05991B27724800BB1CC3 /* playgroundCalendarClass.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = playgroundCalendarClass.playground; sourceTree = "<group>"; };
-		87A8FB591B1E5BC100D820A8 /* Eve.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eve.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		87A8FB5D1B1E5BC100D820A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		87A8FB5E1B1E5BC100D820A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		87A8FB601B1E5BC100D820A8 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
-		87A8FB631B1E5BC100D820A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		87A8FB651B1E5BC100D820A8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		87A8FB681B1E5BC100D820A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		87A8FB6E1B1E5BC200D820A8 /* EveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		87A8FB731B1E5BC200D820A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		87A8FB741B1E5BC200D820A8 /* EveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EveTests.swift; sourceTree = "<group>"; };
-		B9391C145F8C7EE99DE584F9 /* Pods_Eve.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eve.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BC3A0616C630390CDF2329F6 /* Pods-Eve.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eve.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eve/Pods-Eve.release.xcconfig"; sourceTree = "<group>"; };
+		8705FD6F1B28880200015A62 /* Eve-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Eve-Bridging-Header.h"; sourceTree = "<group>"; };
+		8705FD701B28880300015A62 /* podHeader.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = podHeader.c; sourceTree = "<group>"; };
+		8705FD711B28880300015A62 /* podHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = podHeader.h; sourceTree = "<group>"; };
+		8705FD731B28886300015A62 /* CalendarClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarClass.swift; sourceTree = "<group>"; };
+		8705FD751B28941C00015A62 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		8705FD771B28966E00015A62 /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateCollectionViewCell.swift; sourceTree = "<group>"; };
+		8750965C1B2887480002B5FB /* Eve.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eve.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		875096601B2887480002B5FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		875096611B2887480002B5FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		875096631B2887480002B5FB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		875096661B2887480002B5FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		875096681B2887480002B5FB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		8750966B1B2887480002B5FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		875096711B2887480002B5FB /* EveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		875096761B2887480002B5FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		875096771B2887480002B5FB /* EveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EveTests.swift; sourceTree = "<group>"; };
+		A01E6E5F51A603DB338A4873 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		BE14FAA6723F7968962D5266 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		DA7868A62F982E629623F8AB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		87A8FB561B1E5BC100D820A8 /* Frameworks */ = {
+		875096591B2887480002B5FB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				738F9ADA8ED49C23404A1582 /* Pods_Eve.framework in Frameworks */,
+				F4ED2AA188D814A5960D7C21 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		87A8FB6B1B1E5BC200D820A8 /* Frameworks */ = {
+		8750966E1B2887480002B5FB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -68,99 +71,99 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3A2010A6C4FE33FD1F88BF31 /* Pods */ = {
+		33329DB8FA4D46C6695A3C14 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				21134462A2E0758AE2B20866 /* Pods-Eve.debug.xcconfig */,
-				BC3A0616C630390CDF2329F6 /* Pods-Eve.release.xcconfig */,
+				BE14FAA6723F7968962D5266 /* Pods.debug.xcconfig */,
+				A01E6E5F51A603DB338A4873 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		87A8FB501B1E5BC100D820A8 = {
+		76C548C5BCC4DA38E0C9ECA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				87A8FB5B1B1E5BC100D820A8 /* Eve */,
-				87A8FB711B1E5BC200D820A8 /* EveTests */,
-				87A8FB5A1B1E5BC100D820A8 /* Products */,
-				3A2010A6C4FE33FD1F88BF31 /* Pods */,
-				EE0B44C36102D72640FC5E9E /* Frameworks */,
+				DA7868A62F982E629623F8AB /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		875096531B2887480002B5FB = {
+			isa = PBXGroup;
+			children = (
+				8750965E1B2887480002B5FB /* Eve */,
+				875096741B2887480002B5FB /* EveTests */,
+				8750965D1B2887480002B5FB /* Products */,
+				33329DB8FA4D46C6695A3C14 /* Pods */,
+				76C548C5BCC4DA38E0C9ECA6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		87A8FB5A1B1E5BC100D820A8 /* Products */ = {
+		8750965D1B2887480002B5FB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				87A8FB591B1E5BC100D820A8 /* Eve.app */,
-				87A8FB6E1B1E5BC200D820A8 /* EveTests.xctest */,
+				8750965C1B2887480002B5FB /* Eve.app */,
+				875096711B2887480002B5FB /* EveTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		87A8FB5B1B1E5BC100D820A8 /* Eve */ = {
+		8750965E1B2887480002B5FB /* Eve */ = {
 			isa = PBXGroup;
 			children = (
-				87A8FB5E1B1E5BC100D820A8 /* AppDelegate.swift */,
-				874CC5DB1B2704730009B25B /* CalendarInfoClass.swift */,
-				87A8FB601B1E5BC100D820A8 /* CalendarViewController.swift */,
-				87368BAB1B20857F0031A3DD /* DateCollectionViewCell.swift */,
-				87A8FB621B1E5BC100D820A8 /* Main.storyboard */,
-				87A8FB671B1E5BC100D820A8 /* LaunchScreen.xib */,
-				877B05991B27724800BB1CC3 /* playgroundCalendarClass.playground */,
-				87380C701B26E947003D88E5 /* CVCalendarKitDemo.playground */,
-				87A8FB651B1E5BC100D820A8 /* Images.xcassets */,
-				8752630C1B2662AD007F00A5 /* Eve-Bridging-Header.h */,
-				87A8FB5C1B1E5BC100D820A8 /* Supporting Files */,
+				875096611B2887480002B5FB /* AppDelegate.swift */,
+				875096631B2887480002B5FB /* ViewController.swift */,
+				8705FD751B28941C00015A62 /* CalendarViewController.swift */,
+				8705FD731B28886300015A62 /* CalendarClass.swift */,
+				8705FD701B28880300015A62 /* podHeader.c */,
+				8705FD711B28880300015A62 /* podHeader.h */,
+				875096651B2887480002B5FB /* Main.storyboard */,
+				8705FD771B28966E00015A62 /* DateCollectionViewCell.swift */,
+				875096681B2887480002B5FB /* Images.xcassets */,
+				8750966A1B2887480002B5FB /* LaunchScreen.xib */,
+				8750965F1B2887480002B5FB /* Supporting Files */,
+				8705FD6F1B28880200015A62 /* Eve-Bridging-Header.h */,
 			);
 			path = Eve;
 			sourceTree = "<group>";
 		};
-		87A8FB5C1B1E5BC100D820A8 /* Supporting Files */ = {
+		8750965F1B2887480002B5FB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				87A8FB5D1B1E5BC100D820A8 /* Info.plist */,
+				875096601B2887480002B5FB /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		87A8FB711B1E5BC200D820A8 /* EveTests */ = {
+		875096741B2887480002B5FB /* EveTests */ = {
 			isa = PBXGroup;
 			children = (
-				87A8FB741B1E5BC200D820A8 /* EveTests.swift */,
-				87A8FB721B1E5BC200D820A8 /* Supporting Files */,
+				875096771B2887480002B5FB /* EveTests.swift */,
+				875096751B2887480002B5FB /* Supporting Files */,
 			);
 			path = EveTests;
 			sourceTree = "<group>";
 		};
-		87A8FB721B1E5BC200D820A8 /* Supporting Files */ = {
+		875096751B2887480002B5FB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				87A8FB731B1E5BC200D820A8 /* Info.plist */,
+				875096761B2887480002B5FB /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		EE0B44C36102D72640FC5E9E /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				B9391C145F8C7EE99DE584F9 /* Pods_Eve.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		87A8FB581B1E5BC100D820A8 /* Eve */ = {
+		8750965B1B2887480002B5FB /* Eve */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 87A8FB781B1E5BC200D820A8 /* Build configuration list for PBXNativeTarget "Eve" */;
+			buildConfigurationList = 8750967B1B2887480002B5FB /* Build configuration list for PBXNativeTarget "Eve" */;
 			buildPhases = (
-				C8AFD7A8482C2DD8714A35DD /* Check Pods Manifest.lock */,
-				87A8FB551B1E5BC100D820A8 /* Sources */,
-				87A8FB561B1E5BC100D820A8 /* Frameworks */,
-				87A8FB571B1E5BC100D820A8 /* Resources */,
-				2A1F971F6D57EA47E51356FC /* Embed Pods Frameworks */,
-				607E9CE02DDCCD6FBAD5723E /* Copy Pods Resources */,
+				4C829D19AEF79CD1797577CE /* Check Pods Manifest.lock */,
+				875096581B2887480002B5FB /* Sources */,
+				875096591B2887480002B5FB /* Frameworks */,
+				8750965A1B2887480002B5FB /* Resources */,
+				BE7D89CBC952917FD9C1F07B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -168,46 +171,46 @@
 			);
 			name = Eve;
 			productName = Eve;
-			productReference = 87A8FB591B1E5BC100D820A8 /* Eve.app */;
+			productReference = 8750965C1B2887480002B5FB /* Eve.app */;
 			productType = "com.apple.product-type.application";
 		};
-		87A8FB6D1B1E5BC200D820A8 /* EveTests */ = {
+		875096701B2887480002B5FB /* EveTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 87A8FB7B1B1E5BC200D820A8 /* Build configuration list for PBXNativeTarget "EveTests" */;
+			buildConfigurationList = 8750967E1B2887480002B5FB /* Build configuration list for PBXNativeTarget "EveTests" */;
 			buildPhases = (
-				87A8FB6A1B1E5BC200D820A8 /* Sources */,
-				87A8FB6B1B1E5BC200D820A8 /* Frameworks */,
-				87A8FB6C1B1E5BC200D820A8 /* Resources */,
+				8750966D1B2887480002B5FB /* Sources */,
+				8750966E1B2887480002B5FB /* Frameworks */,
+				8750966F1B2887480002B5FB /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				87A8FB701B1E5BC200D820A8 /* PBXTargetDependency */,
+				875096731B2887480002B5FB /* PBXTargetDependency */,
 			);
 			name = EveTests;
 			productName = EveTests;
-			productReference = 87A8FB6E1B1E5BC200D820A8 /* EveTests.xctest */;
+			productReference = 875096711B2887480002B5FB /* EveTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		87A8FB511B1E5BC100D820A8 /* Project object */ = {
+		875096541B2887480002B5FB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Sangeeta van Beemen";
 				TargetAttributes = {
-					87A8FB581B1E5BC100D820A8 = {
-						CreatedOnToolsVersion = 6.3.1;
+					8750965B1B2887480002B5FB = {
+						CreatedOnToolsVersion = 6.3.2;
 					};
-					87A8FB6D1B1E5BC200D820A8 = {
-						CreatedOnToolsVersion = 6.3.1;
-						TestTargetID = 87A8FB581B1E5BC100D820A8;
+					875096701B2887480002B5FB = {
+						CreatedOnToolsVersion = 6.3.2;
+						TestTargetID = 8750965B1B2887480002B5FB;
 					};
 				};
 			};
-			buildConfigurationList = 87A8FB541B1E5BC100D820A8 /* Build configuration list for PBXProject "Eve" */;
+			buildConfigurationList = 875096571B2887480002B5FB /* Build configuration list for PBXProject "Eve" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -215,29 +218,29 @@
 				en,
 				Base,
 			);
-			mainGroup = 87A8FB501B1E5BC100D820A8;
-			productRefGroup = 87A8FB5A1B1E5BC100D820A8 /* Products */;
+			mainGroup = 875096531B2887480002B5FB;
+			productRefGroup = 8750965D1B2887480002B5FB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				87A8FB581B1E5BC100D820A8 /* Eve */,
-				87A8FB6D1B1E5BC200D820A8 /* EveTests */,
+				8750965B1B2887480002B5FB /* Eve */,
+				875096701B2887480002B5FB /* EveTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		87A8FB571B1E5BC100D820A8 /* Resources */ = {
+		8750965A1B2887480002B5FB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87A8FB641B1E5BC100D820A8 /* Main.storyboard in Resources */,
-				87A8FB691B1E5BC100D820A8 /* LaunchScreen.xib in Resources */,
-				87A8FB661B1E5BC100D820A8 /* Images.xcassets in Resources */,
+				875096671B2887480002B5FB /* Main.storyboard in Resources */,
+				8750966C1B2887480002B5FB /* LaunchScreen.xib in Resources */,
+				875096691B2887480002B5FB /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		87A8FB6C1B1E5BC200D820A8 /* Resources */ = {
+		8750966F1B2887480002B5FB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -247,37 +250,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2A1F971F6D57EA47E51356FC /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Eve/Pods-Eve-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		607E9CE02DDCCD6FBAD5723E /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Eve/Pods-Eve-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C8AFD7A8482C2DD8714A35DD /* Check Pods Manifest.lock */ = {
+		4C829D19AEF79CD1797577CE /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -292,51 +265,68 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		BE7D89CBC952917FD9C1F07B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		87A8FB551B1E5BC100D820A8 /* Sources */ = {
+		875096581B2887480002B5FB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87A8FB611B1E5BC100D820A8 /* CalendarViewController.swift in Sources */,
-				87A8FB5F1B1E5BC100D820A8 /* AppDelegate.swift in Sources */,
-				874CC5DC1B2704730009B25B /* CalendarInfoClass.swift in Sources */,
-				87368BAC1B20857F0031A3DD /* DateCollectionViewCell.swift in Sources */,
+				8705FD761B28941C00015A62 /* CalendarViewController.swift in Sources */,
+				8705FD721B28880300015A62 /* podHeader.c in Sources */,
+				875096641B2887480002B5FB /* ViewController.swift in Sources */,
+				8705FD741B28886300015A62 /* CalendarClass.swift in Sources */,
+				8705FD781B28966E00015A62 /* DateCollectionViewCell.swift in Sources */,
+				875096621B2887480002B5FB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		87A8FB6A1B1E5BC200D820A8 /* Sources */ = {
+		8750966D1B2887480002B5FB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87A8FB751B1E5BC200D820A8 /* EveTests.swift in Sources */,
+				875096781B2887480002B5FB /* EveTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		87A8FB701B1E5BC200D820A8 /* PBXTargetDependency */ = {
+		875096731B2887480002B5FB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 87A8FB581B1E5BC100D820A8 /* Eve */;
-			targetProxy = 87A8FB6F1B1E5BC200D820A8 /* PBXContainerItemProxy */;
+			target = 8750965B1B2887480002B5FB /* Eve */;
+			targetProxy = 875096721B2887480002B5FB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		87A8FB621B1E5BC100D820A8 /* Main.storyboard */ = {
+		875096651B2887480002B5FB /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				87A8FB631B1E5BC100D820A8 /* Base */,
+				875096661B2887480002B5FB /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		87A8FB671B1E5BC100D820A8 /* LaunchScreen.xib */ = {
+		8750966A1B2887480002B5FB /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				87A8FB681B1E5BC100D820A8 /* Base */,
+				8750966B1B2887480002B5FB /* Base */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -344,7 +334,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		87A8FB761B1E5BC200D820A8 /* Debug */ = {
+		875096791B2887480002B5FB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -385,11 +375,10 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		87A8FB771B1E5BC200D820A8 /* Release */ = {
+		8750967A1B2887480002B5FB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -422,19 +411,17 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		87A8FB791B1E5BC200D820A8 /* Debug */ = {
+		8750967C1B2887480002B5FB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21134462A2E0758AE2B20866 /* Pods-Eve.debug.xcconfig */;
+			baseConfigurationReference = BE14FAA6723F7968962D5266 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Eve/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Eve/Eve-Bridging-Header.h";
@@ -442,21 +429,20 @@
 			};
 			name = Debug;
 		};
-		87A8FB7A1B1E5BC200D820A8 /* Release */ = {
+		8750967D1B2887480002B5FB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC3A0616C630390CDF2329F6 /* Pods-Eve.release.xcconfig */;
+			baseConfigurationReference = A01E6E5F51A603DB338A4873 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Eve/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Eve/Eve-Bridging-Header.h";
 			};
 			name = Release;
 		};
-		87A8FB7C1B1E5BC200D820A8 /* Debug */ = {
+		8750967F1B2887480002B5FB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -475,7 +461,7 @@
 			};
 			name = Debug;
 		};
-		87A8FB7D1B1E5BC200D820A8 /* Release */ = {
+		875096801B2887480002B5FB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -493,34 +479,34 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		87A8FB541B1E5BC100D820A8 /* Build configuration list for PBXProject "Eve" */ = {
+		875096571B2887480002B5FB /* Build configuration list for PBXProject "Eve" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				87A8FB761B1E5BC200D820A8 /* Debug */,
-				87A8FB771B1E5BC200D820A8 /* Release */,
+				875096791B2887480002B5FB /* Debug */,
+				8750967A1B2887480002B5FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		87A8FB781B1E5BC200D820A8 /* Build configuration list for PBXNativeTarget "Eve" */ = {
+		8750967B1B2887480002B5FB /* Build configuration list for PBXNativeTarget "Eve" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				87A8FB791B1E5BC200D820A8 /* Debug */,
-				87A8FB7A1B1E5BC200D820A8 /* Release */,
+				8750967C1B2887480002B5FB /* Debug */,
+				8750967D1B2887480002B5FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		87A8FB7B1B1E5BC200D820A8 /* Build configuration list for PBXNativeTarget "EveTests" */ = {
+		8750967E1B2887480002B5FB /* Build configuration list for PBXNativeTarget "EveTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				87A8FB7C1B1E5BC200D820A8 /* Debug */,
-				87A8FB7D1B1E5BC200D820A8 /* Release */,
+				8750967F1B2887480002B5FB /* Debug */,
+				875096801B2887480002B5FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 87A8FB511B1E5BC100D820A8 /* Project object */;
+	rootObject = 875096541B2887480002B5FB /* Project object */;
 }
