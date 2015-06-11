@@ -32,19 +32,39 @@ class Calendar
     
     var allDates = [NSArray]()
     
+    var monthInView: NSDate
+    
+    
+    var currentDayValue: Int
+    var currentMonthValue: Int
+    var currentYearValue: Int
     
     init()
     {
         self.todayDate = NSDate()
+        
         self.thisMonth = self.todayDate.daysInMonth()
+        
         self.currentCalendar = NSCalendar.currentCalendar()
+        
+        self.currentDayValue = self.todayDate.day()
+        self.currentMonthValue = self.todayDate.month()
+        self.currentYearValue = self.todayDate.year()
+        
         self.firstDayThisMonth = NSDateComponents()
+        
         self.firstDayThisMonth.day = 1
-        self.firstDayOfMonthObject = currentCalendar.dateFromComponents(firstDayThisMonth)!
+        self.firstDayThisMonth.month = self.currentMonthValue
+        self.firstDayThisMonth.year = self.currentYearValue
+        
+        self.firstDayOfMonthObject = NSDate()
+//        self.firstDayOfMonthObject = currentCalendar.dateFromComponents(self.firstDayThisMonth)!
+        
         self.daysInCurrentYear = todayDate.daysInYear()
         self.monthValuesList = []
         self.dateList = []
         self.monthNameList = self.currentCalendar.monthSymbols
+        self.monthInView = NSDate()
     }
     
     
@@ -60,23 +80,27 @@ class Calendar
         
     }
     
+    func makeFirstDayMonth()
+    {
+        self.firstDayOfMonthObject = self.currentCalendar.dateBySettingUnit(NSCalendarUnit.CalendarUnitDay, value: 1, ofDate: self.todayDate, options: NSCalendarOptions.MatchStrictly)!
+    }
   
     
     func dateValue()
     {
         for month in monthValuesList
         {
-            println("monthObject= \(month)")
             var days: Int = month[1] as! Int
-            println("days= \(days)")
+
             for var index = 1; index < days; ++index
             {
                 dateList.append(index)
             }
         }
-        println("dateList= \(dateList)")
+
         self.yearDates()
     }
+    
     
     func yearDates()
     {
@@ -91,7 +115,7 @@ class Calendar
             self.firstDayThisMonth.month = monthValue
             
             // create an NSDateObject for each month 
-            var monthObject = currentCalendar.dateFromComponents(self.firstDayThisMonth)
+            var monthObject = self.currentCalendar.dateBySettingUnit(NSCalendarUnit.CalendarUnitDay, value: 1, ofDate: self.todayDate, options: NSCalendarOptions())
             
             var amountDaysInMonth = monthObject?.daysInMonth()
 
@@ -104,11 +128,29 @@ class Calendar
             
             self.allDates.append([monthValue, datesInMonth])
         }
-        println("datesInMonth = \(self.allDates)")
-        
-  
     }
 
+    
+    func printValues()
+    {
+        
+        self.makeFirstDayMonth()
+        println("firstdayMonthObject DAY \(self.firstDayOfMonthObject.day())")
+        println("firstdayMonthObject MONTH\(self.firstDayOfMonthObject.month())")
+        println("firstdayMonthObject YEAR \(self.firstDayOfMonthObject.year())")
+        println("today! \(self.todayDate)")
+        println("today day \(self.todayDate.day())")
+        println("today month \(self.todayDate.month())")
+        println("today year \(self.todayDate.year())")
+        
+        println("firstdayMonthObject \(self.firstDayOfMonthObject)")
+        
+        println("CDV\(self.currentDayValue)")
+        println("CDV\(self.currentMonthValue)")
+        println("CDV\(self.currentYearValue)")
+        
+        println("new Object \(self.firstDayOfMonthObject)")
+    }
 }
 
 

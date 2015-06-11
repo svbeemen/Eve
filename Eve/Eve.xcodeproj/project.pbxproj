@@ -17,6 +17,7 @@
 		875096691B2887480002B5FB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 875096681B2887480002B5FB /* Images.xcassets */; };
 		8750966C1B2887480002B5FB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8750966A1B2887480002B5FB /* LaunchScreen.xib */; };
 		875096781B2887480002B5FB /* EveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875096771B2887480002B5FB /* EveTests.swift */; };
+		87A76CF41B298A280003EA34 /* monthCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A76CF31B298A280003EA34 /* monthCollectionReusableView.swift */; };
 		F4ED2AA188D814A5960D7C21 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA7868A62F982E629623F8AB /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		875096711B2887480002B5FB /* EveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		875096761B2887480002B5FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		875096771B2887480002B5FB /* EveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EveTests.swift; sourceTree = "<group>"; };
+		87A76CF31B298A280003EA34 /* monthCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = monthCollectionReusableView.swift; sourceTree = "<group>"; };
 		A01E6E5F51A603DB338A4873 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		BE14FAA6723F7968962D5266 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		DA7868A62F982E629623F8AB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,6 +119,7 @@
 				8705FD731B28886300015A62 /* CalendarClass.swift */,
 				8705FD701B28880300015A62 /* podHeader.c */,
 				8705FD711B28880300015A62 /* podHeader.h */,
+				87A76CF31B298A280003EA34 /* monthCollectionReusableView.swift */,
 				875096651B2887480002B5FB /* Main.storyboard */,
 				8705FD771B28966E00015A62 /* DateCollectionViewCell.swift */,
 				875096681B2887480002B5FB /* Images.xcassets */,
@@ -287,6 +290,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87A76CF41B298A280003EA34 /* monthCollectionReusableView.swift in Sources */,
 				8705FD761B28941C00015A62 /* CalendarViewController.swift in Sources */,
 				8705FD721B28880300015A62 /* podHeader.c in Sources */,
 				875096641B2887480002B5FB /* ViewController.swift in Sources */,
