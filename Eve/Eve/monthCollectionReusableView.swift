@@ -11,9 +11,32 @@ import UIKit
 class monthCollectionReusableView: UICollectionReusableView
 {
         
+//    let screenSize: CGRect
+//    let screenWidth: CGFloat
+
     @IBOutlet weak var monthLabel: UILabel!
+    
+   
+//    
+//    override init(frame: CGRect)
+//    {
+//        
+//        self.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: CGFloat(300), height: CGFloat(50))
+//        super.init(frame: frame)
+//    }
+//
+//    required init(coder aDecoder: NSCoder) {
+////        fatalError("init(coder:) has not been implemented")
+//    }
+//    
+////    required init(coder aDecoder: NSCoder)
+////    {
+////
+////    }
+//    
 
 }
+
 
 
 //class CollectionSampleViewController: UICollectionViewController {

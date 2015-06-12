@@ -16,6 +16,8 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
     let screenWidth: CGFloat!
     let screenHeight: CGFloat!
     
+    let counter: Int = 0
+    
     let calendarInfo: Calendar
     
     // amount of adjecent dates
@@ -30,8 +32,9 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
     {
         screenSize = UIScreen.mainScreen().bounds
         screenWidth = screenSize.width
-        screenHeight = screenSize.height - CGFloat(60)
+        screenHeight = screenSize.height - CGFloat(30)
         calendarInfo = Calendar()
+
         
         super.init(coder: aDecoder)
     }
@@ -42,21 +45,8 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
         calendarCollectionView.delegate = self
         calendarCollectionView.dataSource = self
      
-        calendarInfo.monthValues()
-        calendarInfo.dateValue()
-        
-        println("inside View")
-        println("firstdayMonthObject DAY \(calendarInfo.firstDayOfMonthObject.day())")
-        println("firstdayMonthObject MONTH \(calendarInfo.firstDayOfMonthObject.month())")
-        println("firstdayMonthObject YEAR \(calendarInfo.firstDayOfMonthObject.year())")
-        println("today! \(calendarInfo.todayDate)")
-        println("today day \(calendarInfo.todayDate.day())")
-        println("today month \(calendarInfo.todayDate.month())")
-        println("today year \(calendarInfo.todayDate.year())")
-        
-        println("firstdayMonthObject \(calendarInfo.firstDayOfMonthObject)")
-        
-        
+//        calendarInfo.monthValues()
+//        calendarInfo.dateValue()
         //        calendarCollectionView.registerClass(UICollectionViewController.self, forCellWithReuseIdentifier: "month")
             
         super.viewDidLoad()
@@ -66,31 +56,41 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
     // amount of sections in collectionview
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int
     {
-        calendarInfo.printValues()
-        return 1
+        println("in num sections")
+//        calendarInfo.printValues()
+        return calendarInfo.monthNameList.count
     }
 
         
     // collectionview protocol amount of items in a section. A section will be 1 month.
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return calendarInfo.monthInView.daysInMonth()
+        
+        var days = calendarInfo.monthDays()[section]
+        return days
     }
+
+    
+    
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize
+    {
+        println("size header month")
+        
+        return CGSize(width: screenWidth, height: CGFloat(50))
+    }
+    
     
     // collectionview protocol to fill cell with data
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
-        let cell = self.calendarCollectionView.dequeueReusableCellWithReuseIdentifier("calendarCell", forIndexPath: indexPath) as! DateCollectionViewCell
+        println("in content for cell sections")
         
-//        println("width Screen \(screenSize.width)")
-//        println("height Screen\(screenSize.height)")
-//        println("width Cell \(cell.frame.size.width)")
-//        println("height Cell \(cell.frame.size.height)")
+        let cell = self.calendarCollectionView.dequeueReusableCellWithReuseIdentifier("calendarCell", forIndexPath: indexPath) as! DateCollectionViewCell
 
         var date = indexPath.item + 1
 
         cell.dateLabel!.text = "\(date)"
-//        cell.cellImageView.image = UIImage(named: "circle")
         
         return cell
     }
@@ -99,46 +99,33 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
     // size of cells
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
     {
-        var newHeight = CGFloat(calendarInfo.todayDate.daysInMonth()) / columns
-        return CGSize(width: screenWidth / columns, height: screenHeight / newHeight)
+        println("in size of cell")
+        
+        return CGSize(width: screenWidth / columns, height: CGFloat(screenHeight / 8))
     }
     
-//    func override func collectionView(collectionView: UICollectionView,
-//        viewForSupplementaryElementOfKind kind: String,
-//        atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-//            //1
-//            switch kind {
-//                //2
-//            case UICollectionElementKindSectionHeader:
-//                //3
-//                let headerView =
-//                collectionView.dequeueReusableSupplementaryViewOfKind(kind,
-//                    withReuseIdentifier: "FlickrPhotoHeaderView",
-//                    forIndexPath: indexPath)
-//                    as! FlickrPhotoHeaderView
-//                headerView.label.text = searches[indexPath.section].searchTerm
-//                return headerView
-//            default:
-//                //4
-//                assert(false, "Unexpected element kind")
-//            }
-//    }
+
     
+    // uncommecnt for month name
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
     {
+        println("content month header")
+        
         let monthHeaderView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "monthCell", forIndexPath: indexPath) as! monthCollectionReusableView
         
-        println("section Height \(monthHeaderView.frame.size.height)")
-        println("section Width \(monthHeaderView.frame.size.width)")
+        monthHeaderView.monthLabel.text = calendarInfo.monthNameList[indexPath.section] as? String
         
+        println("monthLabelText = \(monthHeaderView.monthLabel.text)")
         
-        monthHeaderView.monthLabel.text = calendarInfo.monthNameList[calendarInfo.monthInView.month() - 1] as? String
         return monthHeaderView
     }
+    
+    
     
     // spaces between cells
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat
     {
+        println("spaces for interitem section")
         return 0
     }
         
@@ -146,31 +133,67 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
     // spaces between cells
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat
     {
+        println("spaces for section")
         return 0
     }
 
-    
-    func scrollViewDidScroll(scrollView: UIScrollView)
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
-        println("in scroll")
-        calendarInfo.monthInView = calendarInfo.firstDayOfMonthObject.dateByAddingMonths(1)
-        print("month is \(calendarInfo.monthInView.month())")
-        self.calendarCollectionView.reloadData()
-//        let offsetY = scrollView.contentOffset.y
-//        let contentWidth = scrollView.contentSize.width
-//        
-//        println("off set is \(offsetY) and contentWidth is \(contentWidth) and scrollView is \(scrollView.frame.size.width)")
-//        
-//        if offsetY > contentWidth - scrollView.frame.size.width
-//        {
-//            calendarInfo.monthInView = calendarInfo.firstDayOfMonthObject.dateByAddingMonths(1)
-//            print("month is \(calendarInfo.monthInView.month())")
-//            self.calendarCollectionView.reloadData()
-//        }
-//
-//
-//        
+        println("in did select")
+        
+        let cell = self.calendarCollectionView.cellForItemAtIndexPath(indexPath) as! DateCollectionViewCell
+        
+        cell.dateLabel.textColor = UIColor.blueColor()
+        
+        var cellSection = indexPath.section
+        
+        var month: AnyObject = calendarInfo.monthNameList[cellSection]
+        
+        println("text date\(cell.dateLabel.text!) and index path \(month)")
+        
+//        cellLayout?.highlighted = true
+//        cellLayout = UIColor.blueColor()
+//        println("hightlight = \(cellLayout!.highlighted)")
+        
+
     }
+    
+
+
+    
+//    
+//    func scrollViewDidScroll(scrollView: UIScrollView)
+//    {
+//        println("in scroll")
+//        let offsetX = scrollView.contentOffset.x
+//        let contentWidth = scrollView.contentSize.width
+//        let test = scrollView.frame.size.width
+//        
+//        calendarInfo.todayDate = calendarInfo.todayDate.dateByAddingMonths(1)
+//        
+//        print("new TODAY day is \(calendarInfo.todayDate.day())")
+//        print("new TODAY month is \(calendarInfo.todayDate.month())")
+//        print("new TODAY year is \(calendarInfo.todayDate.year())")
+//        
+//        self.calendarCollectionView.reloadData()
+//        
+//
+////        self.calendarCollectionView.reloadData()
+////        let offsetY = scrollView.contentOffset.y
+////        let contentWidth = scrollView.contentSize.width
+////        
+////        println("off set is \(offsetY) and contentWidth is \(contentWidth) and scrollView is \(scrollView.frame.size.width)")
+////        
+////        if offsetY > contentWidth - scrollView.frame.size.width
+////        {
+////            calendarInfo.monthInView = calendarInfo.firstDayOfMonthObject.dateByAddingMonths(1)
+////            print("month is \(calendarInfo.monthInView.month())")
+////            self.calendarCollectionView.reloadData()
+////        }
+////
+////
+////        
+//    }
 }
     
 

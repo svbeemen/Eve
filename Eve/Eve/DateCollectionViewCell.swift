@@ -13,4 +13,6 @@ class DateCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var dateLabel: UILabel!
    
     @IBOutlet weak var cellImageView: UIImageView!
+    
+    var layout = UICollectionViewLayoutAttributes()
 }

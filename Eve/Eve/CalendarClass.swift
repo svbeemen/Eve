@@ -80,6 +80,21 @@ class Calendar
         
     }
     
+    func monthDays() -> [Int]
+    {
+        var monthValuesDays: [Int] = []
+        
+        for index in 1...12
+        {
+            self.firstDayThisMonth.month = index
+            self.firstDayOfMonthObject = currentCalendar.dateFromComponents(firstDayThisMonth)!
+            var monthDays = self.firstDayOfMonthObject.daysInMonth()
+            monthValuesDays.append(monthDays)
+        }
+        
+        return monthValuesDays
+    }
+    
     func makeFirstDayMonth()
     {
         self.firstDayOfMonthObject = self.currentCalendar.dateBySettingUnit(NSCalendarUnit.CalendarUnitDay, value: 1, ofDate: self.todayDate, options: NSCalendarOptions.MatchStrictly)!
@@ -135,6 +150,8 @@ class Calendar
     {
         
         self.makeFirstDayMonth()
+        self.monthValues()
+        println("monthvalues\(self.monthValuesList)")
         println("firstdayMonthObject DAY \(self.firstDayOfMonthObject.day())")
         println("firstdayMonthObject MONTH\(self.firstDayOfMonthObject.month())")
         println("firstdayMonthObject YEAR \(self.firstDayOfMonthObject.year())")
