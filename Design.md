@@ -1,23 +1,21 @@
 ### Essential Features
 
--   The user can set when she last had her menstruation
+-   The user can set when she last had her menstruation.
 
 -   The user can alter the predicted dates concerning her cycle, up to and
-    including the current date
+    including the current date.
 
--   Altered dates concerning the users cycle have to be taken into account for
-    future predictions
+-   Altered dates concerning the users cycle will to be taken into account for 
+    more accurate future predictions.
 
--   The user can set what time to be informed that she is in her fertile period
+-   The user can set what time to be informed that she is in her fertile period.
 
 -   The user can choose whether and when to be informed on her menstruation
-    period
+    period.
 
  
 
 ### Extra features 
-
--   The user can create an account
 
 -   The app can be used in combination with other contraceptives
 
@@ -27,23 +25,29 @@
     contraceptive
 
 -   The user can ben informed on fertile days with a humorous element such as a
-    gif
+    gif [Maybe]
 
  
 
 ### Classes
 
-CycleInformation Class
+CalendarClass
 
 NotificationsClass
 
+CalculateCycleClass: in init subclass CalendarClass
  
 
 ### ViewControllers
 
 CalendarCollectionViewController.
 
-SettingsViewController
+SettingsViewController.
+
+
+### Subclasses
+DateCollectionViewCell
+MonthCollectionReusableView
 
  
 
@@ -53,8 +57,6 @@ SettingsViewController
 
 -   Notification Center framework 
 
--   EventKit Framework
-
 -   NSCalendar
 
 -   NSDate
@@ -62,6 +64,8 @@ SettingsViewController
 -   UICollectionView
 
 -   UICollectionViewCell
+
+-   DateTools (Cocoapod)  
 
  
 
