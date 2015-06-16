@@ -11,6 +11,10 @@ import UIKit
 class CalendarViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
 {
     
+    private let sectionInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+    
+    private var months: NSArray
+    
     // variables for screen size to create layout
     let screenSize : CGRect
     let screenWidth: CGFloat!
@@ -30,10 +34,12 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
     // init for screensize
     required init(coder aDecoder: NSCoder)
     {
+
         screenSize = UIScreen.mainScreen().bounds
         screenWidth = screenSize.width
         screenHeight = screenSize.height - CGFloat(30)
         calendarInfo = Calendar()
+        months = calendarInfo.monthNameList
 
         
         super.init(coder: aDecoder)
@@ -52,7 +58,7 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
         super.viewDidLoad()
     }
     
-    
+
     // amount of sections in collectionview
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int
     {
@@ -89,20 +95,52 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
         let cell = self.calendarCollectionView.dequeueReusableCellWithReuseIdentifier("calendarCell", forIndexPath: indexPath) as! DateCollectionViewCell
 
         var date = indexPath.item + 1
-
+        
         cell.dateLabel!.text = "\(date)"
         
+        cell.dateLabel.frame = cell.frame
+        
+        cell.dateLabel.textRectForBounds(cell.bounds, limitedToNumberOfLines: 5)
+        
+        cell.dateLabel.drawTextInRect(cell.dateLabel.frame)
+                
+        cell.activityIndicator.stopAnimating()
+        
+        if indexPath != largeDateCellIndexPath
+        {
+            println("in not indexpath larg cell")
+//            cell.dateLabel.textRectForBounds(cell.bounds, limitedToNumberOfLines: 1)
+            return cell
+        }
+        
+        cell.activityIndicator.startAnimating()
+        
+        //8
+        if indexPath == self.largeDateCellIndexPath
+        {
+            println("in 1st indexpath == larg cell")
+            cell.backgroundColor = UIColor.blackColor()
+            if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? DateCollectionViewCell
+            {
+                cell.backgroundColor = UIColor.blackColor()
+                println("in 2st indexpath == larg cell")
+//                cell.dateLabel.textRectForBounds(cell.bounds, limitedToNumberOfLines: 1)
+            }
+        }
+
         return cell
     }
+    
+
         
         
-    // size of cells
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
-    {
-        println("in size of cell")
-        
-        return CGSize(width: screenWidth / columns, height: CGFloat(screenHeight / 8))
-    }
+//    // size of cells
+//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
+//    {
+//        println("in size of cell")
+//        
+//        return CGSize(width: screenWidth / columns, height: CGFloat(screenHeight / 8))
+//    }
     
 
     
@@ -122,21 +160,31 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
     
     
     
-    // spaces between cells
+//    // spaces between cells
+//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat
+//    {
+//        println("spaces for interitem section")
+//        return 0
+//    }
+    
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat
     {
-        println("spaces for interitem section")
-        return 0
+        return CGFloat(0.0)
+    }
+    
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return CGFloat(0)
     }
         
-        
-    // spaces between cells
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat
-    {
-        println("spaces for section")
-        return 0
-    }
+//    // spaces between cells
+//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat
+//    {
+//        println("spaces for section")
+//        return 0
+//    }
 
+    
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
         println("in did select")
@@ -147,17 +195,109 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
         
         var cellSection = indexPath.section
         
-        var month: AnyObject = calendarInfo.monthNameList[cellSection]
+        println("text date\(cell.dateLabel.text!) and month section is \(calendarInfo.monthNameList[cellSection])")
         
-        println("text date\(cell.dateLabel.text!) and index path \(month)")
+        println("indexPath = \(indexPath)")
+    }
+    
+    
+
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
+    {
+        println("in size of cell")
+        let dimension = CGFloat(screenWidth / 7)
         
-//        cellLayout?.highlighted = true
-//        cellLayout = UIColor.blueColor()
-//        println("hightlight = \(cellLayout!.highlighted)")
+        if indexPath == largeDateCellIndexPath
+        {
+            println("in size of cell BIG")
+            
+            var bigCellSize = collectionView.bounds.size
+            bigCellSize.height -= CGFloat(50)
+            bigCellSize.width -= CGFloat(50)
+//            var size = collectionView.bounds.size
+//            size.height -= topLayoutGuide.length
+//            size.height -= (sectionInsets.top + sectionInsets.right)
+//            size.width -= (sectionInsets.left + sectionInsets.right)
+            
+            return bigCellSize
+        }
         
+        println("in size of cell NORMAL")
+        return CGSize(width: dimension, height: dimension)
+    }
+        
+
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,insetForSectionAtIndex section: Int) -> UIEdgeInsets
+    {
+        var newSpaces = UIEdgeInsetsZero
+        
+        return newSpaces
+    }
+    
+    
+    
+    // tutorial
+    //1
+    var largeDateCellIndexPath : NSIndexPath?
+    {
+        didSet
+        {
+            //2
+            var indexPaths = [NSIndexPath]()
+            
+            if largeDateCellIndexPath != nil
+            {
+                println("append indexpatrhs")
+                indexPaths.append(largeDateCellIndexPath!)
+            }
+            
+            if oldValue != nil
+            {
+                println("old value")
+                indexPaths.append(oldValue!)
+            }
+            
+            //3
+            self.calendarCollectionView.performBatchUpdates({
+                println("perforn BatchUpdates")
+                self.calendarCollectionView.reloadItemsAtIndexPaths(indexPaths)
+                return
+            })
+            {
+                completed in
+                //4
+                if self.largeDateCellIndexPath != nil
+                {
+                    println("performBatchupdates annitmate scroll to")
+                    self.calendarCollectionView.scrollToItemAtIndexPath(self.largeDateCellIndexPath!, atScrollPosition: .CenteredVertically, animated: true)
+                }
+            }
+        }
+    }
+    
+    
+    // tutorial
+    func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool
+    {
+        println("in should select")
+        if largeDateCellIndexPath == indexPath
+        {
+            println("in should select / if {largeDateCellIndex == indexpath")
+            largeDateCellIndexPath = nil
+        }
+        else
+        {
+            println("in should select / else { ")
+            largeDateCellIndexPath = indexPath
+        }
+        return false
 
     }
     
+
+}
+
+
 
 
     
@@ -194,7 +334,7 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
 ////
 ////        
 //    }
-}
+
     
 
 

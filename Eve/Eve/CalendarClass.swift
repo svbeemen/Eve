@@ -76,6 +76,9 @@ class Calendar
             self.firstDayOfMonthObject = currentCalendar.dateFromComponents(firstDayThisMonth)!
             var monthDays = self.firstDayOfMonthObject.daysInMonth()
             self.monthValuesList.append([index,monthDays])
+            var testDate = NSDate()
+            var month = testDate
+            var new = testDate.month.value()
         }
         
     }

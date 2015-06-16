@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F2685D56465B54DABBEE9E4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B804BDD271057CCFABFBA517 /* libPods.a */; };
 		8705FD721B28880300015A62 /* podHeader.c in Sources */ = {isa = PBXBuildFile; fileRef = 8705FD701B28880300015A62 /* podHeader.c */; };
 		8705FD741B28886300015A62 /* CalendarClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8705FD731B28886300015A62 /* CalendarClass.swift */; };
 		8705FD761B28941C00015A62 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8705FD751B28941C00015A62 /* CalendarViewController.swift */; };
 		8705FD781B28966E00015A62 /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8705FD771B28966E00015A62 /* DateCollectionViewCell.swift */; };
+		872043F61B2B14B2001526AD /* CVCalendarKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872043F41B2B14B2001526AD /* CVCalendarKitExtensions.swift */; };
+		872043F71B2B14B2001526AD /* CVCalendarKitOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872043F51B2B14B2001526AD /* CVCalendarKitOperators.swift */; };
+		87247F591B2F1B97002DFFF1 /* dateStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87247F581B2F1B97002DFFF1 /* dateStruct.swift */; };
 		875096621B2887480002B5FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875096611B2887480002B5FB /* AppDelegate.swift */; };
 		875096641B2887480002B5FB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875096631B2887480002B5FB /* ViewController.swift */; };
 		875096671B2887480002B5FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 875096651B2887480002B5FB /* Main.storyboard */; };
@@ -18,7 +22,6 @@
 		8750966C1B2887480002B5FB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8750966A1B2887480002B5FB /* LaunchScreen.xib */; };
 		875096781B2887480002B5FB /* EveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875096771B2887480002B5FB /* EveTests.swift */; };
 		87A76CF41B298A280003EA34 /* monthCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A76CF31B298A280003EA34 /* monthCollectionReusableView.swift */; };
-		F4ED2AA188D814A5960D7C21 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA7868A62F982E629623F8AB /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +41,10 @@
 		8705FD731B28886300015A62 /* CalendarClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarClass.swift; sourceTree = "<group>"; };
 		8705FD751B28941C00015A62 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		8705FD771B28966E00015A62 /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateCollectionViewCell.swift; sourceTree = "<group>"; };
+		872043EF1B2B0CB5001526AD /* CVCalendarKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CVCalendarKit.framework; path = "Pods/../build/Debug-iphoneos/Pods/CVCalendarKit.framework"; sourceTree = "<group>"; };
+		872043F41B2B14B2001526AD /* CVCalendarKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CVCalendarKitExtensions.swift; path = "../../../../Downloads/CVCalendarKit-master/CVCalendarKit/CVCalendarKitExtensions.swift"; sourceTree = "<group>"; };
+		872043F51B2B14B2001526AD /* CVCalendarKitOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CVCalendarKitOperators.swift; path = "../../../../Downloads/CVCalendarKit-master/CVCalendarKit/CVCalendarKitOperators.swift"; sourceTree = "<group>"; };
+		87247F581B2F1B97002DFFF1 /* dateStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dateStruct.swift; sourceTree = "<group>"; };
 		8750965C1B2887480002B5FB /* Eve.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eve.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		875096601B2887480002B5FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		875096611B2887480002B5FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -50,8 +57,8 @@
 		875096771B2887480002B5FB /* EveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EveTests.swift; sourceTree = "<group>"; };
 		87A76CF31B298A280003EA34 /* monthCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = monthCollectionReusableView.swift; sourceTree = "<group>"; };
 		A01E6E5F51A603DB338A4873 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		B804BDD271057CCFABFBA517 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE14FAA6723F7968962D5266 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		DA7868A62F982E629623F8AB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4ED2AA188D814A5960D7C21 /* libPods.a in Frameworks */,
+				4F2685D56465B54DABBEE9E4 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,9 +92,19 @@
 		76C548C5BCC4DA38E0C9ECA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DA7868A62F982E629623F8AB /* libPods.a */,
+				872043EF1B2B0CB5001526AD /* CVCalendarKit.framework */,
+				B804BDD271057CCFABFBA517 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		872043F11B2B1127001526AD /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				872043F41B2B14B2001526AD /* CVCalendarKitExtensions.swift */,
+				872043F51B2B14B2001526AD /* CVCalendarKitOperators.swift */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		875096531B2887480002B5FB = {
@@ -113,9 +130,11 @@
 		8750965E1B2887480002B5FB /* Eve */ = {
 			isa = PBXGroup;
 			children = (
+				872043F11B2B1127001526AD /* Categories */,
 				875096611B2887480002B5FB /* AppDelegate.swift */,
 				875096631B2887480002B5FB /* ViewController.swift */,
 				8705FD751B28941C00015A62 /* CalendarViewController.swift */,
+				87247F581B2F1B97002DFFF1 /* dateStruct.swift */,
 				8705FD731B28886300015A62 /* CalendarClass.swift */,
 				8705FD701B28880300015A62 /* podHeader.c */,
 				8705FD711B28880300015A62 /* podHeader.h */,
@@ -295,6 +314,9 @@
 				8705FD721B28880300015A62 /* podHeader.c in Sources */,
 				875096641B2887480002B5FB /* ViewController.swift in Sources */,
 				8705FD741B28886300015A62 /* CalendarClass.swift in Sources */,
+				872043F61B2B14B2001526AD /* CVCalendarKitExtensions.swift in Sources */,
+				87247F591B2F1B97002DFFF1 /* dateStruct.swift in Sources */,
+				872043F71B2B14B2001526AD /* CVCalendarKitOperators.swift in Sources */,
 				8705FD781B28966E00015A62 /* DateCollectionViewCell.swift in Sources */,
 				875096621B2887480002B5FB /* AppDelegate.swift in Sources */,
 			);
@@ -425,6 +447,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods",
+				);
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "";
 				INFOPLIST_FILE = Eve/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -439,6 +466,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods",
+				);
 				INFOPLIST_FILE = Eve/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

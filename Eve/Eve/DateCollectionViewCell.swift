@@ -12,7 +12,23 @@ class DateCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var dateLabel: UILabel!
    
-    @IBOutlet weak var cellImageView: UIImageView!
+//    @IBOutlet weak var cellImageView: UIImageView!
     
-    var layout = UICollectionViewLayoutAttributes()
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+//    var layout = UICollectionViewLayoutAttributes()
+    
+    
+//    override func awakeFromNib()
+//    {
+//        super.awakeFromNib()
+//        self.selected = false
+//    }
+//    
+//    override var selected : Bool
+//    {
+//        didSet
+//        {
+//            self.backgroundColor = selected ? UIColor.blackColor()
+//        }
+//    }
 }
