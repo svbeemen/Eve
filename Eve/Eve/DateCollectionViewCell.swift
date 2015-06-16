@@ -8,13 +8,27 @@
 
 import UIKit
 
-class DateCollectionViewCell: UICollectionViewCell {
+class DateCollectionViewCell: UICollectionViewCell
+{
     
     @IBOutlet weak var dateLabel: UILabel!
    
 //    @IBOutlet weak var cellImageView: UIImageView!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    
+    var dateObject: NSDate!
+    
+    var selectedDate: Bool!
+    
+}
+    
+//    required init(coder aDecoder: NSCoder)
+//    {
+//        
+//        super.init(coder: aDecoder)
+//    }
 //    var layout = UICollectionViewLayoutAttributes()
     
     
@@ -31,4 +45,4 @@ class DateCollectionViewCell: UICollectionViewCell {
 //            self.backgroundColor = selected ? UIColor.blackColor()
 //        }
 //    }
-}
+
