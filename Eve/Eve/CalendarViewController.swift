@@ -21,7 +21,6 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
     var monthNames: [AnyObject]
     var calendarToday: NSDate
     
-    var indexPathToday: NSIndexPath
     
     
     // amount of adjecent dates
@@ -45,8 +44,7 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
         monthNames = calendarInfo.monthNames
         calendarToday = calendarInfo.currentDate
         
-        indexPathToday = NSIndexPath(forItem: calendarToday.day.value() - 1, inSection: calendarToday.month.value() - 1)
-
+        
         super.init(coder: aDecoder)
     }
     
@@ -54,17 +52,20 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
     // collectionview protocols init
     override func viewDidLoad()
     {
-        println("view did load")
         calendarCollectionView.delegate = self
         calendarCollectionView.dataSource = self
         
-        println("cell index today = \(calendarCollectionView.cellForItemAtIndexPath(indexPathToday))")
-        println(" item index = \(indexPathToday.item) and section index = \(indexPathToday.section)")
+        super.viewDidLoad()
+
+
+//        println("view did load")
+
+//        println("cell index today = \(calendarCollectionView.cellForItemAtIndexPath(indexPathToday))")
+//        println(" item index = \(indexPathToday.item) and section index = \(indexPathToday.section)")
 //        calendarCollectionView.scrollToItemAtIndexPath(indexPathToday!, atScrollPosition: .CenteredVertically, animated: true)
         
-        super.viewDidLoad()
         
-        //        calendarCollectionView.registerClass(UICollectionViewController.self, forCellWithReuseIdentifier: "month")
+//        calendarCollectionView.registerClass(UICollectionViewController.self, forCellWithReuseIdentifier: "month")
     }
     
 
@@ -92,25 +93,11 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
         let cell = self.calendarCollectionView.dequeueReusableCellWithReuseIdentifier("calendarCell", forIndexPath: indexPath) as! DateCollectionViewCell
         
         var date = calendarMonthsToShow[indexPath.section][indexPath.item].day.value()
-//        
-//        println("indexPath Item = \(indexPath.item)")
-//        println("indexPath section = \(indexPath.section)")
-//        
+
         cell.dateLabel.text = "\(date)"
         
         cell.dateObject = calendarMonthsToShow[indexPath.section][indexPath.item]
-        
-        if selectedDateCellIndexPath == indexPath
-        {
-            cell.backgroundColor = UIColor.blueColor()
-        }
-        
-//        if cell.dateObject == calendarToday
-//        {
-////            println("dateObject == Today, \(calendarToday) = \(cell.dateObject)")
-//            cell.backgroundColor = UIColor.blackColor()
-//        }
-//      
+   
         println("cell date object = \(cell.dateObject)")
         return cell
     }
