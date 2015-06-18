@@ -14,9 +14,8 @@
 		8705FD781B28966E00015A62 /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8705FD771B28966E00015A62 /* DateCollectionViewCell.swift */; };
 		872043F61B2B14B2001526AD /* CVCalendarKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872043F41B2B14B2001526AD /* CVCalendarKitExtensions.swift */; };
 		872043F71B2B14B2001526AD /* CVCalendarKitOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872043F51B2B14B2001526AD /* CVCalendarKitOperators.swift */; };
-		87247F591B2F1B97002DFFF1 /* dateStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87247F581B2F1B97002DFFF1 /* dateStruct.swift */; };
+		87247F591B2F1B97002DFFF1 /* NewCalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87247F581B2F1B97002DFFF1 /* NewCalendarManager.swift */; };
 		875096621B2887480002B5FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875096611B2887480002B5FB /* AppDelegate.swift */; };
-		875096641B2887480002B5FB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875096631B2887480002B5FB /* ViewController.swift */; };
 		875096671B2887480002B5FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 875096651B2887480002B5FB /* Main.storyboard */; };
 		875096691B2887480002B5FB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 875096681B2887480002B5FB /* Images.xcassets */; };
 		8750966C1B2887480002B5FB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8750966A1B2887480002B5FB /* LaunchScreen.xib */; };
@@ -24,6 +23,8 @@
 		87A769691B30875800F65070 /* rubbishCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A769681B30875800F65070 /* rubbishCalendarView.swift */; };
 		87A76CF41B298A280003EA34 /* monthCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A76CF31B298A280003EA34 /* monthCollectionReusableView.swift */; };
 		A93F10491B3220C500DABA1C /* MenstrationCycleClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93F10481B3220C500DABA1C /* MenstrationCycleClass.swift */; };
+		A97B800A1B32F4CD0031B907 /* LayoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97B80091B32F4CD0031B907 /* LayoutController.swift */; };
+		A97B800C1B32FB4C0031B907 /* testingNewCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97B800B1B32FB4C0031B907 /* testingNewCalendarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,11 +47,10 @@
 		872043EF1B2B0CB5001526AD /* CVCalendarKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CVCalendarKit.framework; path = "Pods/../build/Debug-iphoneos/Pods/CVCalendarKit.framework"; sourceTree = "<group>"; };
 		872043F41B2B14B2001526AD /* CVCalendarKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CVCalendarKitExtensions.swift; path = "../../../../Downloads/CVCalendarKit-master/CVCalendarKit/CVCalendarKitExtensions.swift"; sourceTree = "<group>"; };
 		872043F51B2B14B2001526AD /* CVCalendarKitOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CVCalendarKitOperators.swift; path = "../../../../Downloads/CVCalendarKit-master/CVCalendarKit/CVCalendarKitOperators.swift"; sourceTree = "<group>"; };
-		87247F581B2F1B97002DFFF1 /* dateStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dateStruct.swift; sourceTree = "<group>"; };
+		87247F581B2F1B97002DFFF1 /* NewCalendarManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCalendarManager.swift; sourceTree = "<group>"; };
 		8750965C1B2887480002B5FB /* Eve.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eve.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		875096601B2887480002B5FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		875096611B2887480002B5FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		875096631B2887480002B5FB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		875096661B2887480002B5FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		875096681B2887480002B5FB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8750966B1B2887480002B5FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -61,6 +61,8 @@
 		87A76CF31B298A280003EA34 /* monthCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = monthCollectionReusableView.swift; sourceTree = "<group>"; };
 		A01E6E5F51A603DB338A4873 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A93F10481B3220C500DABA1C /* MenstrationCycleClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenstrationCycleClass.swift; sourceTree = "<group>"; };
+		A97B80091B32F4CD0031B907 /* LayoutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutController.swift; sourceTree = "<group>"; };
+		A97B800B1B32FB4C0031B907 /* testingNewCalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testingNewCalendarView.swift; sourceTree = "<group>"; };
 		B804BDD271057CCFABFBA517 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE14FAA6723F7968962D5266 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -135,17 +137,18 @@
 			isa = PBXGroup;
 			children = (
 				872043F11B2B1127001526AD /* Categories */,
-				875096611B2887480002B5FB /* AppDelegate.swift */,
-				875096631B2887480002B5FB /* ViewController.swift */,
 				8705FD751B28941C00015A62 /* CalendarViewController.swift */,
-				87247F581B2F1B97002DFFF1 /* dateStruct.swift */,
+				A97B80091B32F4CD0031B907 /* LayoutController.swift */,
+				8705FD771B28966E00015A62 /* DateCollectionViewCell.swift */,
+				A97B800B1B32FB4C0031B907 /* testingNewCalendarView.swift */,
+				87A76CF31B298A280003EA34 /* monthCollectionReusableView.swift */,
+				87247F581B2F1B97002DFFF1 /* NewCalendarManager.swift */,
+				A93F10481B3220C500DABA1C /* MenstrationCycleClass.swift */,
+				875096651B2887480002B5FB /* Main.storyboard */,
+				875096611B2887480002B5FB /* AppDelegate.swift */,
 				8705FD731B28886300015A62 /* CalendarClass.swift */,
 				8705FD701B28880300015A62 /* podHeader.c */,
 				8705FD711B28880300015A62 /* podHeader.h */,
-				87A76CF31B298A280003EA34 /* monthCollectionReusableView.swift */,
-				A93F10481B3220C500DABA1C /* MenstrationCycleClass.swift */,
-				875096651B2887480002B5FB /* Main.storyboard */,
-				8705FD771B28966E00015A62 /* DateCollectionViewCell.swift */,
 				875096681B2887480002B5FB /* Images.xcassets */,
 				8750966A1B2887480002B5FB /* LaunchScreen.xib */,
 				87A769681B30875800F65070 /* rubbishCalendarView.swift */,
@@ -318,13 +321,14 @@
 				87A76CF41B298A280003EA34 /* monthCollectionReusableView.swift in Sources */,
 				8705FD761B28941C00015A62 /* CalendarViewController.swift in Sources */,
 				8705FD721B28880300015A62 /* podHeader.c in Sources */,
-				875096641B2887480002B5FB /* ViewController.swift in Sources */,
 				87A769691B30875800F65070 /* rubbishCalendarView.swift in Sources */,
 				8705FD741B28886300015A62 /* CalendarClass.swift in Sources */,
+				A97B800A1B32F4CD0031B907 /* LayoutController.swift in Sources */,
 				872043F61B2B14B2001526AD /* CVCalendarKitExtensions.swift in Sources */,
-				87247F591B2F1B97002DFFF1 /* dateStruct.swift in Sources */,
+				87247F591B2F1B97002DFFF1 /* NewCalendarManager.swift in Sources */,
 				A93F10491B3220C500DABA1C /* MenstrationCycleClass.swift in Sources */,
 				872043F71B2B14B2001526AD /* CVCalendarKitOperators.swift in Sources */,
+				A97B800C1B32FB4C0031B907 /* testingNewCalendarView.swift in Sources */,
 				8705FD781B28966E00015A62 /* DateCollectionViewCell.swift in Sources */,
 				875096621B2887480002B5FB /* AppDelegate.swift in Sources */,
 			);

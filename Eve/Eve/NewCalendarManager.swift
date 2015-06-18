@@ -56,9 +56,11 @@ class newCalendarManager
     
     
     // function to get the month values of the years
-    func getMonthValues(yearsList:[NSDate]) -> [[NSDate]]
+    func getMonthValues() -> [NSDate]
     {
-        var monthValuesForView = [[NSDate]]()
+        var yearsList = self.yearsToView()
+        
+        var monthValuesForView = [NSDate]()
         
         var days = 0
         
@@ -91,11 +93,11 @@ class newCalendarManager
                     var date = month.dateByAddingDays(index)
                     
                     // add the day dateObject to the month list
-                    datesInMonth.append(date)
+                    monthValuesForView.append(date)
                 }
                 
                 // add the monthlist to the big monthValuesList
-                monthValuesForView.append(datesInMonth)
+//                monthValuesForView.append(datesInMonth)
 //                println("dates in Month = \(datesInMonth)")
 //                
 //                datesInYear.append(datesInMonth)

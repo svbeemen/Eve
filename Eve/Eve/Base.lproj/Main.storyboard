@@ -52,7 +52,6 @@
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <outlet property="activityIndicator" destination="rfA-zR-BR8" id="G8Z-2t-6sg"/>
                                             <outlet property="dateLabel" destination="VvZ-32-VeK" id="VLn-vL-KmA"/>
                                         </connections>
                                     </collectionViewCell>
@@ -73,8 +72,8 @@
                                     </connections>
                                 </collectionReusableView>
                                 <connections>
-                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="rD7-ul-vgS"/>
-                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="HqA-nD-fLP"/>
+                                    <outlet property="dataSource" destination="Me7-Hp-iSG" id="G4r-dI-PQu"/>
+                                    <outlet property="delegate" destination="Me7-Hp-iSG" id="yLP-hq-BWf"/>
                                 </connections>
                             </collectionView>
                         </subviews>
