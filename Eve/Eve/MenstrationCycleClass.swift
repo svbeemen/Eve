@@ -13,31 +13,24 @@ class MenstruationCycle
     
     var previousMenstruationDates = [NSDate]()
     
-//    var predictedMenstruationDates = [NSDate]()
-    
-    var fertileDates = [NSDate]()
-    
-    var safeDates = [NSDate]()
-    
-    var allMenstruationDates = [NSDate]()
-
-    
-    
-    var startDateNextPeriod: NSDate!
-    
-    var endDateNextPeriod: NSDate!
- 
-    var startDateFertile: NSDate!
-    
-    var endDateFertile: NSDate!
-    
     
     var daysTillNextMenstruation: Int!
-    
     var lengthOfMenstruation: Int!
     
-    var daysEndMenstruationTillOvulation: Int!
+//    var daysEndMenstruationTillOvulation: Int!
     
+    var lengthOfOvulation: Int!
+    
+    
+    var menstrautionDates = [NSDate]()
+    var fertileDates = [NSDate]()
+    var safeDates = [NSDate]()
+    
+    //    var predictedMenstruationDates = [NSDate]()
+    //
+    //    var fertileDates = [NSDate]()
+    //
+    //    var safeDates = [NSDate]()
 
     
     // function to set and adjuct previous menstruation dates. Stores dateobjects in an array.
@@ -55,7 +48,9 @@ class MenstruationCycle
         }
         
         
-        self.sortMenstruationDates(previousMenstruationDates)
+        self.sortMenstruationDates(self.previousMenstruationDates)
+        
+//        println("MEN CLASS previousmen list = \(self.previousMenstruationDates)")
         
     }
 
@@ -66,36 +61,46 @@ class MenstruationCycle
         datesToSort.sorted({ $0.day() < $1.day() })
         datesToSort.sorted({ $0.month() < $1.month() })
         datesToSort.sorted({ $0.year() < $1.year() })
+        
+//        println("sorted menstruation dates in calss = \(datesToSort)")
     }
     
     
     
     // function that calculates when a menstruation starts and stops. Stores date object in dictionary. 
     // Returns sorted dictionary in array. Function only gets called with in the MenstrautionCycleClass
-    func getFirstAndLastDatePreviousMenstruation() -> [(NSDate, NSDate)]
-    {   // working progress
+    func getFirstAndLastDatePreviousMenstruation(newAllDateObjects: [NSDate]) -> [(NSDate, NSDate)]
+    {
         
-        var copyPreviousMenstruationDates = self.previousMenstruationDates
+        var startEndDates = [NSDate:NSDate]()
         
-        copyPreviousMenstruationDates.removeAtIndex(0)
+        self.sortMenstruationDates(newAllDateObjects)
         
-        var nextDatesPreviousMenstruationDates = copyPreviousMenstruationDates.generate()
+        var copyAllDateObjectes = newAllDateObjects
+        
+        copyAllDateObjectes.removeAtIndex(0)
+        
+        var nextDateMenstruationDates = copyAllDateObjectes.generate()
         
         var previousMenstruationStartEndDates = [NSDate:NSDate]()
+
         
         
+        var startMenstruationDate = newAllDateObjects[0]
         
-        var startMenstruationDate = self.previousMenstruationDates[0]
     
-        for (index, dateMenstruation) in enumerate(self.previousMenstruationDates)
+        for (index, dateMenstruation) in enumerate(newAllDateObjects)
         {
-            if let nextMenstruation = nextDatesPreviousMenstruationDates.next()
+            if let nextMenstruation = nextDateMenstruationDates.next()
             {
                 if nextMenstruation.daysFrom(dateMenstruation) != 1
                 {
                     var endMenstruationDate = dateMenstruation
                     
-                    previousMenstruationStartEndDates[startMenstruationDate] = endMenstruationDate
+                    var object = [startMenstruationDate, endMenstruationDate]
+                    
+                    startEndDates[startMenstruationDate] = endMenstruationDate
+                    
                     
                     startMenstruationDate = nextMenstruation
                 }
@@ -103,22 +108,81 @@ class MenstruationCycle
             else
             {
                 var lastMenstruationDate = dateMenstruation
-                previousMenstruationStartEndDates[startMenstruationDate] = lastMenstruationDate
+                startEndDates[startMenstruationDate] = lastMenstruationDate
+            }
+        }
+
+
+        var startEndDateDictionary = sorted(startEndDates){$0.0 < $1.0}
+        
+        println("MEN CLASS previousMen Dictionary  = \(startEndDateDictionary)")
+
+        return startEndDateDictionary
+    }
+    
+    
+
+    func getEndMenStartMen(newAllDateObjects: [NSDate]) -> [(NSDate, NSDate)]
+    {
+        
+        var startEndDates = [NSDate:NSDate]()
+        
+        self.sortMenstruationDates(newAllDateObjects)
+        
+        var copyAllDateObjectes = newAllDateObjects
+        
+        copyAllDateObjectes.removeAtIndex(0)
+        
+        var nextDateMenstruationDates = copyAllDateObjectes.generate()
+        
+//        var previousMenstruationStartEndDates = [NSDate:NSDate]()
+        
+        
+        
+        var startMenstruationDate = newAllDateObjects[0]
+        
+        
+        for (index, dateMenstruation) in enumerate(newAllDateObjects)
+        {
+            if let nextMenstruation = nextDateMenstruationDates.next()
+            {
+                if nextMenstruation.daysFrom(dateMenstruation) != 1
+                {
+                    var endMenstruationDate = dateMenstruation
+                    
+                    startEndDates[endMenstruationDate] = nextMenstruation
+                    
+                    
+                    endMenstruationDate = nextMenstruation
+                }
+            }
+            else
+            {
+                var lastMenstruationDate = dateMenstruation
+                startEndDates[startMenstruationDate] = lastMenstruationDate
             }
         }
         
         
-        var previousMenstruationDateDic = sorted(previousMenstruationStartEndDates) { $0.0 < $1.0 }
+        var startEndDateDictionary = sorted(startEndDates){$0.0 < $1.0}
         
-        return previousMenstruationDateDic
+        println("new END NEXT  = \(startEndDateDictionary)")
+        
+        return startEndDateDictionary
     }
+    
+    
+    
+    
     
     
     // calculates the average amoungt of time in days between all previous known menstruations.
     func getAveragePeriodBetweenMenstruations() -> Int
     {
         
-        var previousMenstruationStartEndDates = self.getFirstAndLastDatePreviousMenstruation()
+        println("GET AVE PER BETWEEN MEN")
+        
+        var previousMenstruationStartEndDates = self.getFirstAndLastDatePreviousMenstruation(self.previousMenstruationDates)
         
         var copyPreviousMenstruationStartEndDates = previousMenstruationStartEndDates
         
@@ -132,13 +196,20 @@ class MenstruationCycle
         
         for (startDate, endDate) in previousMenstruationStartEndDates
         {
+            println("DATE SETS IN DIC = \(startDate, endDate)")
             
             if let nextMenstruation = nextPreviousMenstruationStartEndDates.next()
             {
-
-                var daysBetweenMenstruation = nextMenstruation.0.daysFrom(endDate)
+                println("next menstruation = \(nextMenstruation.0)")
+                
+                var daysBetweenMenstruation = endDate.daysEarlierThan(nextMenstruation.0)
+                
+                println("days between =\(daysBetweenMenstruation)")
                 
                 totalDaysBetweenMenstruations += daysBetweenMenstruation
+                
+                println("days tota; = \(totalDaysBetweenMenstruations)")
+                
             }
             
         }
@@ -148,13 +219,17 @@ class MenstruationCycle
         return averageDaysBetweenMenstruation
         
     }
+
     
+
     
     // calculates average legth of all know previous menstruations.
     func getAverageLengthMenstruations() -> Int
     {
         
-        var previousMenstruationStartEndDates = self.getFirstAndLastDatePreviousMenstruation()
+        
+        println("GET AVE MEN LENTH")
+        var previousMenstruationStartEndDates = self.getFirstAndLastDatePreviousMenstruation(self.previousMenstruationDates)
         
         
         var totalDaysMenstruations = 0
@@ -163,13 +238,17 @@ class MenstruationCycle
         for (startDate, endDate) in previousMenstruationStartEndDates
         {
             
-            var lengthMenstruation = endDate.daysFrom(startDate)
+            var lengthMenstruation = startDate.daysEarlierThan(endDate)
             
+            println("MEN CAL LENGTH = \(lengthMenstruation)")
+
             totalDaysMenstruations += lengthMenstruation
       
         }
         
         var averageLenghthMenstruation = totalDaysMenstruations / previousMenstruationStartEndDates.count
+        
+        println("amount of periods = \(previousMenstruationStartEndDates.count)")
         
         return averageLenghthMenstruation
         
@@ -177,28 +256,38 @@ class MenstruationCycle
     
     
     
-    func calculateCycle()
+    func calculateCycle(endDate: NSDate)
     {
         
+        println("CALCULATE CYCLE")
+        
+        // variables that calculate the users cycle by the inputted dates
         self.daysTillNextMenstruation = self.getAveragePeriodBetweenMenstruations()
         
         self.lengthOfMenstruation = self.getAverageLengthMenstruations()
         
-        self.daysEndMenstruationTillOvulation = daysTillNextMenstruation / 2
-        
+        self.lengthOfOvulation = 3
         
 
         
-        var endDateLastMenstruation = self.previousMenstruationDates.last
+        self.menstrautionDates = self.getPredictedMenstruationDates(endDate)
         
-        var startDateNextPeriod = endDateLastMenstruation?.dateByAddingDays(daysTillNextMenstruation)
         
-        var endDateNextPeriod = startDateNextPeriod?.dateByAddingDays(lengthOfMenstruation)
         
-        var startDateFertile = endDateLastMenstruation?.dateByAddingDays(daysEndMenstruationTillOvulation - 1)
+        self.fertileDates = self.getPredictedFertileDate(self.menstrautionDates)
         
-        var endDateFertile = endDateLastMenstruation?.dateByAddingDays(daysEndMenstruationTillOvulation + 1)
+        self.menstrautionDates = self.menstrautionDates + self.previousMenstruationDates
         
+        
+        
+        println("called FUNCTIONS")
+        println("MENSDATES = \(self.menstrautionDates)")
+        println("and FERDATES = \(self.fertileDates)")
+        
+//        println("MEN CLASS self.menstruationDates = \(self.menstrautionDates)")
+//        
+//        println("MEN CLASS self.fertileDATES = \(self.fertileDates)")
+//        
     }
     
     
@@ -206,96 +295,211 @@ class MenstruationCycle
     // calculates start and date of menstruations since last known period till input EndDAte.
     func getPredictedMenstruationDates(endDatePrediction: NSDate) -> [NSDate]
     {
-        self.calculateCycle()
+        
+        var counterDaysMen = 0
+        
+        var counterMen = 0
+        
+        println(" get predicted date MEN")
         
         var predictedMenstruationDates = [NSDate]()
         
-        var endMenstruation = self.previousMenstruationDates.last
+        var endLastMenstruationDate = self.previousMenstruationDates.last!
         
+//        println("End Last Known Menstruation = \(endLastMenstruationDate)")
+
         
-        while endMenstruation!.isEarlierThan(endDatePrediction)
+        var startMenstruationDate = endLastMenstruationDate.dateByAddingDays(self.daysTillNextMenstruation)
+        
+//        println("Start first predicted Menstruation = \(startMenstruationDate)")
+
+        
+//        println(" end prediction date = \(endDatePrediction)")
+        
+        while startMenstruationDate.isEarlierThan(endDatePrediction)
         {
-            var startMenstruation = endMenstruation!.dateByAddingDays(self.getAveragePeriodBetweenMenstruations())
-            endMenstruation = startMenstruation.dateByAddingDays(self.getAverageLengthMenstruations())
+//            println("while startdate = \(startMenstruationDate) <= that endDate =\(endDatePrediction)")
+//            println(startMenstruationDate.isEarlierThan(endDatePrediction))
+            counterMen += 1
             
-            while startMenstruation.isEarlierThanOrEqualTo(endMenstruation)
+//            println("counterMenstrautaions to predict = \(counterMen)")
+            
+            var endMenstruationDate = startMenstruationDate.dateByAddingDays(self.lengthOfMenstruation)
+            
+//            println("var endMenstruationDate \(endMenstruationDate)")
+            
+            while startMenstruationDate.isEarlierThan(endMenstruationDate)
             {
-                var menstruationDate = startMenstruation
+//                println(" in little loop\(startMenstruationDate.isEarlierThan(endMenstruationDate))")
+//                println("var endMenstruationDate \(endMenstruationDate)")
+//                println("var StartMenstruationDate \(startMenstruationDate)")
                 
-                predictedMenstruationDates.append(menstruationDate)
                 
-                startMenstruation.day + 1
+                var menstruationDay = startMenstruationDate
+                
+                predictedMenstruationDates.append(menstruationDay)
+                
+//                println(" predicted menstruation list = \(predictedMenstruationDates)")
+                
+                startMenstruationDate = startMenstruationDate.dateByAddingDays(1)
+                
+//                println(" date math = \(startMenstruationDate)")
+                
+                counterDaysMen += 1
+                
+//                println("counterMenDays = \(counterDaysMen)")
+
             }
+            
+            startMenstruationDate = endMenstruationDate.dateByAddingDays(self.daysTillNextMenstruation)
+            
+//            println("new start date \(startMenstruationDate)")
         }
         
+//        println("menstruation dates \(predictedMenstruationDates)")
         return predictedMenstruationDates
+
     }
     
     
     
-    func getPredictedFertileDate(endDatePrediction: NSDate)
+    func getPredictedFertileDate(predictedMenstruationDates: [NSDate]) -> [NSDate]
     {
-        self.calculateCycle()
+        println(" get predicted date FER")
+
         
         var predictedFertileDates = [NSDate]()
+    
         
-        var startDateFertile = self.previousMenstruationDates.last!.dateByAddingDays(self.daysEndMenstruationTillOvulation - 1)
+        var menstruationStartEndDates = self.getEndMenStartMen(predictedMenstruationDates)
         
         
-        while startDateFertile!.isEarlierThanOrEqualTo(endDatePrediction)
+        
+        println("PERIOD DIC = \(menstruationStartEndDates)")
+        
+        var copyMenstruationStartEndDates = self.getFirstAndLastDatePreviousMenstruation(predictedMenstruationDates)
+        
+        copyMenstruationStartEndDates.removeAtIndex(0)
+        
+        var nextMenstruationStartEndDates = copyMenstruationStartEndDates.generate()
+        
+        
+    
+        for (startDate, endDate) in menstruationStartEndDates
         {
-            var endDate = startDateFertile!.dateByAddingDays(3)
-            
-            while startDateFertile.isEarlierThanOrEqualTo(endDateFertile)
+            if let var nextDate = nextMenstruationStartEndDates.next()
             {
-                var fertileDate = startDateFertile
+                var daysBetweenMenstruations = startDate.daysFrom(endDate)
                 
-                predictedFertileDates.append(fertileDate)
+                var daysTillOvulation = (daysBetweenMenstruations / 2) - 1
                 
-                startDateFertile.day + 1
+                var startOvulation = startDate.dateByAddingDays(daysTillOvulation)
+                
+//                startDate.dateByAddingDays(daysTillOvulation)
+                
+                for var index = 0; index < self.lengthOfOvulation; index++
+                {
+                    var dateOvulation = startOvulation.dateByAddingDays(index)
+                    
+                    predictedFertileDates.append(dateOvulation)
+                }
+                
+                
             }
-            
-            
         }
         
+        return predictedFertileDates
+        
+        
+       
         
     }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-
+    
+//        for (startDate, endDate) in menstruationStartEndDates
+//        {
+//            if let var nextDate = nextMenstruationStartEndDates.next()
+//            {
+//                var daysBetweenMenstruations = nextDate.0.daysFrom(endDate)
+//                
+//                var daysTillOvulation = (daysBetweenMenstruations / 2) - 1
+//                
+//                var startOvulation = endDate.dateByAddingDays(daysTillOvulation)
+//                
+//                endDate.dateByAddingDays(daysTillOvulation)
+//                
+//                for var index = 0; index < self.lengthOfOvulation; index++
+//                {
+//                    var dateOvulation = startOvulation.dateByAddingDays(index)
+//                    
+//                    predictedFertileDates.append(dateOvulation)
+//                }
+//                
+//                
+//            }
+//        }
+//        
+//        return predictedFertileDates
+//        
+//    }
 }
+        
+        
+        
+        
+//        var startDate = self.previousMenstruationDates.last
+//
+//
+//        var startOvulationDate = startDate!.dateByAddingDays(self.daysEndMenstruationTillOvulation)
+//
+//
+//
+//        while startOvulationDate.isEarlierThan(endDatePrediction)
+//        {
+//            var endOvulationDate = startOvulationDate.dateByAddingDays(self.lengthOfOvulation)
+//
+//            while startOvulationDate.isEarlierThan(endOvulationDate)
+//            {
+//                var fertileDay = startOvulationDate
+//
+//                predictedFertileDates.append(fertileDay)
+//
+//                startOvulationDate = startOvulationDate.dateByAddingDays(1)
+//            }
+//
+//            startOvulationDate = endOvulationDate.dateByAddingDays(self.lengthOfOvulation)
+//        }
+//
+//        println("fertile dates \(predictedFertileDates)")
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+

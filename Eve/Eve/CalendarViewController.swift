@@ -6,6 +6,9 @@
 //  Copyright (c) 2015 Sangeeta van Beemen. All rights reserved.
 //
 
+
+let savedSettings = NSUserDefaults.standardUserDefaults()
+
 import UIKit
 
 class CalendarViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
@@ -16,29 +19,54 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
     let screenHeight: CGFloat!
 
     // dates to show in view
-    var datesToShow: [NSDate]
+    var datesToShow: [[NSDate]]
     
-//    var indexPathsSelectedItems = [NSDate]()
+    var selectedDates: [NSDate]
     
     // instance of calendar manager
     let calendarInfo: newCalendarManager
+    
+    // variable to indicate calendar is empty. has not been used before
+    var initialCalendarState: Bool
+    
+    @IBOutlet weak var setDateButton: UIButton!
     
     
     // collectionview Outlet variable
     @IBOutlet weak var calendarCollectionView: UICollectionView!
 
     
+    @IBAction func setDates(sender: UIButton)
+    {
+        self.calendarInfo.cycleManager.calculateCycle(self.calendarInfo.lastCalendarDate)
+        self.calendarCollectionView.reloadData()
+    }
     // init for screensize
     required init(coder aDecoder: NSCoder)
     {
 
+        // size of screen for layout
         screenSize = UIScreen.mainScreen().bounds
         screenWidth = screenSize.width
         screenHeight = screenSize.height - CGFloat(30)
         
-        self.calendarInfo = newCalendarManager()
         
-        self.datesToShow = calendarInfo.getMonthValues()
+        
+        self.calendarInfo = newCalendarManager()
+        self.datesToShow = calendarInfo.getDates()
+        
+        
+        
+        if let setDates = savedSettings.objectForKey("setDates") as? [NSDate]
+        {
+            self.selectedDates = savedSettings.objectForKey("setDates") as! [NSDate]
+            self.initialCalendarState = false
+        }
+        else
+        {
+            self.selectedDates = [NSDate]()
+            self.initialCalendarState = true
+        }
         
         
         super.init(coder: aDecoder)
@@ -56,11 +84,17 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
     }
     
 
+    // amount of sections in collectionview. 3 years will be shown
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int
+    {
+        return self.datesToShow.count
+    }
+    
     
     // amount of items in each section. 1 month is one section
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return datesToShow.count
+        return datesToShow[section].count
     }
 
     
@@ -68,99 +102,126 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
         
+        
+//        self.calendarInfo.cycleManager.calculateCycle(self.calendarInfo.lastCalendarDate)
+        
+        
         let cell = self.calendarCollectionView.dequeueReusableCellWithReuseIdentifier("calendarCell", forIndexPath: indexPath) as! DateCollectionViewCell
         
-        var myIndexPaths = self.calendarCollectionView.indexPathsForSelectedItems()
-        
-        if find(myIndexPaths, indexPath as! AnyObject)
-        {
-            
-        }
-
-        f ([collectionView.indexPathsForSelectedItems containsObject:indexPath]) {
-            [collectionView selectItemAtIndexPath:indexPath animated:FALSE scrollPosition:UICollectionViewScrollPositionNone];
-            // Select Cell
-        }
-        else {
-            // Set cell to non-highlight
-        }
-        
-
-        
-        var date = self.datesToShow[indexPath.row].day.value()
+        var date = self.datesToShow[indexPath.section][indexPath.item].day.value()
         
         cell.dateLabel.text = "\(date)"
         
-        cell.dateObject = datesToShow[indexPath.row]
+        cell.dateObject = datesToShow[indexPath.section][indexPath.item]
+        
+        
+        // make red if date is a menstruation date
+        if contains(self.calendarInfo.cycleManager.menstrautionDates, cell.dateObject) || contains(self.calendarInfo.selectedDates, cell.dateObject)
+        {
+            cell.contentView.backgroundColor = UIColor.redColor()
+        }
+        else if contains(self.calendarInfo.cycleManager.fertileDates, cell.dateObject)
+        {
+            cell.contentView.backgroundColor = UIColor.darkGrayColor()
+        }
+        else
+        {
+            cell.contentView.backgroundColor = UIColor.greenColor()
+        }
+        
+        
+        
+//        // makes green if is a safe date. is a not fertile!
+//        else if contains(self.calendarInfo.cycleManager.safeDates, cell.dateObject)
+//        {
+//            cell.contentView.backgroundColor = UIColor.greenColor()
+//        }
+//        // make dark grey if a fertile day
+//        else if contains(self.calendarInfo.cycleManager.fertileDates, cell.dateObject)
+//        {
+//            cell.contentView.backgroundColor = UIColor.darkGrayColor()
+//        }
+
+        
+//        
+//        if contains(self.selectedDates, cell.dateObject)
+//        {
+//            cell.contentView.backgroundColor = UIColor.cyanColor()
+//        }
+//        else
+//        {
+//            cell.contentView.backgroundColor = UIColor.lightGrayColor()
+//        }
+//        
+
+        cell.contentView.layer.cornerRadius = 32.5
         
         return cell
     }
-   
+
     
-    func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool
+    // monthNamesToShowInView
+    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
     {
+        let monthHeaderView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "monthCell", forIndexPath: indexPath) as! monthCollectionReusableView
+            
+        var monthDateObject = self.datesToShow[indexPath.section][0]
+        
+        var monthHeaderText = self.calendarInfo.monthNames[monthDateObject.month.value() - 1] as! String
+        
+        monthHeaderView.monthLabel.text = "\(monthHeaderText)  \(monthDateObject.year.value())"
+        
+    
+        return monthHeaderView
+
+    }
+    
+
+    
+    
+    // select past or current date. change color.
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
+    {
+        println(" DID SELECT")
+    
         let cell = calendarCollectionView.cellForItemAtIndexPath(indexPath) as! DateCollectionViewCell
-        
-        println(" selected = \(cell.selected)")
-        
-        if cell.dateObject.isEarlierThanOrEqualTo(calendarInfo.currentDate)
+
+        if cell.dateObject <= self.calendarInfo.currentDate
         {
-            self.indexPathsSelectedItems.append(cell.dateObject)
-            
-            println(" DATE LIST SELCTED =\(self.indexPathsSelectedItems)")
             
             
-            println(" SHOULD SELECT TRUE")
-            return true
+            // remove or add date object
+            self.calendarInfo.cycleManager.setMenstruationDate(cell.dateObject)
+            
+            // if date was alread set as period date
+            if contains(self.calendarInfo.cycleManager.previousMenstruationDates, cell.dateObject)
+            {
+                // get cell  back to original color
+                cell.contentView.backgroundColor = UIColor.redColor()
+                
+                println(" SEelect")
+            }
+            else
+            {
+                // make cell blue to indictae menstruation dates
+                cell.contentView.backgroundColor = UIColor.greenColor()
+                println(" DeSelect")
+
+
+            }
+            
+            self.selectedDates.append(cell.dateObject)
+            
         }
-        
-        println(" SHOULD SELECT FALSE")
-
-
-        return false
     }
     
     
     
-    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath)
+    // save dates in NSUserDefaults
+    func saveDates()
     {
-        let cell = self.calendarCollectionView.cellForItemAtIndexPath(indexPath) as! DateCollectionViewCell
-        
-
-        
-        println("cell SELECTED date is = \(cell.dateObject)")
-        
-    }
-    
-    func collectionView(collectionView: UICollectionView, shouldDeselectItemAtIndexPath indexPath: NSIndexPath) -> Bool
-    {
-        let cell = self.calendarCollectionView.cellForItemAtIndexPath(indexPath) as! DateCollectionViewCell
-        
-        if cell.selected == true
-        {
-            println(" SHOULD DESELECT TRUE")
-
-            return true
-        }
-        
-        println(" SHOULD SELECT TRUE")
-
-        return false
-
-    }
-
-    
-    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath)
-    {
-        let cellLayout = cell as! DateCollectionViewCell
-        
-        cellLayout.tintColorDidChange()
-        
-        if contains(self.indexPathsSelectedItems, cellLayout.dateObject)
-        {
-            println(" made blue! \(cellLayout.dateObject)")
-            cell.backgroundColor = UIColor.blueColor()
-        }
+        savedSettings.setObject(self.selectedDates, forKey: "setDates")
+        savedSettings.synchronize()
     }
     
     

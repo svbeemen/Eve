@@ -20,8 +20,6 @@ class DateCollectionViewCell: UICollectionViewCell
     
     var dateObject: NSDate!
     
-    var selectedDate: Bool!
-    
 }
     
 //    required init(coder aDecoder: NSCoder)

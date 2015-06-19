@@ -16,7 +16,16 @@ class newCalendarManager
     
     var monthNames: [AnyObject]
     
-    var menstruationDates: [NSDate]
+    var selectedDates: [NSDate]
+    
+    
+    var cycleManager: MenstruationCycle
+    
+    
+    
+    var firstCalendarDate: NSDate!
+    
+    var lastCalendarDate: NSDate!
     
     
     
@@ -27,50 +36,59 @@ class newCalendarManager
         self.currentCalendar = NSCalendar.currentCalendar()
         
         self.monthNames = self.currentCalendar.monthSymbols
+                
+        self.cycleManager = MenstruationCycle()
         
-        self.menstruationDates = [NSDate]()
+        
+        if let selectedDates = savedSettings.objectForKey("setDates") as? [NSDate]
+        {
+            self.selectedDates = savedSettings.objectForKey("setDates") as! [NSDate]
+        }
+        else
+        {
+            self.selectedDates = [NSDate]()
+        }
+        
     }
     
     
     // function to get dateobjects Start en end to show in calendar view
-    func yearsToView() -> [NSDate]
+    func getYearDates() -> [NSDate]
     {
-        var yearsToShow = [NSDate]()
+        var yearDateObjects = [NSDate]()
         
         var firstDateThisMonth = self.currentDate.firstYearDate()
         
         var firstYearFirstDay = firstDateThisMonth.dateBySubtractingYears(1)
-        yearsToShow.append(firstYearFirstDay)
+        yearDateObjects.append(firstYearFirstDay)
         
         var secondYearFirstDay = firstDateThisMonth
-        yearsToShow.append(secondYearFirstDay)
+        yearDateObjects.append(secondYearFirstDay)
         
         var thirdYearFirstDay = firstDateThisMonth.dateByAddingYears(1)
-        yearsToShow.append(thirdYearFirstDay)
+        yearDateObjects.append(thirdYearFirstDay)
         
-        println("new CalendarClass today = \(yearsToShow)")
-        
-        return yearsToShow
+        return yearDateObjects
         
     }
     
     
-    // function to get the month values of the years
-    func getMonthValues() -> [NSDate]
+    // function to get date objects for days in years 
+    func getDates() -> [[NSDate]]
     {
-        var yearsList = self.yearsToView()
+        var yearsList = self.getYearDates()
         
-        var monthValuesForView = [NSDate]()
+        var dates = [[NSDate]]()
         
         var days = 0
         
         // for every year in the year list TOTAL IS 3
         for year in yearsList
         {
-//            var datesInYear = [[NSDate]]()
+//            var datesInYear = [NSDate]()
             
             // in every year there are 12 months
-            var monthsInYear = 12
+            var monthsInYear = self.monthNames.count
             
             
             // for all 12 month in the year
@@ -93,174 +111,179 @@ class newCalendarManager
                     var date = month.dateByAddingDays(index)
                     
                     // add the day dateObject to the month list
-                    monthValuesForView.append(date)
+                    datesInMonth.append(date)
                 }
                 
-                // add the monthlist to the big monthValuesList
-//                monthValuesForView.append(datesInMonth)
-//                println("dates in Month = \(datesInMonth)")
-//                
-//                datesInYear.append(datesInMonth)
+                dates.append(datesInMonth)
                 
             }
-            
-//            
-//            println("dates in year = \(datesInYear)")
-//            monthValuesForView.append(datesInYear)
+
         }
         
-        println("monthValueList = \(monthValuesForView)")
-        
-        return monthValuesForView
-    }
-    
-    
-    // adds selected date to menstruation array
-    func setMenstruationDate(selectedDate: NSDate)
-    {
-        self.menstruationDates.append(selectedDate)
 
-        self.sortMenstruationDates()
         
-        println("mentstruation date = \(self.menstruationDates)")
+        self.firstCalendarDate = dates[0].first
+        
+        if let lastCalanderDate = dates.last?.last
+        {
+            self.lastCalendarDate = dates.last?.last
+        }
+        
+        return dates
     }
+    
+    
+    // adds and deletes selected date to menstruation array
+    func setSelectedDate(selectedDate: NSDate)
+    {
+//        self.selectedDates.append(selectedDate)
+//
+//        self.sortMenstruationDates()
+        
+        self.cycleManager.setMenstruationDate(selectedDate)
+        
+        println("mentstruation date = \(self.selectedDates)")
+    }
+    
+}
+    
     
     
     // removes nsdate from array when deselected in calnedarview
-    func removeMenstruationDate(unselectedDates: NSDate)
-    {
-        self.menstruationDates  = self.menstruationDates.filter( {$0 != unselectedDates})
-        
-        self.sortMenstruationDates()
-        
-        self.calculateMenstruation()
-        
-        println("mentstruation date = \(self.menstruationDates)")
-    }
-    
-    // sort dates
-    func sortMenstruationDates()
-    {
-        self.menstruationDates.sort({ $0.day() < $1.day() })
-        self.menstruationDates.sort({ $0.month() < $1.month() })
-        self.menstruationDates.sort({ $0.year() < $1.year() })
-    }
-    
-    
-    
-    
-    func calculateMenstruation() -> [(NSDate, NSDate)]
-    {   // working progress
-        
-        var listIsCopyOfOrignal = self.menstruationDates
-        
-        var listWithOutFirstElement = listIsCopyOfOrignal.removeAtIndex(0)
-        
-        var listForNextDAteObject = listIsCopyOfOrignal.generate()
-        
-        var listToEnumarate = self.menstruationDates
-        
-        
-        var startEndDatesPeriods = [NSDate:NSDate]()
-        
-        
-        var startDate = listToEnumarate[0]
-        
-        for (index, value) in enumerate(listToEnumarate)
-        {
-            if let nextDate = listForNextDAteObject.next()
-            {
-                println("INDEX = \(index)")
-                println("VALUE = \(value)")
-                println("NEXT DATE \(nextDate)")
-                
-                println("date difference = \(nextDate.daysFrom(value))")
-                if nextDate.daysFrom(value) != 1
-                {
-                    var endDate = value
-                    
-                    startEndDatesPeriods[startDate] = endDate
-                    
-                    println("START DATE = \(startDate)")
-                    println("END DATE = \(endDate)")
-                    
-                    println("NEXTDATE new START DATE = \(nextDate)")
-                    
-                    startDate = nextDate
-                    
+//    func removeMenstruationDate(unselectedDates: NSDate)
+//    {
+//        self.selectedDates  = self.selectedDates.filter( {$0 != unselectedDates})
+//        
+//        self.sortMenstruationDates()
+//        
+//        self.calculateMenstruation()
+//        
+//        println("mentstruation date = \(self.selectedDates)")
+//    }
+//    
+//    // sort dates
+//    func sortMenstruationDates()
+//    {
+//        self.selectedDates.sort({ $0.day() < $1.day() })
+//        self.selectedDates.sort({ $0.month() < $1.month() })
+//        self.selectedDates.sort({ $0.year() < $1.year() })
+//    }
+//    
+//    
+//    
+//    
+//    func calculateMenstruation() -> [(NSDate, NSDate)]
+//    {   // working progress
+//        
+//        var listIsCopyOfOrignal = self.selectedDates
+//        
+//        var listWithOutFirstElement = listIsCopyOfOrignal.removeAtIndex(0)
+//        
+//        var listForNextDAteObject = listIsCopyOfOrignal.generate()
+//        
+//        var listToEnumarate = self.selectedDates
+//        
+//        
+//        var startEndDatesPeriods = [NSDate:NSDate]()
+//        
+//        
+//        var startDate = listToEnumarate[0]
+//        
+//        for (index, value) in enumerate(listToEnumarate)
+//        {
+//            if let nextDate = listForNextDAteObject.next()
+//            {
+//                println("INDEX = \(index)")
+//                println("VALUE = \(value)")
+//                println("NEXT DATE \(nextDate)")
+//                
+//                println("date difference = \(nextDate.daysFrom(value))")
+//                if nextDate.daysFrom(value) != 1
+//                {
+//                    var endDate = value
+//                    
+//                    startEndDatesPeriods[startDate] = endDate
+//                    
+//                    println("START DATE = \(startDate)")
+//                    println("END DATE = \(endDate)")
+//                    
+//                    println("NEXTDATE new START DATE = \(nextDate)")
+//                    
+//                    startDate = nextDate
+//                    
+//
+//                }
+//            }
+//            else
+//            {
+//                var endDate = value
+//                startEndDatesPeriods[startDate] = endDate
+//            }
+//        }
+//        
+//        println("MENSTRUATIONDATES ORIGINAL = \(self.selectedDates)")
+//        println("START END DATES  = \(startEndDatesPeriods)")
+//        
+//        var test = sorted(startEndDatesPeriods) { $0.0 < $1.0 }
+//        
+//        println("TEST REORDER DIC = \(test)")
+//        
+//        calculateFertileDays(test)
+//        
+//        return test
+//    }
+//    
+//    
+//    func calculateFertileDays(var periods: [(NSDate, NSDate)])
+//    {
+//        
+//        var (startLastPeriod, endLastPeriod) = periods.last!
+//        
+//        var startDateNextPeriod = endLastPeriod.dateByAddingDays(28)
+//        
+//        var startDateFertilePeriod = endLastPeriod.dateByAddingDays(11)
+//        
+//        var endDateFertilePeriod = startDateFertilePeriod.dateByAddingDays(5)
+//        
+//
+//        
+//        
+//    
+//        var periodListEnumarate = periods
+//        
+//        var totalDaysBetweenPeriods = 0
+////       
+//        periods.removeAtIndex(0)
+//        
+//        var nextPeriod = periods.generate()
+//        
+//        
+//        
+//        
+//        for (start, end) in periodListEnumarate
+//        {
+//            println("START = \(start)")
+//            println("END = \(end)")
+//            if let nextDateStartEnd = nextPeriod.next()
+//            {
+//                println("NEXT PERIOD>NEXT = \(nextDateStartEnd)")
+//                println("NEXT START \(nextDateStartEnd.0)")
+//                println("NEXT END \(nextDateStartEnd.1)")
+//                
+//                
+//                var daysBetweenPeriod = nextDateStartEnd.0.daysFrom(end)
+//                totalDaysBetweenPeriods += daysBetweenPeriod
+//                
+//                println("DAYS BETWEEN @ PERIODS = \(daysBetweenPeriod)")
+//            }
+//
+//        }
+//        
+//        println("days of period total = \(totalDaysBetweenPeriods)")
+//        
+//    
+//    }
 
-                }
-            }
-            else
-            {
-                var endDate = value
-                startEndDatesPeriods[startDate] = endDate
-            }
-        }
-        
-        println("MENSTRUATIONDATES ORIGINAL = \(self.menstruationDates)")
-        println("START END DATES  = \(startEndDatesPeriods)")
-        
-        var test = sorted(startEndDatesPeriods) { $0.0 < $1.0 }
-        
-        println("TEST REORDER DIC = \(test)")
-        
-        calculateFertileDays(test)
-        
-        return test
-    }
-    
-    
-    func calculateFertileDays(var periods: [(NSDate, NSDate)])
-    {
-        
-        var (startLastPeriod, endLastPeriod) = periods.last!
-        
-        var startDateNextPeriod = endLastPeriod.dateByAddingDays(28)
-        
-        var startDateFertilePeriod = endLastPeriod.dateByAddingDays(11)
-        
-        var endDateFertilePeriod = startDateFertilePeriod.dateByAddingDays(5)
-        
-
-        
-        
-    
-        var periodListEnumarate = periods
-        
-        var totalDaysBetweenPeriods = 0
-//       
-        periods.removeAtIndex(0)
-        
-        var nextPeriod = periods.generate()
-        
-        
-        
-        
-        for (start, end) in periodListEnumarate
-        {
-            println("START = \(start)")
-            println("END = \(end)")
-            if let nextDateStartEnd = nextPeriod.next()
-            {
-                println("NEXT PERIOD>NEXT = \(nextDateStartEnd)")
-                println("NEXT START \(nextDateStartEnd.0)")
-                println("NEXT END \(nextDateStartEnd.1)")
-                
-                
-                var daysBetweenPeriod = nextDateStartEnd.0.daysFrom(end)
-                totalDaysBetweenPeriods += daysBetweenPeriod
-                
-                println("DAYS BETWEEN @ PERIODS = \(daysBetweenPeriod)")
-            }
-
-        }
-        
-        println("days of period total = \(totalDaysBetweenPeriods)")
-        
-    
-    }
-    
         
     
 //        
@@ -413,4 +436,3 @@ class newCalendarManager
 //            }
 //        }
     
-}
