@@ -194,7 +194,7 @@ class CalendarViewController: UIViewController, UICollectionViewDataSource, UICo
             self.calendarInfo.cycleManager.setMenstruationDate(cell.dateObject)
             
             // if date was alread set as period date
-            if contains(self.calendarInfo.cycleManager.previousMenstruationDates, cell.dateObject)
+            if contains(self.calendarInfo.cycleManager.setMenstruationDates, cell.dateObject)
             {
                 // get cell  back to original color
                 cell.contentView.backgroundColor = UIColor.redColor()
