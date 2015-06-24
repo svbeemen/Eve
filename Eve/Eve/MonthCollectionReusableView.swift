@@ -8,15 +8,31 @@
 
 import UIKit
 
-class monthCollectionReusableView: UICollectionReusableView
+class MonthCollectionReusableView: UICollectionReusableView
 {
         
 //    let screenSize: CGRect
 //    let screenWidth: CGFloat
 
-    @IBOutlet weak var monthLabel: UILabel!
+//    @IBOutlet weak var monthLabel: UILabel!
     
+    @IBOutlet weak var monthLabel: UILabel!
+    @IBOutlet weak var yearLabel: UILabel!
+    
+    var dateObject: NSDate!
    
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        self.backgroundColor = UIColor.magentaColor()
+        self.frame.size = CGSize(width: 100, height: 50)
+        self.layer.borderWidth = CGFloat(4)
+        self.layer.borderColor = UIColor.blackColor().CGColor
+//        self.frame.size = CGSize(width: self.frame.width - 10, height: 50)
+//        self.layer.cornerRadius = 5
+    }
+    
+    
 //    
 //    override init(frame: CGRect)
 //    {

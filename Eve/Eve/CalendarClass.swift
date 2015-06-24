@@ -2,175 +2,158 @@
 //  CalendarClass.swift
 //  Eve
 //
-//  Created by Sangeeta van Beemen on 10/06/15 W24.
+//  Created by Sangeeta van Beemen on 23/06/15.
 //  Copyright (c) 2015 Sangeeta van Beemen. All rights reserved.
 //
 
 import Foundation
 
-class Calendar
-{
-    var todayDate: NSDate
-    
-    var thisMonth: Int
-    
-    var currentCalendar : NSCalendar
 
-    var numberDaysInYear = 0
+class CalendarClass
+{
+    var currentDate: NSDate
+
+    var currentCalendar: NSCalendar
+
+    var monthNames: [AnyObject]
+
     
-    var firstDayOfMonthObject: NSDate
+    var selectedDates: [NSDate]
+
+//
+    var cycleManager: MenstruationCycle
+
+
+
+    var firstCalendarDate: NSDate!
+
+    var lastCalendarDate: NSDate!
     
-    var firstDayThisMonth: NSDateComponents
-    
-    var daysInCurrentYear: Int
-    
-    var monthValuesList: [NSArray]
-    
-    var dateList: [Int]
-    
-    var monthNameList: [AnyObject]
-    
-    var allDates = [NSArray]()
-    
-    var monthInView: NSDate
-    
-    
-    var currentDayValue: Int
-    var currentMonthValue: Int
-    var currentYearValue: Int
-    
+    var previousMenstruationDates: [NSDate]!
+    var previousFertileDate: [NSDate]!
+
+
+
     init()
     {
-        self.todayDate = NSDate()
-        
-        self.thisMonth = self.todayDate.daysInMonth()
-        
+        self.currentDate = NSDate()
+
         self.currentCalendar = NSCalendar.currentCalendar()
-        
-        self.currentDayValue = self.todayDate.day()
-        self.currentMonthValue = self.todayDate.month()
-        self.currentYearValue = self.todayDate.year()
-        
-        self.firstDayThisMonth = NSDateComponents()
-        
-        self.firstDayThisMonth.day = 1
-        self.firstDayThisMonth.month = self.currentMonthValue
-        self.firstDayThisMonth.year = self.currentYearValue
-        
-        self.firstDayOfMonthObject = NSDate()
-//        self.firstDayOfMonthObject = currentCalendar.dateFromComponents(self.firstDayThisMonth)!
-        
-        self.daysInCurrentYear = todayDate.daysInYear()
-        self.monthValuesList = []
-        self.dateList = []
-        self.monthNameList = self.currentCalendar.monthSymbols
-        self.monthInView = NSDate()
-    }
-    
-    
-    func monthValues()
-    {
-        for index in 1...12
-        {
-            self.firstDayThisMonth.month = index
-            self.firstDayOfMonthObject = currentCalendar.dateFromComponents(firstDayThisMonth)!
-            var monthDays = self.firstDayOfMonthObject.daysInMonth()
-            self.monthValuesList.append([index,monthDays])
-            var testDate = NSDate()
-            var month = testDate
-            var new = testDate.month.value()
-        }
-        
-    }
-    
-    func monthDays() -> [Int]
-    {
-        var monthValuesDays: [Int] = []
-        
-        for index in 1...12
-        {
-            self.firstDayThisMonth.month = index
-            self.firstDayOfMonthObject = currentCalendar.dateFromComponents(firstDayThisMonth)!
-            var monthDays = self.firstDayOfMonthObject.daysInMonth()
-            monthValuesDays.append(monthDays)
-        }
-        
-        return monthValuesDays
-    }
-    
-    func makeFirstDayMonth()
-    {
-        self.firstDayOfMonthObject = self.currentCalendar.dateBySettingUnit(NSCalendarUnit.CalendarUnitDay, value: 1, ofDate: self.todayDate, options: NSCalendarOptions.MatchStrictly)!
-    }
-  
-    
-    func dateValue()
-    {
-        for month in monthValuesList
-        {
-            var days: Int = month[1] as! Int
 
-            for var index = 1; index < days; ++index
+        self.monthNames = self.currentCalendar.monthSymbols
+        
+        
+        self.selectedDates = [NSDate]()
+
+        self.cycleManager = MenstruationCycle()
+
+//
+//        if let selectedDates = savedSettings.objectForKey("setDates") as? [NSDate]
+//        {
+//            self.selectedDates = savedSettings.objectForKey("setDates") as! [NSDate]
+//        }
+//        else
+//        {
+//            self.selectedDates = [NSDate]()
+//        }
+
+    }
+    
+
+
+
+    // function to get dateobjects Start en end to show in calendar view
+    func getYearDates() -> [NSDate]
+    {
+        var yearDateObjects = [NSDate]()
+
+        var firstDateThisMonth = self.currentDate.firstYearDate()
+
+        var firstYearFirstDay = firstDateThisMonth.dateBySubtractingYears(1)
+        yearDateObjects.append(firstYearFirstDay)
+
+        var secondYearFirstDay = firstDateThisMonth
+        yearDateObjects.append(secondYearFirstDay)
+
+        var thirdYearFirstDay = firstDateThisMonth.dateByAddingYears(1)
+        yearDateObjects.append(thirdYearFirstDay)
+
+        return yearDateObjects
+
+    }
+
+
+    // function to get date objects for days in years
+    func getDates() -> [[NSDate]]
+    {
+        var yearsList = self.getYearDates()
+
+        var dates = [[NSDate]]()
+
+        var days = 0
+
+        // for every year in the year list TOTAL IS 3
+        for year in yearsList
+        {
+//            var datesInYear = [NSDate]()
+
+            // in every year there are 12 months
+            var monthsInYear = self.monthNames.count
+
+
+            // for all 12 month in the year
+            for var index = 0; index < monthsInYear; index++
             {
-                dateList.append(index)
+
+                // start with first month in year. go to next month after eacht loop
+                var month = year.dateByAddingMonths(index)
+
+                // for eacht month calculate amount of days in the month
+                var daysInMonth = month.daysInMonth()
+
+                // make a list to hold all the dateObjects for 1 month
+                var datesInMonth = [NSDate]()
+
+                // itterate through every day in a month
+                for var index = 0; index < daysInMonth; index++
+                {
+                    // make a date object for every day in the month
+                    var date = month.dateByAddingDays(index)
+
+                    // add the day dateObject to the month list
+                    datesInMonth.append(date)
+                }
+
+                dates.append(datesInMonth)
+
             }
+
         }
 
-        self.yearDates()
-    }
-    
-    
-    func yearDates()
-    {
-        var monthValue = 0
-        
-        for month in monthNameList
+
+
+        self.firstCalendarDate = dates[0].first
+
+        if let lastCalanderDate = dates.last?.last
         {
-            // the value of the month in NSCalendar
-            monthValue += 1
-            
-            // create a NSDateComponents for the 1st for each month
-            self.firstDayThisMonth.month = monthValue
-            
-            // create an NSDateObject for each month 
-            var monthObject = self.currentCalendar.dateBySettingUnit(NSCalendarUnit.CalendarUnitDay, value: 1, ofDate: self.todayDate, options: NSCalendarOptions())
-            
-            var amountDaysInMonth = monthObject?.daysInMonth()
-
-            var datesInMonth = [Int]()
-            
-            for var index = 1; index <= amountDaysInMonth!; ++index
-            {
-                datesInMonth.append(index)
-            }
-            
-            self.allDates.append([monthValue, datesInMonth])
+            self.lastCalendarDate = dates.last?.last
         }
+
+        return dates
     }
 
-    
-    func printValues()
+
+    // adds and deletes selected date to menstruation array
+    func setSelectedDate(selectedDate: NSDate)
     {
-        
-        self.makeFirstDayMonth()
-        self.monthValues()
-        println("monthvalues\(self.monthValuesList)")
-        println("firstdayMonthObject DAY \(self.firstDayOfMonthObject.day())")
-        println("firstdayMonthObject MONTH\(self.firstDayOfMonthObject.month())")
-        println("firstdayMonthObject YEAR \(self.firstDayOfMonthObject.year())")
-        println("today! \(self.todayDate)")
-        println("today day \(self.todayDate.day())")
-        println("today month \(self.todayDate.month())")
-        println("today year \(self.todayDate.year())")
-        
-        println("firstdayMonthObject \(self.firstDayOfMonthObject)")
-        
-        println("CDV\(self.currentDayValue)")
-        println("CDV\(self.currentMonthValue)")
-        println("CDV\(self.currentYearValue)")
-        
-        println("new Object \(self.firstDayOfMonthObject)")
+        self.selectedDates.append(selectedDate)
+//
+//        self.sortMenstruationDates()
+
+        self.cycleManager.setMenstruationDate(selectedDate)
+
+        println("mentstruation date = \(self.selectedDates)")
     }
+
 }
-
 
