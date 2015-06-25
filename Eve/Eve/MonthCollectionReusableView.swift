@@ -17,30 +17,32 @@ class MonthCollectionReusableView: UICollectionReusableView
 //    @IBOutlet weak var monthLabel: UILabel!
     
     @IBOutlet weak var monthLabel: UILabel!
-    @IBOutlet weak var yearLabel: UILabel!
+//    @IBOutlet weak var yearLabel: UILabel!
     
     var dateObject: NSDate!
    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        self.backgroundColor = UIColor.magentaColor()
-        self.frame.size = CGSize(width: 100, height: 50)
-        self.layer.borderWidth = CGFloat(4)
-        self.layer.borderColor = UIColor.blackColor().CGColor
+        self.backgroundColor = UIColor.lightGrayColor()
+//        self.frame.size = CGSize(width: 100, height: 50)
+        self.layer.borderWidth = CGFloat(2)
+        self.layer.borderColor = UIColor.lightGrayColor().CGColor
+        
+        self.layer.frame.size = CGSize(width: 200, height: 50)
 //        self.frame.size = CGSize(width: self.frame.width - 10, height: 50)
-//        self.layer.cornerRadius = 5
+        self.layer.cornerRadius = 10
     }
     
     
-//    
+    
 //    override init(frame: CGRect)
 //    {
-//        
-//        self.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: CGFloat(300), height: CGFloat(50))
 //        super.init(frame: frame)
+//        self.frame.size = CGSize(width: 200, height: 50)
+//        
 //    }
-//
+////
 //    required init(coder aDecoder: NSCoder) {
 ////        fatalError("init(coder:) has not been implemented")
 //    }

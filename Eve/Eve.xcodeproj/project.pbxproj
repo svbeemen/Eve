@@ -26,11 +26,15 @@
 		A90286571B38B42400872EE8 /* OLDNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90286561B38B42400872EE8 /* OLDNewViewController.swift */; };
 		A90286591B38C46900872EE8 /* InstructionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A90286581B38C46900872EE8 /* InstructionView.xib */; };
 		A902865B1B38C4EA00872EE8 /* OLDInstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A902865A1B38C4EA00872EE8 /* OLDInstructionView.swift */; };
+		A90F70711B3B436A00F806D7 /* InstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90F70701B3B436A00F806D7 /* InstructionView.swift */; };
+		A90F70731B3B541500F806D7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90F70721B3B541500F806D7 /* DetailViewController.swift */; };
+		A90F70751B3B6FD600F806D7 /* InitialCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90F70741B3B6FD600F806D7 /* InitialCalendarViewController.swift */; };
+		A90F70791B3B88ED00F806D7 /* NewDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90F70781B3B88ED00F806D7 /* NewDateCell.swift */; };
+		A90F707B1B3BA03200F806D7 /* NewMonthReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90F707A1B3BA03200F806D7 /* NewMonthReusableView.swift */; };
 		A93F10491B3220C500DABA1C /* MenstrationCycleClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93F10481B3220C500DABA1C /* MenstrationCycleClass.swift */; };
+		A949632B1B3BB3E30033738F /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A949632A1B3BB3E30033738F /* CalendarViewController.swift */; };
 		A9639B5A1B383A5A0004A2F0 /* OLDInitialSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9639B591B383A5A0004A2F0 /* OLDInitialSubView.swift */; };
 		A96BB0A91B39E6DE005271C2 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BB0A81B39E6DE005271C2 /* MainViewController.swift */; };
-		A96BB0AB1B39F96F005271C2 /* redCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = A96BB0AA1B39F96F005271C2 /* redCircle.png */; };
-		A96BB0AD1B3A03CC005271C2 /* smallerRedCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = A96BB0AC1B3A03CC005271C2 /* smallerRedCircle.png */; };
 		A96BB0AF1B3A0CA0005271C2 /* CellSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BB0AE1B3A0CA0005271C2 /* CellSubView.swift */; };
 		A96BB0B11B3A39E8005271C2 /* SaveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BB0B01B3A39E8005271C2 /* SaveData.swift */; };
 		A97918201B34107A0028587E /* OLDDictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A979181F1B34107A0028587E /* OLDDictionaryExtension.swift */; };
@@ -81,11 +85,15 @@
 		A90286561B38B42400872EE8 /* OLDNewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OLDNewViewController.swift; sourceTree = "<group>"; };
 		A90286581B38C46900872EE8 /* InstructionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InstructionView.xib; sourceTree = "<group>"; };
 		A902865A1B38C4EA00872EE8 /* OLDInstructionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OLDInstructionView.swift; sourceTree = "<group>"; };
+		A90F70701B3B436A00F806D7 /* InstructionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionView.swift; sourceTree = "<group>"; };
+		A90F70721B3B541500F806D7 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		A90F70741B3B6FD600F806D7 /* InitialCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialCalendarViewController.swift; sourceTree = "<group>"; };
+		A90F70781B3B88ED00F806D7 /* NewDateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDateCell.swift; sourceTree = "<group>"; };
+		A90F707A1B3BA03200F806D7 /* NewMonthReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMonthReusableView.swift; sourceTree = "<group>"; };
 		A93F10481B3220C500DABA1C /* MenstrationCycleClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenstrationCycleClass.swift; sourceTree = "<group>"; };
+		A949632A1B3BB3E30033738F /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		A9639B591B383A5A0004A2F0 /* OLDInitialSubView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OLDInitialSubView.swift; sourceTree = "<group>"; };
 		A96BB0A81B39E6DE005271C2 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		A96BB0AA1B39F96F005271C2 /* redCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redCircle.png; path = ../../../redCircle.png; sourceTree = "<group>"; };
-		A96BB0AC1B3A03CC005271C2 /* smallerRedCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = smallerRedCircle.png; path = ../../../smallerRedCircle.png; sourceTree = "<group>"; };
 		A96BB0AE1B3A0CA0005271C2 /* CellSubView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellSubView.swift; sourceTree = "<group>"; };
 		A96BB0B01B3A39E8005271C2 /* SaveData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveData.swift; sourceTree = "<group>"; };
 		A979181F1B34107A0028587E /* OLDDictionaryExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OLDDictionaryExtension.swift; sourceTree = "<group>"; };
@@ -175,16 +183,17 @@
 				875096651B2887480002B5FB /* Main.storyboard */,
 				875096611B2887480002B5FB /* AppDelegate.swift */,
 				A9C034D31B3991FF001F0F5A /* Constants.swift */,
-				A96BB0A81B39E6DE005271C2 /* MainViewController.swift */,
+				A90F70741B3B6FD600F806D7 /* InitialCalendarViewController.swift */,
+				A949632A1B3BB3E30033738F /* CalendarViewController.swift */,
+				A90F70721B3B541500F806D7 /* DetailViewController.swift */,
+				A90F70701B3B436A00F806D7 /* InstructionView.swift */,
 				A9C034D11B399100001F0F5A /* CalendarCollectionView.swift */,
-				A9C034D71B399484001F0F5A /* DateCollectionViewCell.swift */,
-				87A76CF31B298A280003EA34 /* MonthCollectionReusableView.swift */,
 				A9C034DB1B399E00001F0F5A /* CalendarClass.swift */,
-				A96BB0B01B3A39E8005271C2 /* SaveData.swift */,
 				A93F10481B3220C500DABA1C /* MenstrationCycleClass.swift */,
+				A96BB0B01B3A39E8005271C2 /* SaveData.swift */,
 				A9C034DD1B39B47F001F0F5A /* CalendarViewFlowLayout.swift */,
-				A96BB0AC1B3A03CC005271C2 /* smallerRedCircle.png */,
-				A96BB0AA1B39F96F005271C2 /* redCircle.png */,
+				A90F70781B3B88ED00F806D7 /* NewDateCell.swift */,
+				A90F707A1B3BA03200F806D7 /* NewMonthReusableView.swift */,
 				875096681B2887480002B5FB /* Images.xcassets */,
 				8750966A1B2887480002B5FB /* LaunchScreen.xib */,
 				8750965F1B2887480002B5FB /* Supporting Files */,
@@ -238,6 +247,9 @@
 				A9C034D91B399695001F0F5A /* ViewController.swift */,
 				A90286541B38AAA300872EE8 /* DateCell.xib */,
 				A9639B591B383A5A0004A2F0 /* OLDInitialSubView.swift */,
+				87A76CF31B298A280003EA34 /* MonthCollectionReusableView.swift */,
+				A9C034D71B399484001F0F5A /* DateCollectionViewCell.swift */,
+				A96BB0A81B39E6DE005271C2 /* MainViewController.swift */,
 			);
 			name = old;
 			sourceTree = "<group>";
@@ -327,8 +339,6 @@
 				875096671B2887480002B5FB /* Main.storyboard in Resources */,
 				8750966C1B2887480002B5FB /* LaunchScreen.xib in Resources */,
 				875096691B2887480002B5FB /* Images.xcassets in Resources */,
-				A96BB0AB1B39F96F005271C2 /* redCircle.png in Resources */,
-				A96BB0AD1B3A03CC005271C2 /* smallerRedCircle.png in Resources */,
 				A90286551B38AAA300872EE8 /* DateCell.xib in Resources */,
 				A90286591B38C46900872EE8 /* InstructionView.xib in Resources */,
 			);
@@ -384,12 +394,14 @@
 				A90286531B389D5800872EE8 /* OLDNewCalendarView.swift in Sources */,
 				87A76CF41B298A280003EA34 /* MonthCollectionReusableView.swift in Sources */,
 				A96BB0B11B3A39E8005271C2 /* SaveData.swift in Sources */,
+				A949632B1B3BB3E30033738F /* CalendarViewController.swift in Sources */,
 				A90286571B38B42400872EE8 /* OLDNewViewController.swift in Sources */,
 				8705FD761B28941C00015A62 /* OLDCalendarViewController.swift in Sources */,
 				A9C034D81B399484001F0F5A /* DateCollectionViewCell.swift in Sources */,
 				8705FD721B28880300015A62 /* podHeader.c in Sources */,
 				A902865B1B38C4EA00872EE8 /* OLDInstructionView.swift in Sources */,
 				87A769691B30875800F65070 /* OLDrubbishCalendarView.swift in Sources */,
+				A90F70731B3B541500F806D7 /* DetailViewController.swift in Sources */,
 				8705FD741B28886300015A62 /* OLDCalendarClass.swift in Sources */,
 				A9C034D21B399100001F0F5A /* CalendarCollectionView.swift in Sources */,
 				A9639B5A1B383A5A0004A2F0 /* OLDInitialSubView.swift in Sources */,
@@ -398,6 +410,8 @@
 				872043F61B2B14B2001526AD /* CVCalendarKitExtensions.swift in Sources */,
 				87247F591B2F1B97002DFFF1 /* OLDNewCalendarManager.swift in Sources */,
 				A96BB0A91B39E6DE005271C2 /* MainViewController.swift in Sources */,
+				A90F70791B3B88ED00F806D7 /* NewDateCell.swift in Sources */,
+				A90F707B1B3BA03200F806D7 /* NewMonthReusableView.swift in Sources */,
 				A96BB0AF1B3A0CA0005271C2 /* CellSubView.swift in Sources */,
 				A93F10491B3220C500DABA1C /* MenstrationCycleClass.swift in Sources */,
 				A9C034D41B3991FF001F0F5A /* Constants.swift in Sources */,
@@ -405,7 +419,9 @@
 				872043F71B2B14B2001526AD /* CVCalendarKitOperators.swift in Sources */,
 				A9C034DC1B399E00001F0F5A /* CalendarClass.swift in Sources */,
 				A9C034DA1B399695001F0F5A /* ViewController.swift in Sources */,
+				A90F70751B3B6FD600F806D7 /* InitialCalendarViewController.swift in Sources */,
 				A97B800C1B32FB4C0031B907 /* OLDtestingNewCalendarView.swift in Sources */,
+				A90F70711B3B436A00F806D7 /* InstructionView.swift in Sources */,
 				875096621B2887480002B5FB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

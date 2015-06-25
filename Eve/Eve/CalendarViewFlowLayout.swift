@@ -10,18 +10,26 @@ import UIKit
 
 class CalendarViewFlowLayout: UICollectionViewFlowLayout
 {
+
     
-    
-    required init(coder aDecoder: NSCoder) {
+    required init(coder aDecoder: NSCoder)
+    {
         super.init(coder: aDecoder)
-        
-        
-        self.itemSize = CGSize(width: 63, height: 63)
-        self.minimumLineSpacing = CGFloat(1)
-        self.minimumInteritemSpacing = CGFloat(1)
-        
-        
+
+
     }
     
-   
+    override init()
+    {
+        super.init()
+        
+        let screenWidth = UIScreen.mainScreen().bounds.width
+        let cellDimension = (screenWidth - 6) / CGFloat(5)
+        
+        sectionInset = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
+        itemSize = CGSize(width: cellDimension, height: cellDimension)
+        minimumInteritemSpacing = CGFloat(0)
+        minimumLineSpacing = CGFloat(0)
+        headerReferenceSize = CGSize(width: 200, height: 30)
+    }
 }

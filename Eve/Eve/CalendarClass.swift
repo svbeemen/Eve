@@ -142,6 +142,30 @@ class CalendarClass
         return dates
     }
 
+    
+    
+    func calculateValues()
+    {
+        cycleManager.getLengthOfMenstruation()
+        cycleManager.getLengthOfPeriodBetweenMenstruations()
+        
+        cycleManager.getPredictedMenstruations(self.lastCalendarDate)
+        cycleManager.getPredictedFertileDate(self.lastCalendarDate)
+
+        
+        println("IN CALCULATE lenghtOfMen =  \(cycleManager.lengthOfMenstruation)")
+        println("IN CALCULATE period between nelgth =  \(cycleManager.lengthOfPeriodBetweeMenstraution)")
+        println("IN CALCULATE predicted dates  =  \(cycleManager.predictedMenstrautionDates)")
+
+        println("IN CALCULATE fertile predicted dates =  \(cycleManager.predictedFertileDates)")
+        println("IN CALCULATE past men dates  =  \(cycleManager.pastMenstruationDates)")
+        println("IN CALCULATE predicted start end dates men  =  \(cycleManager.predictedMenstrautionStartEndDates)")
+        
+
+
+
+    }
+    
 
     // adds and deletes selected date to menstruation array
     func setSelectedDate(selectedDate: NSDate)

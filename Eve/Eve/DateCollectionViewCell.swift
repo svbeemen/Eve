@@ -15,10 +15,8 @@ class DateCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var circleImage: UIImageView!
     
     var dateObject: NSDate!
-//    
-//    
-//
-//    
+ 
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -38,13 +36,13 @@ class DateCollectionViewCell: UICollectionViewCell {
 //        self.circleImage.image = UIImage(named: "redCircle")
     }
 //
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//        
-//        self.frame.size = CGSize(width: 75, height: 75)
-//        
-//        println("layer =\(self.contentView.frame)")
-//    }
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        self.frame.size = CGSize(width: 75, height: 75)
+        
+        println("layer =\(self.contentView.frame)")
+    }
 
     
     override func awakeFromNib() {
