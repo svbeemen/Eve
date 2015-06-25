@@ -14,9 +14,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
+    {
         // Override point for customization after application launch.
+        if let savedDate = savedData.objectForKey("pastMenstruationDates") as? [NSDate]
+        {
+            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+            
+            var storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            var initialViewController = storyboard.instantiateViewControllerWithIdentifier("userCalendar") as! UIViewController
+            
+            self.window?.rootViewController = initialViewController
+        }
+        
         return true
+
     }
 
     func applicationWillResignActive(application: UIApplication) {

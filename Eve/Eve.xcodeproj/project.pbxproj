@@ -46,6 +46,8 @@
 		A9C034DA1B399695001F0F5A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C034D91B399695001F0F5A /* ViewController.swift */; };
 		A9C034DC1B399E00001F0F5A /* CalendarClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C034DB1B399E00001F0F5A /* CalendarClass.swift */; };
 		A9C034DE1B39B47F001F0F5A /* CalendarViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C034DD1B39B47F001F0F5A /* CalendarViewFlowLayout.swift */; };
+		A9CE76901B3C36410072ABE0 /* MenstrualCycleClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CE768F1B3C36410072ABE0 /* MenstrualCycleClass.swift */; };
+		A9CE76921B3CA7340072ABE0 /* MenstruationCycleDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CE76911B3CA7340072ABE0 /* MenstruationCycleDate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +107,8 @@
 		A9C034D91B399695001F0F5A /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A9C034DB1B399E00001F0F5A /* CalendarClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarClass.swift; sourceTree = "<group>"; };
 		A9C034DD1B39B47F001F0F5A /* CalendarViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewFlowLayout.swift; sourceTree = "<group>"; };
+		A9CE768F1B3C36410072ABE0 /* MenstrualCycleClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenstrualCycleClass.swift; sourceTree = "<group>"; };
+		A9CE76911B3CA7340072ABE0 /* MenstruationCycleDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenstruationCycleDate.swift; sourceTree = "<group>"; };
 		B804BDD271057CCFABFBA517 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE14FAA6723F7968962D5266 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -185,6 +189,7 @@
 				A9C034D31B3991FF001F0F5A /* Constants.swift */,
 				A90F70741B3B6FD600F806D7 /* InitialCalendarViewController.swift */,
 				A949632A1B3BB3E30033738F /* CalendarViewController.swift */,
+				A9CE76911B3CA7340072ABE0 /* MenstruationCycleDate.swift */,
 				A90F70721B3B541500F806D7 /* DetailViewController.swift */,
 				A90F70701B3B436A00F806D7 /* InstructionView.swift */,
 				A9C034D11B399100001F0F5A /* CalendarCollectionView.swift */,
@@ -194,6 +199,7 @@
 				A9C034DD1B39B47F001F0F5A /* CalendarViewFlowLayout.swift */,
 				A90F70781B3B88ED00F806D7 /* NewDateCell.swift */,
 				A90F707A1B3BA03200F806D7 /* NewMonthReusableView.swift */,
+				A9CE768F1B3C36410072ABE0 /* MenstrualCycleClass.swift */,
 				875096681B2887480002B5FB /* Images.xcassets */,
 				8750966A1B2887480002B5FB /* LaunchScreen.xib */,
 				8750965F1B2887480002B5FB /* Supporting Files */,
@@ -401,6 +407,7 @@
 				8705FD721B28880300015A62 /* podHeader.c in Sources */,
 				A902865B1B38C4EA00872EE8 /* OLDInstructionView.swift in Sources */,
 				87A769691B30875800F65070 /* OLDrubbishCalendarView.swift in Sources */,
+				A9CE76901B3C36410072ABE0 /* MenstrualCycleClass.swift in Sources */,
 				A90F70731B3B541500F806D7 /* DetailViewController.swift in Sources */,
 				8705FD741B28886300015A62 /* OLDCalendarClass.swift in Sources */,
 				A9C034D21B399100001F0F5A /* CalendarCollectionView.swift in Sources */,
@@ -419,6 +426,7 @@
 				872043F71B2B14B2001526AD /* CVCalendarKitOperators.swift in Sources */,
 				A9C034DC1B399E00001F0F5A /* CalendarClass.swift in Sources */,
 				A9C034DA1B399695001F0F5A /* ViewController.swift in Sources */,
+				A9CE76921B3CA7340072ABE0 /* MenstruationCycleDate.swift in Sources */,
 				A90F70751B3B6FD600F806D7 /* InitialCalendarViewController.swift in Sources */,
 				A97B800C1B32FB4C0031B907 /* OLDtestingNewCalendarView.swift in Sources */,
 				A90F70711B3B436A00F806D7 /* InstructionView.swift in Sources */,

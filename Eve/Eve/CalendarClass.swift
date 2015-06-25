@@ -31,6 +31,8 @@ class CalendarClass
     
     var previousMenstruationDates: [NSDate]!
     var previousFertileDate: [NSDate]!
+    
+    var menstruation: MenstrualCycle
 
 
 
@@ -46,6 +48,9 @@ class CalendarClass
         self.selectedDates = [NSDate]()
 
         self.cycleManager = MenstruationCycle()
+        
+        
+        self.menstruation = MenstrualCycle(currentDate: self.currentDate)
 
 //
 //        if let selectedDates = savedSettings.objectForKey("setDates") as? [NSDate]
@@ -77,7 +82,7 @@ class CalendarClass
 
         var thirdYearFirstDay = firstDateThisMonth.dateByAddingYears(1)
         yearDateObjects.append(thirdYearFirstDay)
-
+        
         return yearDateObjects
 
     }
@@ -137,8 +142,16 @@ class CalendarClass
         if let lastCalanderDate = dates.last?.last
         {
             self.lastCalendarDate = dates.last?.last
+            self.lastCalendarDate.compare(self.firstCalendarDate)
         }
 
+
+        var test = NSDate()
+        println("comapre = \(test.compare(lastCalendarDate))")
+    
+        
+        println("testing = \(self.lastCalendarDate.compare(self.firstCalendarDate))")
+        
         return dates
     }
 
@@ -170,14 +183,66 @@ class CalendarClass
     // adds and deletes selected date to menstruation array
     func setSelectedDate(selectedDate: NSDate)
     {
-        self.selectedDates.append(selectedDate)
-//
-//        self.sortMenstruationDates()
+        
+        if contains(self.selectedDates, selectedDate)
+        {
+            self.selectedDates = self.selectedDates.filter( {$0 != selectedDate} )
+        }
+        else
+        {
+            self.selectedDates.append(selectedDate)
+        }
+        
+        self.selectedDates.sort({$0 < $1})
+        
+        if contains(selectedDates, selectedDate.dateByAddingMinutes(3))
+        {
+                    println("yesy")
+        }
+        
 
-        self.cycleManager.setMenstruationDate(selectedDate)
-
-        println("mentstruation date = \(self.selectedDates)")
     }
+    
+    
+    
+
+//        self.selectedDates.append(selectedDate)
+//        
+//        println(" selected dates before sort = \(self.selectedDates)")
+//
+////
+////        self.sortMenstruationDates()
+//        
+//        self.menstruation.sortDates(self.selectedDates)
+//        println(" selected dates after old sort sort = \(self.selectedDates)")
+//        
+//        var newSort = self.menstruation.sortDates(self.selectedDates)
+//        
+//        println(" new sort = \(newSort)")
+//
+//        self.cycleManager.setMenstruationDate(selectedDate)
+//
+//        println("mentstruation date = \(self.selectedDates)")
+//    }
 
 }
+
+
+extension NSDate{
+    typealias MyDateRange = (year: Int, month: Int, day: Int)
+    
+    func myDateRange() -> MyDateRange
+    {
+        let calendar = NSCalendar.currentCalendar()
+        
+        let comps = calendar.allComponentsFromDate(self)
+        
+        return (comps.year, comps.month, comps.day)
+    }
+    
+    typealias myString = String
+
+    
+}
+
 

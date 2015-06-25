@@ -8,7 +8,7 @@
         <!--Initial Calendar View Controller-->
         <scene sceneID="7X6-Xl-xUn">
             <objects>
-                <viewController id="dFu-Sd-0pL" customClass="InitialCalendarViewController" customModule="Eve" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="emptyCalendar" id="dFu-Sd-0pL" customClass="InitialCalendarViewController" customModule="Eve" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tkg-jd-Tdx"/>
                         <viewControllerLayoutGuide type="bottom" id="EY2-Hl-vW3"/>
@@ -18,13 +18,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar alpha="0.69999999999999973" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g8v-48-JnC">
-                                <rect key="frame" x="0.0" y="34" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
                                     <navigationItem id="gxt-MK-wMQ">
                                         <barButtonItem key="rightBarButtonItem" title="SET" style="done" id="iE9-Ar-ost">
                                             <color key="tintColor" red="0.25319602272727271" green="0.25319602272727271" blue="0.25319602272727271" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
-                                                <action selector="setDates:" destination="dFu-Sd-0pL" id="U5Q-N1-0cD"/>
+                                                <action selector="calculateCycle:" destination="dFu-Sd-0pL" id="llU-ML-VAq"/>
                                                 <segue destination="sNb-bu-BeB" kind="show" identifier="predict" id="fz1-Gw-2Rt"/>
                                             </connections>
                                         </barButtonItem>
@@ -35,6 +35,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="calculateDates" destination="iE9-Ar-ost" id="5ic-Ts-L6H"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZVs-42-Jf6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -43,7 +46,7 @@
         <!--Calendar View Controller-->
         <scene sceneID="9Zw-vo-KLo">
             <objects>
-                <viewController id="sNb-bu-BeB" customClass="CalendarViewController" customModule="Eve" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="userCalendar" id="sNb-bu-BeB" customClass="CalendarViewController" customModule="Eve" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0oo-79-vlk"/>
                         <viewControllerLayoutGuide type="bottom" id="D81-gW-cSs"/>
@@ -51,6 +54,21 @@
                     <view key="view" contentMode="scaleToFill" id="Zn0-cA-H0V">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar alpha="0.69999998807907104" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="99b-t5-z2l">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                            </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sUp-gt-dXp">
+                                <rect key="frame" x="313" y="27" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveMyDates:" destination="sNb-bu-BeB" eventType="touchUpInside" id="0Gq-71-OlZ"/>
+                                    <segue destination="wk3-aa-M0T" kind="show" id="MVT-3e-Qjk"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -124,7 +142,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qui-TC-u68" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1955.5" y="404.5"/>
+            <point key="canvasLocation" x="1996.5" y="189.5"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="gQz-qV-Jer">
+            <objects>
+                <viewController id="wk3-aa-M0T" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5P1-Kv-jKx"/>
+                        <viewControllerLayoutGuide type="bottom" id="Cbb-ms-3hG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7NN-6O-Xww">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xIV-7f-i2O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1980.5" y="956.5"/>
         </scene>
     </scenes>
 </document>

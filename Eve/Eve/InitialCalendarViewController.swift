@@ -19,9 +19,22 @@ class InitialCalendarViewController: UIViewController
     
     let today: NSDate!
     
+    @IBOutlet weak var calculateDates: UIBarButtonItem!
+    
+    @IBAction func calculateCycle(sender: UIBarButtonItem) {
+        println(" pressed button")
+        
+        calendarInfo.menstruation.pastMenstruationDates = self.calendarInfo.selectedDates
+        calendarInfo.menstruation.calculateCycle(calendarInfo.lastCalendarDate)
+    }
+    
     @IBAction func setDates(sender: AnyObject)
     {
-        calendarInfo.calculateValues()
+//        calendarInfo.calculateValues()
+        println(" pressed button")
+        
+        calendarInfo.menstruation.pastMenstruationDates = self.calendarInfo.selectedDates
+        calendarInfo.menstruation.calculateCycle(calendarInfo.lastCalendarDate)
     }
     
     
@@ -67,6 +80,10 @@ class InitialCalendarViewController: UIViewController
     {
         if(segue.identifier == "predict")
         {
+            println("predict")
+            calendarInfo.menstruation.pastMenstruationDates = self.calendarInfo.selectedDates
+            calendarInfo.menstruation.calculateCycle(calendarInfo.lastCalendarDate)
+            
             var nextViewController = (segue.destinationViewController as! CalendarViewController)
             nextViewController.calendarInfo = calendarInfo
             
@@ -106,7 +123,13 @@ extension InitialCalendarViewController: UICollectionViewDataSource
         
         cell.dateLabel.text = "\(cell.dateObject.day.value())"
         
-        if contains(calendarInfo.cycleManager.pastMenstruationDates, cell.dateObject)
+//        if contains(calendarInfo.cycleManager.pastMenstruationDates, cell.dateObject)
+//        {
+//            cell.circleImage.image = UIImage(named: "Red")
+//            cell.circleImage.layer.borderWidth = CGFloat(0)
+//        }
+        
+        if contains(calendarInfo.selectedDates, cell.dateObject)
         {
             cell.circleImage.image = UIImage(named: "Red")
             cell.circleImage.layer.borderWidth = CGFloat(0)
