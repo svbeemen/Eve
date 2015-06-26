@@ -10,41 +10,29 @@ import UIKit
 
 class InitialCalendarViewController: UIViewController
 {
-    
     var collectionView: CalendarCollectionView?
     
-    let calendarInfo: CalendarClass!
+    let calendarManager: CalendarClass!
     
-    let dateObjects: [[NSDate]]!
+    let dateObjects: [[CycleDate]]!
     
     let today: NSDate!
     
     @IBOutlet weak var calculateDates: UIBarButtonItem!
     
-    @IBAction func calculateCycle(sender: UIBarButtonItem) {
-        println(" pressed button")
-        
-        calendarInfo.menstruation.pastMenstruationDates = self.calendarInfo.selectedDates
-        calendarInfo.menstruation.calculateCycle(calendarInfo.lastCalendarDate)
-    }
-    
-    @IBAction func setDates(sender: AnyObject)
+    @IBAction func calculateCycle(sender: UIBarButtonItem)
     {
-//        calendarInfo.calculateValues()
-        println(" pressed button")
-        
-        calendarInfo.menstruation.pastMenstruationDates = self.calendarInfo.selectedDates
-        calendarInfo.menstruation.calculateCycle(calendarInfo.lastCalendarDate)
+
     }
     
-    
+
     required init(coder aDecoder: NSCoder)
     {
-        calendarInfo = CalendarClass()
+        calendarManager = CalendarClass()
         
-        dateObjects = calendarInfo.getDates()
+        dateObjects = calendarManager.getDates()
         
-        today = calendarInfo.currentDate
+        today = calendarManager.currentDate
         
         super.init(coder: aDecoder)
     }
@@ -58,21 +46,17 @@ class InitialCalendarViewController: UIViewController
         collectionView = CalendarCollectionView(frame: self.view.frame, collectionViewLayout: layout)
         collectionView!.dataSource = self
         collectionView!.delegate = self
-        
-        
         self.view.insertSubview(collectionView!, atIndex: 0)
-        
+
         
         var todayIndexSection = today.month.value() + 11
         var todayIndexItem = today.day.value() - 1
         var todayIndexPAth = NSIndexPath(forItem: todayIndexItem, inSection: todayIndexSection)
         self.collectionView!.scrollToItemAtIndexPath(todayIndexPAth, atScrollPosition: UICollectionViewScrollPosition.CenteredVertically, animated: true)
         
-        
         let welcomeView = InstructionView(effect: UIVisualEffect())
         welcomeView.frame = view.bounds
         view.addSubview(welcomeView)
-
     }
     
     
@@ -80,20 +64,15 @@ class InitialCalendarViewController: UIViewController
     {
         if(segue.identifier == "predict")
         {
-            println("predict")
-            calendarInfo.menstruation.pastMenstruationDates = self.calendarInfo.selectedDates
-            calendarInfo.menstruation.calculateCycle(calendarInfo.lastCalendarDate)
+            calendarManager.menstruationCycle.pastCycleDates = self.calendarManager.selectedDates
+            calendarManager.getAndSetCycleDates()
             
             var nextViewController = (segue.destinationViewController as! CalendarViewController)
-            nextViewController.calendarInfo = calendarInfo
-            
-            nextViewController.dateObjects = dateObjects
-            
+            nextViewController.calendarManager = self.calendarManager
+            nextViewController.dateObjects = self.dateObjects
             nextViewController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
         }
     }
-
-
 }
 
 
@@ -117,40 +96,15 @@ extension InitialCalendarViewController: UICollectionViewDataSource
      func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! NewDateCell
-
         
         cell.dateObject = dateObjects[indexPath.section][indexPath.item]
+        cell.getImage()
+        cell.getText()
         
-        cell.dateLabel.text = "\(cell.dateObject.day.value())"
-        
-//        if contains(calendarInfo.cycleManager.pastMenstruationDates, cell.dateObject)
-//        {
-//            cell.circleImage.image = UIImage(named: "Red")
-//            cell.circleImage.layer.borderWidth = CGFloat(0)
-//        }
-        
-        if contains(calendarInfo.selectedDates, cell.dateObject)
-        {
-            cell.circleImage.image = UIImage(named: "Red")
-            cell.circleImage.layer.borderWidth = CGFloat(0)
-        }
-        else
-        {
-            cell.circleImage.image = UIImage(named: "lightBlueCircle")
-            cell.circleImage.layer.borderWidth = CGFloat(0)
-        }
-
-        
-        if cell.dateObject.isToday()
-        {
-            cell.circleImage.layer.borderWidth = CGFloat(2)
-            cell.circleImage.layer.borderColor = UIColor.darkGrayColor().CGColor
-            cell.circleImage.layer.cornerRadius = CGFloat(36)
-        }
+        println("ccell = \(cell.dateObject)")
         
         return cell
     }
-    
     
     
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
@@ -158,15 +112,11 @@ extension InitialCalendarViewController: UICollectionViewDataSource
         let monthHeader = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Header", forIndexPath: indexPath) as! NewMonthReusableView
         
         monthHeader.dateObject = self.dateObjects[indexPath.section].first!
-        
-        monthHeader.dateLabel.text = "  \(self.calendarInfo.monthNames[monthHeader.dateObject.month.value() - 1]) \(monthHeader.dateObject.year.value())"
-
-//        monthHeader.layer.cornerRadius = 10
+        monthHeader.getText()
 
         return monthHeader
     }
 }
-
 
 
 
@@ -176,33 +126,25 @@ extension InitialCalendarViewController: UICollectionViewDelegate
     {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! NewDateCell
         
-        if cell.dateObject.isEarlierThanOrEqualTo(self.today)
+        if cell.dateObject.date.isEarlierThanOrEqualTo(self.today)
         {
             return true
         }
         
         return false
-        
     }
-    
     
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
-        
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! NewDateCell
+
+        calendarManager.setSelectedDate(cell.dateObject)
         
-        println("Did select")
-        
-        calendarInfo.setSelectedDate(cell.dateObject)
-        
-        cell.circleImage.image = UIImage(named: "red")
+        cell.getImage()
         
         collectionView.reloadData()
-
-        
     }
-    
 }
 
 

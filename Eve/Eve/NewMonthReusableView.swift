@@ -12,7 +12,7 @@ class NewMonthReusableView: UICollectionReusableView
 {
     var dateLabel: UILabel!
     
-    var dateObject: NSDate!
+    var dateObject: CycleDate!
     
     
     required init(coder aDecoder: NSCoder)
@@ -26,14 +26,18 @@ class NewMonthReusableView: UICollectionReusableView
         super.init(frame: frame)
         
         self.backgroundColor = UIColor(patternImage: UIImage(named: "SwatchLightGrey")!)
-        
         let textFrame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
         dateLabel = UILabel(frame: textFrame)
-        dateLabel.font = UIFont.systemFontOfSize(20)
+        dateLabel.font = UIFont.boldSystemFontOfSize(20)
         dateLabel.textColor = UIColor.whiteColor()
-        dateLabel.textAlignment = NSTextAlignment.Left
+        dateLabel.textAlignment = NSTextAlignment.Center
         self.addSubview(dateLabel)
         
         self.layer.cornerRadius = CGFloat(15)
+    }
+    
+    func getText()
+    {
+        dateLabel.text = "\(MONTHNAMES[dateObject.date.month.value() - 1])  \(dateObject.date.year.value())"
     }
 }

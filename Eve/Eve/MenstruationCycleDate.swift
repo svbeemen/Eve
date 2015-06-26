@@ -7,8 +7,28 @@
 //
 
 import Foundation
+import UIKit
 
-class MensstruationCycleDate: NSDate
+class CycleDate: NSObject
 {
-    var extraType: String?
+    var type: NSString
+    var date: NSDate
+    var UUID: NSString
+    
+    var shouldAlert: Bool {
+        return NSCalendar.currentCalendar().isDateInToday(self.date) // deadline is earlier than current date
+    }
+    
+    
+    init(date: NSDate)
+    {
+        self.date = date
+        self.type = ""
+        self.UUID = ""
+        
+
+    }
 }
+
+
+

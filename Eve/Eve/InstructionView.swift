@@ -8,21 +8,10 @@
 
 import UIKit
 
-class InstructionView: UIVisualEffectView {
-
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
-    
-    
-    
+class InstructionView: UIVisualEffectView
+{
     required init(coder aDecoder: NSCoder)
     {
-        println("welcome view")
         super.init(coder: aDecoder)
     }
     
@@ -32,11 +21,9 @@ class InstructionView: UIVisualEffectView {
         super.init(effect: UIBlurEffect(style: UIBlurEffectStyle.Light))
         
         let tapRegonizer = UITapGestureRecognizer(target: self, action: "viewTapped")
-        
         self.addGestureRecognizer(tapRegonizer)
         
         var label = UILabel(frame: CGRectMake(120, 80, 300, 400));
-        
 //        label.layer.cornerRadius = CGFloat(10)
 //        label.layer.borderWidth = CGFloat(2)
 //        label.layer.borderColor = UIColor.whiteColor().CGColor
@@ -48,41 +35,11 @@ class InstructionView: UIVisualEffectView {
         label.textColor = UIColor.darkGrayColor()
         
         self.addSubview(label)
-        
-        
-
     }
     
 
     func viewTapped()
     {
-        println("hello")
         self.removeFromSuperview()
-//        helloView.removeFromSuperview()
-        
-        //        view.bringSubviewToFront(calendarView)
-        
-        //        dismissViewControllerAnimated(true, completion: nil)
     }
-
-    
-    
-//    helloView.frame = view.bounds
-//    
-//    let tapRecognizer = UITapGestureRecognizer(target: self, action: "viewTapped")
-//    
-//    helloView.addGestureRecognizer(tapRecognizer)
-//    
-//    var label = UILabel(frame: CGRectMake(120, 80, 150, 100));
-//    //label.center = CGPointMake(160, 284);
-//    label.textAlignment = NSTextAlignment.Center;
-//    label.text = "welcome text"
-//    label.numberOfLines=4;
-//    
-//    
-//    helloView.addSubview(label)
-//    
-//    
-//    view.addSubview(helloView)
-
 }

@@ -10,196 +10,112 @@ import Foundation
 
 class MenstrualCycle
 {
-    
-    var pastMenstruationDates: [NSDate]
-    
-    var pastOvulationDates: [NSDate]
-    
-    var pastCautionDates: [NSDate]
-    
-    
-    var predictedMenstruationDates: [NSDate]
-    
-    var predictedOvulationDates: [NSDate]
-    
-    var predictedCautionDates: [NSDate]
-    
-    
     var lengthOfMenstruation: Int
-    
     var lengthOfRestPeriod: Int
+
+    var pastFirstLastDatesMenstruation: [NSDate:NSDate]
+    var pastFirstLastDatesRestPeriod: [NSDate:NSDate]
     
+    var predictedOvulationDates: [CycleDate]!
+    var predictedCautionDates: [CycleDate]!
+    var predictedMenstruationsDates: [CycleDate]!
     
+    var predictedCycleDates: [CycleDate]
+    var pastCycleDates: [CycleDate]
+    
+    var endPredictionDate: NSDate
     var currentDate: NSDate
     
     
-    var pastFirstLastDatesMenstruation: [NSDate:NSDate]
-    var pastFirstLastDatesRestPeriod: [NSDate: NSDate]
-    
-    
-    init(currentDate: NSDate)
+    init(currentDate: NSDate, endPredictionDate: NSDate)
     {
-        if let pastMenstruationDates = savedData.objectForKey("pastMenstruationDates") as? [NSDate]
-        {
-            self.pastMenstruationDates = savedData.objectForKey("pastMenstruationDates") as! [NSDate]
-            
-            println("init menstruationcycle")
-        }
-        else
-        {
-            self.pastMenstruationDates = [NSDate]()
-        }
-        
-        if let pastOvulationDates = savedData.objectForKey("pastOvulationDates") as? [NSDate]
-        {
-            self.pastOvulationDates = savedData.objectForKey("pastOvulationDates") as! [NSDate]
-        }
-        else
-        {
-            self.pastOvulationDates = [NSDate]()
-        }
-        
-        if let pastCautionDates = savedData.objectForKey("pastCautionDates") as? [NSDate]
-        {
-            self.pastCautionDates = savedData.objectForKey("pastCautionDates") as! [NSDate]
-        }
-        else
-        {
-            self.pastCautionDates = [NSDate]()
-        }
-        
-        
-        // future
-        if let predictedMenstruationDates = savedData.objectForKey("predictedMenstruationDates") as? [NSDate]
-        {
-            self.predictedMenstruationDates = savedData.objectForKey("predictedMenstruationDates") as! [NSDate]
-        }
-        else
-        {
-            self.predictedMenstruationDates = [NSDate]()
-        }
-        
-
-        
-        if let predictedOvulationDates = savedData.objectForKey("predictedOvulationDates") as? [NSDate]
-        {
-            self.predictedOvulationDates = savedData.objectForKey("predictedOvulationDates") as! [NSDate]
-        }
-        else
-        {
-            self.predictedOvulationDates = [NSDate]()
-        }
-        
-        if let predictedCautionDates = savedData.objectForKey("predictedCautionDates") as? [NSDate]
-        {
-            self.predictedCautionDates = savedData.objectForKey("predictedCautionDates") as! [NSDate]
-        }
-        else
-        {
-            self.predictedCautionDates = [NSDate]()
-        }
-        
-        println("pre cautiondate = \(self.predictedCautionDates)")
-
-        println("pre mens dates = \(self.predictedMenstruationDates)")
-        println("pre ovu dates = \(self.predictedOvulationDates)")
-        
-  
+        self.currentDate = currentDate
+        self.endPredictionDate = endPredictionDate
         
         self.lengthOfMenstruation = 5
         self.lengthOfRestPeriod = 28
         
-        println("length of menstruation =\(self.lengthOfMenstruation)")
-        println("length of restperiod =\(self.lengthOfRestPeriod)")
-        
-        self.currentDate = currentDate
-        
         self.pastFirstLastDatesMenstruation = [NSDate:NSDate]()
         self.pastFirstLastDatesRestPeriod = [NSDate:NSDate]()
         
+        self.predictedCycleDates = Settings.sharedInstance.getPredictedDateObjects()
+        
+        self.pastCycleDates = Settings.sharedInstance.getPastCycleDates()
     }
     
     
-    
+    // calculate the amount of consequative days set to menstruation
     func getPastFirstLastDatesMenstruation()
     {
-        if self.pastMenstruationDates.isEmpty
+        if self.pastCycleDates.isEmpty
         {
             return
         }
         
-        self.pastMenstruationDates = sortDates(self.pastMenstruationDates)
-        
         var startEndDates = [NSDate:NSDate]()
         
-        var copyPastMenstruationDates = self.pastMenstruationDates
+        sortDates(self.pastCycleDates)
+        var copyPastMenstruationDates = self.pastCycleDates
         copyPastMenstruationDates.removeAtIndex(0)
         var nextMenstruationDates = copyPastMenstruationDates.generate()
         
-        var startDate = pastMenstruationDates.first!
+        var startDate = pastCycleDates.first!
         
-        for date in pastMenstruationDates
+        for date in pastCycleDates
         {
             if let nextDate = nextMenstruationDates.next()
             {
-                if nextDate.daysFrom(date) != 1
+                if nextDate.date.daysFrom(date.date) != 1
                 {
-                    startEndDates[startDate] = date
-                    
+                    startEndDates[startDate.date] = date.date
                     startDate = nextDate
                 }
             }
             else
             {
-                startEndDates[startDate] = date
+                startEndDates[startDate.date] = date.date
             }
         }
-
-        self.pastFirstLastDatesMenstruation =  startEndDates
+        self.pastFirstLastDatesMenstruation = startEndDates
     }
     
     
-    
-    
+    // calculate the period between menstruations
     func getPastFirstLastDatesRestPeriod()
     {
-        if self.pastMenstruationDates.isEmpty
+        if self.pastCycleDates.isEmpty
         {
             return
         }
         
-        self.pastMenstruationDates = sortDates(self.pastMenstruationDates)
-        
+        sortDates(self.pastCycleDates)
+
         var startEndDates = [NSDate:NSDate]()
-        
-        var copyPastMenstruationDates = self.pastMenstruationDates
-        
+        var copyPastMenstruationDates = self.pastCycleDates
         copyPastMenstruationDates.removeAtIndex(0)
-        
         var nextPastMenstruationDates = copyPastMenstruationDates.generate()
         
-        
-        for date in self.pastMenstruationDates
+        for date in self.pastCycleDates
         {
             if let nextDate = nextPastMenstruationDates.next()
             {
-                if nextDate.daysFrom(date) != 1
+                if nextDate.date.daysFrom(date.date) != 1
                 {
-                    var startDate = date.dateByAddingDays(1)
+                    var startDate = date.date.dateByAddingDays(1)
                     
-                    var endDate = nextDate.dateBySubtractingDays(1)
+                    var endDate = nextDate.date.dateBySubtractingDays(1)
                     
                     startEndDates[startDate] = endDate
-                    
                 }
             }
         }
-        
         self.pastFirstLastDatesRestPeriod = startEndDates
     }
     
     
-    
+    // calculate average legth of menstruation and length of time 
+    // between menstruations, for more accurate predictions.
+    // defualt settings to ensure a realistic outcome
     func getAverageLengthOfMenstruation()
     {
         if self.pastFirstLastDatesMenstruation.isEmpty
@@ -207,11 +123,8 @@ class MenstrualCycle
             return
         }
         
-        
         var totalDaysOfMenstruation = 0
-        
         var numberOfMenstruations = self.pastFirstLastDatesMenstruation.count
-        
         
         for (startDate, endDate) in self.pastFirstLastDatesMenstruation
         {
@@ -221,8 +134,12 @@ class MenstrualCycle
             {
                 daysOfMenstruation =  self.lengthOfMenstruation
             }
-            
             totalDaysOfMenstruation += daysOfMenstruation
+        }
+        
+        if totalDaysOfMenstruation / numberOfMenstruations < 3
+        {
+            return
         }
         
         self.lengthOfMenstruation = totalDaysOfMenstruation / numberOfMenstruations
@@ -238,15 +155,13 @@ class MenstrualCycle
         }
         
         var totalDaysOfRestPeriod = 0
-        
         var numberOfRestPeriods = self.pastFirstLastDatesRestPeriod.count
-        
         
         for (startDate, endDate) in self.pastFirstLastDatesRestPeriod
         {
             var daysNoMenstruation = startDate.daysEarlierThan(endDate) + 1
             
-            if daysNoMenstruation < 10 && numberOfRestPeriods < 3
+            if daysNoMenstruation < 20 && numberOfRestPeriods < 3
             {
                 daysNoMenstruation = self.lengthOfRestPeriod
             }
@@ -254,196 +169,122 @@ class MenstrualCycle
             totalDaysOfRestPeriod += daysNoMenstruation
         }
         
+        if totalDaysOfRestPeriod / numberOfRestPeriods < 20
+        {
+            return
+        }
         
         self.lengthOfRestPeriod = totalDaysOfRestPeriod / numberOfRestPeriods
     }
+        
     
     
-    
-    
-    func getPredictedFirstLastDates(endDatePrediction: NSDate)
+    // calculates future menstruations and ovulations. Set one 
+    // caution day befor and after the ovulation for error margins.
+    func getPredictedCycleDates()
     {
-        self.pastMenstruationDates = sortDates(self.pastMenstruationDates)
+        sortDates(self.pastCycleDates)
+        
+        self.predictedOvulationDates = [CycleDate]()
+        self.predictedCautionDates = [CycleDate]()
+        self.predictedMenstruationsDates = [CycleDate]()
 
-        println(" past dates set =\(self.pastMenstruationDates)")
-        var menstruationDate = self.pastMenstruationDates.last!
+        var menstruationDate = self.pastCycleDates.last!
         
-        var ovulationDate: NSDate!
+        var ovulationDate: CycleDate!
         
-        var cautionDate: NSDate!
+        var cautionDate: CycleDate!
         
+        var test = [CycleDate]()
         
-        var futureOvulationDates = [NSDate]()
-        
-        var futureCautionDates = [NSDate]()
-        
-        var futureMenstruationDates = [NSDate]()
-        
-        
-        
-        while menstruationDate.isEarlierThanOrEqualTo(endDatePrediction)
+        while menstruationDate.date.isEarlierThanOrEqualTo(self.endPredictionDate)
         {
+            ovulationDate = CycleDate(date: menstruationDate.date.dateByAddingDays(self.lengthOfRestPeriod / 2))
+            ovulationDate.type = "ovulation"
+            predictedOvulationDates.append(ovulationDate)
+  
+            cautionDate = CycleDate(date: ovulationDate.date.dateByAddingDays(1))
+            cautionDate.type = "caution"
+            predictedCautionDates.append(cautionDate)
             
-            ovulationDate = menstruationDate.dateByAddingDays(self.lengthOfRestPeriod / 2)
-            futureOvulationDates.append(ovulationDate)
-            println("OVULATION DATE = \(ovulationDate)")
+            cautionDate = CycleDate(date: ovulationDate.date.dateBySubtractingDays(1))
+            cautionDate.type = "caution"
+            predictedCautionDates.append(cautionDate)
             
-            cautionDate = ovulationDate.dateByAddingDays(1)
-            futureCautionDates.append(cautionDate)
-            
-            println("CAUTION DATE B4 = \(cautionDate)")
-            
-            cautionDate = ovulationDate.dateBySubtractingDays(1)
-            futureCautionDates.append(cautionDate)
-            
-            println("CAUTION DATE AFTER = \(cautionDate)")
-
-            
-            menstruationDate = menstruationDate.dateByAddingDays(self.lengthOfRestPeriod - 1)
-            
-            println("MENSTRUATIONDATE = \(menstruationDate)")
-            
+            menstruationDate.date = menstruationDate.date.dateByAddingDays(self.lengthOfRestPeriod - 1)
+           
             for var index = 0; index < self.lengthOfMenstruation; index++
             {
-                menstruationDate = menstruationDate.dateByAddingDays(1)
-
-                futureMenstruationDates.append(menstruationDate)
-                
-                println("MENSTRUATIONDATE in loop = \(menstruationDate)")
-
+                menstruationDate = CycleDate(date: menstruationDate.date.dateByAddingDays(1))
+                menstruationDate.type = "menstruation"
+                predictedMenstruationsDates.append(menstruationDate)
+                test.append(menstruationDate)
             }
         }
         
-        println(" B4 sort CAU \(futureCautionDates)")
-        println(" B4 sort OV \(futureMenstruationDates)")
-        println(" B4 sort MEn \(futureOvulationDates)")
-
-        self.predictedOvulationDates = futureOvulationDates
-        self.predictedCautionDates = futureCautionDates
-        self.predictedMenstruationDates = futureMenstruationDates
-        
-        
-        
-//        self.predictedOvulationDates = self.sortDates(futureOvulationDates)
-//        self.predictedCautionDates = self.sortDates(futureCautionDates)
-//        self.predictedMenstruationDates = self.sortDates(futureCautionDates)
+        self.predictedCycleDates = predictedMenstruationsDates + predictedCautionDates + predictedOvulationDates
+        self.sortDates(self.predictedCycleDates)
+        Settings.sharedInstance.savedData
     }
     
-    
-    
-//    func getPredictedDatesObjects()
-//    {
-//        
-//    }
-//    
-    
+
     // adds and deletes menstruationdate when done so by the user
-    func editMenstruationDates(selectedDate: NSDate)
+    func editMenstruationDates(selectedDate: CycleDate)
     {
-        if contains(self.pastMenstruationDates, selectedDate)
+        if contains(self.pastCycleDates, selectedDate)
         {
-            self.pastMenstruationDates = self.pastMenstruationDates.filter( {$0 != selectedDate} )
+            self.pastCycleDates = self.pastCycleDates.filter( {$0 != selectedDate} )
         }
         else
         {
-            self.pastMenstruationDates.append(selectedDate)
+            self.pastCycleDates.append(selectedDate)
         }
+        
+        sortDates(self.pastCycleDates)
+        self.calculateCycle()
     }
     
     
-    // remove pased dates and add to past dates
+    // remove pased predicted dates to pastPredicted dates
     func sortPredictedDates()
     {
-        var newPastOvulationDates = [NSDate]()
-        var newPastCautionDates = [NSDate]()
-        var newPastMenstruationDates = [NSDate]()
+        var datesHavePassed = [CycleDate]()
         
-        var newFutureOvulationDates = [NSDate]()
-        var newFutureCautionDates = [NSDate]()
-        var newFutureMenstruationDates = [NSDate]()
+        sortDates(predictedCycleDates)
         
-        for date in self.predictedOvulationDates
+        var firstDay = CycleDate(date: currentDate)
+        
+        for predictedDates in self.predictedCycleDates
         {
-            while date.isEarlierThanOrEqualTo(self.currentDate)
+            while firstDay.date.isEarlierThanOrEqualTo(predictedDates.date)
             {
-                self.pastOvulationDates.append(date)
-                self.predictedOvulationDates = self.predictedOvulationDates.filter( {$0 != date} )
-                
+                self.pastCycleDates.append(predictedDates)
+                self.predictedCycleDates.filter( {$0 != predictedDates} )
             }
         }
-        
-        for date in self.predictedCautionDates
-        {
-            while date.isEarlierThanOrEqualTo(self.currentDate)
-            {
-                self.pastCautionDates.append(date)
-                self.predictedOvulationDates = self.predictedOvulationDates.filter({ $0 != date} )
-            }
-        }
-        
-        for date in self.predictedMenstruationDates
-        {
-            while date.isEarlierThanOrEqualTo(self.currentDate)
-            {
-                self.pastMenstruationDates.append(date)
-                self.predictedMenstruationDates = self.predictedMenstruationDates.filter({ $0 != date})
-            }
-        }
-        
     }
     
     
-    // sprt list of dates from past to future
-    func sortDates(datesToSort: [NSDate]) -> [NSDate]
+    // sort list of dates from past to future
+    func sortDates(var datesToSort: [CycleDate])
     {
-        var sortedDates = datesToSort.sorted({ $0.day() < $1.day() })
-        sortedDates = sortedDates.sorted({ $0.month() < $1.month() })
-        sortedDates = sortedDates.sorted({ $0.year() < $1.year() })
-        
-        return sortedDates
-            
+        datesToSort.sort({ $0.date.day() < $1.date.day() })
+        datesToSort.sort({ $0.date.month() < $1.date.month() })
+        datesToSort.sort({ $0.date.year() < $1.date.year() })
     }
     
-    func saveDates()
-    {
-        // predicted
-        savedData.setObject(self.predictedMenstruationDates, forKey: "predictedMenstruationDates")
-        
-        savedData.setObject(self.predictedOvulationDates, forKey: "predictedOvulationDates")
-        
-        savedData.setObject(self.predictedCautionDates, forKey: "predictedCautionDates")
-        
-        
-        // past
-//        savedData.setObject(self.pastMenstruationDates, forKey: "pastMenstruationDates")
-
-        savedData.setObject(self.pastOvulationDates, forKey: "pastOvulationDates")
-
-        savedData.setObject(self.pastCautionDates, forKey: "pastCautionDates")
-
-    }
-        
     
-    func calculateCycle(endDate: NSDate)
+    // call all functions necessary to calculate teh cycle
+    func calculateCycle() -> [CycleDate]
     {
-        println("CALCULATE CYCLE")
-        
         self.getPastFirstLastDatesMenstruation()
         self.getPastFirstLastDatesRestPeriod()
         
         self.getAverageLengthOfMenstruation()
         self.getAverageLengthOfRestPeriod()
+
+        self.getPredictedCycleDates()
         
-        self.getPredictedFirstLastDates(endDate)
-        
-        
-        println("pre cautiondate = \(self.predictedCautionDates)")
-        println("pre mens dates = \(self.predictedMenstruationDates)")
-        println("pre ovu dates = \(self.predictedOvulationDates)")
-        
-        println("length of menstruation =\(self.lengthOfMenstruation)")
-        println("length of restperiod =\(self.lengthOfRestPeriod)")
+        return self.predictedCycleDates
     }
-    
-    
 }

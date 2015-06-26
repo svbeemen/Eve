@@ -14,26 +14,16 @@ class CalendarClass
     var currentDate: NSDate
 
     var currentCalendar: NSCalendar
-
-    var monthNames: [AnyObject]
-
     
-    var selectedDates: [NSDate]
+    var calenderDates: [[CycleDate]]
 
-//
-    var cycleManager: MenstruationCycle
-
-
-
+    var selectedDates: [CycleDate]
+    
+    var menstruationCycle: MenstrualCycle!
+    
     var firstCalendarDate: NSDate!
-
+    
     var lastCalendarDate: NSDate!
-    
-    var previousMenstruationDates: [NSDate]!
-    var previousFertileDate: [NSDate]!
-    
-    var menstruation: MenstrualCycle
-
 
 
     init()
@@ -41,208 +31,113 @@ class CalendarClass
         self.currentDate = NSDate()
 
         self.currentCalendar = NSCalendar.currentCalendar()
-
-        self.monthNames = self.currentCalendar.monthSymbols
         
+        self.calenderDates = [[CycleDate]]()
         
-        self.selectedDates = [NSDate]()
-
-        self.cycleManager = MenstruationCycle()
-        
-        
-        self.menstruation = MenstrualCycle(currentDate: self.currentDate)
-
-//
-//        if let selectedDates = savedSettings.objectForKey("setDates") as? [NSDate]
-//        {
-//            self.selectedDates = savedSettings.objectForKey("setDates") as! [NSDate]
-//        }
-//        else
-//        {
-//            self.selectedDates = [NSDate]()
-//        }
-
+        self.selectedDates = [CycleDate]()
     }
+
     
-
-
-
-    // function to get dateobjects Start en end to show in calendar view
-    func getYearDates() -> [NSDate]
+    func getDates() -> [[CycleDate]]
     {
-        var yearDateObjects = [NSDate]()
-
-        var firstDateThisMonth = self.currentDate.firstYearDate()
-
-        var firstYearFirstDay = firstDateThisMonth.dateBySubtractingYears(1)
-        yearDateObjects.append(firstYearFirstDay)
-
-        var secondYearFirstDay = firstDateThisMonth
-        yearDateObjects.append(secondYearFirstDay)
-
-        var thirdYearFirstDay = firstDateThisMonth.dateByAddingYears(1)
-        yearDateObjects.append(thirdYearFirstDay)
+        var startCalendarDate = CycleDate(date: NSDate())
+        var endCalendarDate = CycleDate(date: NSDate())
+    
+        startCalendarDate.date = getEqualTimeDateObject(self.currentDate.firstYearDate().dateBySubtractingYears(1))
+        endCalendarDate.date = getEqualTimeDateObject(startCalendarDate.date.dateByAddingYears(3).lastYearDate())
         
-        return yearDateObjects
+        self.lastCalendarDate = endCalendarDate.date
+        self.firstCalendarDate = startCalendarDate.date
+        
+        self.menstruationCycle = MenstrualCycle(currentDate: self.currentDate, endPredictionDate: self.lastCalendarDate)
 
-    }
-
-
-    // function to get date objects for days in years
-    func getDates() -> [[NSDate]]
-    {
-        var yearsList = self.getYearDates()
-
-        var dates = [[NSDate]]()
-
-        var days = 0
-
-        // for every year in the year list TOTAL IS 3
-        for year in yearsList
+        while startCalendarDate.date.isEarlierThanOrEqualTo(endCalendarDate.date)
         {
-//            var datesInYear = [NSDate]()
+            var daysInMonth = startCalendarDate.date.daysInMonth()
+            var datesInMonth = [CycleDate]()
 
-            // in every year there are 12 months
-            var monthsInYear = self.monthNames.count
-
-
-            // for all 12 month in the year
-            for var index = 0; index < monthsInYear; index++
+            for var index = 0; index < daysInMonth; index++
             {
-
-                // start with first month in year. go to next month after eacht loop
-                var month = year.dateByAddingMonths(index)
-
-                // for eacht month calculate amount of days in the month
-                var daysInMonth = month.daysInMonth()
-
-                // make a list to hold all the dateObjects for 1 month
-                var datesInMonth = [NSDate]()
-
-                // itterate through every day in a month
-                for var index = 0; index < daysInMonth; index++
-                {
-                    // make a date object for every day in the month
-                    var date = month.dateByAddingDays(index)
-
-                    // add the day dateObject to the month list
-                    datesInMonth.append(date)
-                }
-
-                dates.append(datesInMonth)
-
+                var date = CycleDate(date: startCalendarDate.date)
+                date.date = getEqualTimeDateObject(date.date)
+                datesInMonth.append(date)
+                
+                startCalendarDate.date = startCalendarDate.date.dateByAddingDays(1)
             }
-
+            
+            self.calenderDates.append(datesInMonth)
         }
-
-
-
-        self.firstCalendarDate = dates[0].first
-
-        if let lastCalanderDate = dates.last?.last
-        {
-            self.lastCalendarDate = dates.last?.last
-            self.lastCalendarDate.compare(self.firstCalendarDate)
-        }
-
-
-        var test = NSDate()
-        println("comapre = \(test.compare(lastCalendarDate))")
-    
         
-        println("testing = \(self.lastCalendarDate.compare(self.firstCalendarDate))")
-        
-        return dates
+        return self.calenderDates
     }
 
-    
-    
-    func calculateValues()
-    {
-        cycleManager.getLengthOfMenstruation()
-        cycleManager.getLengthOfPeriodBetweenMenstruations()
-        
-        cycleManager.getPredictedMenstruations(self.lastCalendarDate)
-        cycleManager.getPredictedFertileDate(self.lastCalendarDate)
-
-        
-        println("IN CALCULATE lenghtOfMen =  \(cycleManager.lengthOfMenstruation)")
-        println("IN CALCULATE period between nelgth =  \(cycleManager.lengthOfPeriodBetweeMenstraution)")
-        println("IN CALCULATE predicted dates  =  \(cycleManager.predictedMenstrautionDates)")
-
-        println("IN CALCULATE fertile predicted dates =  \(cycleManager.predictedFertileDates)")
-        println("IN CALCULATE past men dates  =  \(cycleManager.pastMenstruationDates)")
-        println("IN CALCULATE predicted start end dates men  =  \(cycleManager.predictedMenstrautionStartEndDates)")
-        
-
-
-
-    }
-    
 
     // adds and deletes selected date to menstruation array
-    func setSelectedDate(selectedDate: NSDate)
+    func setSelectedDate(selectedDate: CycleDate)
     {
-        
         if contains(self.selectedDates, selectedDate)
         {
             self.selectedDates = self.selectedDates.filter( {$0 != selectedDate} )
+            selectedDate.type = ""
         }
         else
         {
             self.selectedDates.append(selectedDate)
+            selectedDate.type = "menstruation"
         }
-        
-        self.selectedDates.sort({$0 < $1})
-        
-        if contains(selectedDates, selectedDate.dateByAddingMinutes(3))
-        {
-                    println("yesy")
-        }
-        
-
     }
     
     
-    
-
-//        self.selectedDates.append(selectedDate)
-//        
-//        println(" selected dates before sort = \(self.selectedDates)")
-//
-////
-////        self.sortMenstruationDates()
-//        
-//        self.menstruation.sortDates(self.selectedDates)
-//        println(" selected dates after old sort sort = \(self.selectedDates)")
-//        
-//        var newSort = self.menstruation.sortDates(self.selectedDates)
-//        
-//        println(" new sort = \(newSort)")
-//
-//        self.cycleManager.setMenstruationDate(selectedDate)
-//
-//        println("mentstruation date = \(self.selectedDates)")
-//    }
-
-}
-
-
-extension NSDate{
-    typealias MyDateRange = (year: Int, month: Int, day: Int)
-    
-    func myDateRange() -> MyDateRange
+    // call the calculate cycle function menstrualCycleClass
+    // set the type date of the predicted dates to the calendar dates.
+    func getAndSetCycleDates()
     {
-        let calendar = NSCalendar.currentCalendar()
+        self.menstruationCycle.calculateCycle()
         
-        let comps = calendar.allComponentsFromDate(self)
-        
-        return (comps.year, comps.month, comps.day)
+        for dates in self.menstruationCycle.predictedCycleDates
+        {
+            for months in self.calenderDates
+            {
+                for calandardays in months
+                {
+                    if currentCalendar.isDate(dates.date, inSameDayAsDate: calandardays.date)
+                    {
+                        calandardays.type = dates.type
+                    }
+                }
+            }
+        }
     }
     
-    typealias myString = String
-
     
+    // remove pased predicted dates to pastPredicted dates
+    func refreshDates()
+    {
+        if self.menstruationCycle.predictedCycleDates.isEmpty
+        {
+            return
+        }
+        
+        for cycleDates in self.menstruationCycle.predictedCycleDates
+        {
+            while cycleDates.date.isEarlierThan(self.currentDate) || currentCalendar.isDateInToday(cycleDates.date)
+            {
+                self.menstruationCycle.pastCycleDates.append(cycleDates)
+            }
+        }
+        menstruationCycle.sortDates(self.menstruationCycle.pastCycleDates)
+    }
+    
+    
+    // create dateObjects with equal timestaps to make calculations easier/ more pratical
+    func getEqualTimeDateObject(dateObject: NSDate) -> NSDate
+    {
+        var dateComponents: NSDateComponents = currentCalendar.components(NSCalendarUnit.CalendarUnitYear|NSCalendarUnit.CalendarUnitMonth|NSCalendarUnit.CalendarUnitDay, fromDate: dateObject)
+        
+        return currentCalendar.dateFromComponents(dateComponents)!
+    }
 }
+
+   
 
 

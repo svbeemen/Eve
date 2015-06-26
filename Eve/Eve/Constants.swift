@@ -9,3 +9,5 @@
 import UIKit
 
 let COLUMNS = CGFloat(5)
+
+let MONTHNAMES = NSCalendar.currentCalendar().standaloneMonthSymbols

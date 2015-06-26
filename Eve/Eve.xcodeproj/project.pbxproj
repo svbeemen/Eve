@@ -34,7 +34,7 @@
 		A93F10491B3220C500DABA1C /* MenstrationCycleClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93F10481B3220C500DABA1C /* MenstrationCycleClass.swift */; };
 		A949632B1B3BB3E30033738F /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A949632A1B3BB3E30033738F /* CalendarViewController.swift */; };
 		A9639B5A1B383A5A0004A2F0 /* OLDInitialSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9639B591B383A5A0004A2F0 /* OLDInitialSubView.swift */; };
-		A96BB0A91B39E6DE005271C2 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BB0A81B39E6DE005271C2 /* MainViewController.swift */; };
+		A96BB0A91B39E6DE005271C2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BB0A81B39E6DE005271C2 /* SettingsViewController.swift */; };
 		A96BB0AF1B3A0CA0005271C2 /* CellSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BB0AE1B3A0CA0005271C2 /* CellSubView.swift */; };
 		A96BB0B11B3A39E8005271C2 /* SaveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BB0B01B3A39E8005271C2 /* SaveData.swift */; };
 		A97918201B34107A0028587E /* OLDDictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A979181F1B34107A0028587E /* OLDDictionaryExtension.swift */; };
@@ -95,7 +95,7 @@
 		A93F10481B3220C500DABA1C /* MenstrationCycleClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenstrationCycleClass.swift; sourceTree = "<group>"; };
 		A949632A1B3BB3E30033738F /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		A9639B591B383A5A0004A2F0 /* OLDInitialSubView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OLDInitialSubView.swift; sourceTree = "<group>"; };
-		A96BB0A81B39E6DE005271C2 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		A96BB0A81B39E6DE005271C2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A96BB0AE1B3A0CA0005271C2 /* CellSubView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellSubView.swift; sourceTree = "<group>"; };
 		A96BB0B01B3A39E8005271C2 /* SaveData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveData.swift; sourceTree = "<group>"; };
 		A979181F1B34107A0028587E /* OLDDictionaryExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OLDDictionaryExtension.swift; sourceTree = "<group>"; };
@@ -155,6 +155,7 @@
 			children = (
 				872043F41B2B14B2001526AD /* CVCalendarKitExtensions.swift */,
 				872043F51B2B14B2001526AD /* CVCalendarKitOperators.swift */,
+				A9C034D31B3991FF001F0F5A /* Constants.swift */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -186,20 +187,13 @@
 				872043F11B2B1127001526AD /* Categories */,
 				875096651B2887480002B5FB /* Main.storyboard */,
 				875096611B2887480002B5FB /* AppDelegate.swift */,
-				A9C034D31B3991FF001F0F5A /* Constants.swift */,
-				A90F70741B3B6FD600F806D7 /* InitialCalendarViewController.swift */,
-				A949632A1B3BB3E30033738F /* CalendarViewController.swift */,
-				A9CE76911B3CA7340072ABE0 /* MenstruationCycleDate.swift */,
-				A90F70721B3B541500F806D7 /* DetailViewController.swift */,
+				A904228A1B3D5931000A015E /* ViewControllers */,
+				A904228D1B3D5A2C000A015E /* Views */,
+				A904228B1B3D5969000A015E /* Models */,
 				A90F70701B3B436A00F806D7 /* InstructionView.swift */,
-				A9C034D11B399100001F0F5A /* CalendarCollectionView.swift */,
-				A9C034DB1B399E00001F0F5A /* CalendarClass.swift */,
-				A93F10481B3220C500DABA1C /* MenstrationCycleClass.swift */,
+				A9CE76911B3CA7340072ABE0 /* MenstruationCycleDate.swift */,
 				A96BB0B01B3A39E8005271C2 /* SaveData.swift */,
 				A9C034DD1B39B47F001F0F5A /* CalendarViewFlowLayout.swift */,
-				A90F70781B3B88ED00F806D7 /* NewDateCell.swift */,
-				A90F707A1B3BA03200F806D7 /* NewMonthReusableView.swift */,
-				A9CE768F1B3C36410072ABE0 /* MenstrualCycleClass.swift */,
 				875096681B2887480002B5FB /* Images.xcassets */,
 				8750966A1B2887480002B5FB /* LaunchScreen.xib */,
 				8750965F1B2887480002B5FB /* Supporting Files */,
@@ -252,12 +246,42 @@
 				8705FD731B28886300015A62 /* OLDCalendarClass.swift */,
 				A9C034D91B399695001F0F5A /* ViewController.swift */,
 				A90286541B38AAA300872EE8 /* DateCell.xib */,
+				A93F10481B3220C500DABA1C /* MenstrationCycleClass.swift */,
 				A9639B591B383A5A0004A2F0 /* OLDInitialSubView.swift */,
 				87A76CF31B298A280003EA34 /* MonthCollectionReusableView.swift */,
 				A9C034D71B399484001F0F5A /* DateCollectionViewCell.swift */,
-				A96BB0A81B39E6DE005271C2 /* MainViewController.swift */,
 			);
 			name = old;
+			sourceTree = "<group>";
+		};
+		A904228A1B3D5931000A015E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A90F70741B3B6FD600F806D7 /* InitialCalendarViewController.swift */,
+				A949632A1B3BB3E30033738F /* CalendarViewController.swift */,
+				A90F70721B3B541500F806D7 /* DetailViewController.swift */,
+				A96BB0A81B39E6DE005271C2 /* SettingsViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		A904228B1B3D5969000A015E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A9CE768F1B3C36410072ABE0 /* MenstrualCycleClass.swift */,
+				A9C034DB1B399E00001F0F5A /* CalendarClass.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		A904228D1B3D5A2C000A015E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A9C034D11B399100001F0F5A /* CalendarCollectionView.swift */,
+				A90F70781B3B88ED00F806D7 /* NewDateCell.swift */,
+				A90F707A1B3BA03200F806D7 /* NewMonthReusableView.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -416,7 +440,7 @@
 				A97B800A1B32F4CD0031B907 /* OLDLayoutController.swift in Sources */,
 				872043F61B2B14B2001526AD /* CVCalendarKitExtensions.swift in Sources */,
 				87247F591B2F1B97002DFFF1 /* OLDNewCalendarManager.swift in Sources */,
-				A96BB0A91B39E6DE005271C2 /* MainViewController.swift in Sources */,
+				A96BB0A91B39E6DE005271C2 /* SettingsViewController.swift in Sources */,
 				A90F70791B3B88ED00F806D7 /* NewDateCell.swift in Sources */,
 				A90F707B1B3BA03200F806D7 /* NewMonthReusableView.swift in Sources */,
 				A96BB0AF1B3A0CA0005271C2 /* CellSubView.swift in Sources */,

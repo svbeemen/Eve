@@ -21,43 +21,37 @@ class DetailViewController: UIViewController
     
     var calendarManager: CalendarClass!
     
-    var cellDate: NSDate!
+    var cellDate: CycleDate!
 
 
     @IBAction func setDate(sender: UIButton)
     {
 
-        calendarManager.menstruation.editMenstruationDates(self.cellDate)
+        calendarManager.menstruationCycle.editMenstruationDates(self.cellDate)
         
         NSNotificationCenter.defaultCenter().postNotificationName("load", object: nil)
 
         
-        if contains(calendarManager.menstruation.pastMenstruationDates, self.cellDate) || contains(calendarManager.menstruation.predictedMenstruationDates, self.cellDate)
-        {
-            dateImageView.image = UIImage(named: "LightRed")
-//            cell.circleImage.layer.borderWidth = CGFloat(0)
-        }
-        else if contains(calendarManager.menstruation.predictedOvulationDates, self.cellDate)
-        {
-            dateImageView.image = UIImage(named: "darkGrey")
-//            cellObject.circleImage.layer.borderWidth = CGFloat(0)
-        }
-        else if contains(calendarManager.menstruation.predictedCautionDates, self.cellDate)
-        {
-            dateImageView.image = UIImage(named: "lightBlueCircle")
-//            cell.circleImage.layer.borderWidth = CGFloat(0)
-        }
-        else
-        {
-            dateImageView.image = UIImage(named: "LightGreen")
-//            cell.circleImage.layer.borderWidth = CGFloat(0)
-            
-        }
-
-
-        println("assign new date = \(cellObject.dateObject)")
-
-        println(" udated menstruation dates? = \(calendarManager.menstruation.pastMenstruationDates)")
+//        if contains(calendarManager.menstruation.pastMenstruationDates, self.cellDate) || contains(calendarManager.menstruation.predictedMenstruationDates, self.cellDate)
+//        {
+//            dateImageView.image = UIImage(named: "LightRed")
+////            cell.circleImage.layer.borderWidth = CGFloat(0)
+//        }
+//        else if contains(calendarManager.menstruation.predictedOvulationDates, self.cellDate)
+//        {
+//            dateImageView.image = UIImage(named: "darkGrey")
+////            cellObject.circleImage.layer.borderWidth = CGFloat(0)
+//        }
+//        else if contains(calendarManager.menstruation.predictedCautionDates, self.cellDate)
+//        {
+//            dateImageView.image = UIImage(named: "lightBlueCircle")
+////            cell.circleImage.layer.borderWidth = CGFloat(0)
+//        }
+//        else
+//        {
+//            dateImageView.image = UIImage(named: "LightGreen")
+////            cell.circleImage.layer.borderWidth = CGFloat(0)
+//
     }
     
     
@@ -65,16 +59,15 @@ class DetailViewController: UIViewController
     {
         super.viewDidLoad()
         
-        dateLabel.text = "\(cellObject.dateObject.day.value())"
-        
-        dateImageView.image = cellObject.circleImage.image
+        dateLabel.text = "\(cellObject.dateObject.date.day.value())"
+        dateImageView.image = cellObject.cellImageView.image
    
         let tapRecognizer = UITapGestureRecognizer(target: self, action: "viewTapped")
         view.addGestureRecognizer(tapRecognizer)
         
         cellDate = cellObject.dateObject
         
-        if cellObject.dateObject.isLaterThan(calendarManager.currentDate)
+        if cellObject.dateObject.date.isLaterThan(calendarManager.currentDate)
         {
             setDateButton.hidden = true
         }
@@ -105,7 +98,7 @@ class DetailViewController: UIViewController
             var nextViewController = (segue.destinationViewController as! CalendarViewController)
             
 //            nextViewController.cellObject = cellObject
-            nextViewController.calendarInfo = calendarManager
+            nextViewController.calendarManager = calendarManager
             nextViewController.calendarView.reloadData()
             
 //            nextViewController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext

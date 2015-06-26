@@ -12,9 +12,9 @@ class NewDateCell: UICollectionViewCell
 {
     var dateLabel: UILabel!
     
-    var circleImage: UIImageView!
+    var cellImageView: UIImageView!
     
-    var dateObject: NSDate!
+    var dateObject: CycleDate!
 
     
     required init(coder aDecoder: NSCoder)
@@ -27,15 +27,52 @@ class NewDateCell: UICollectionViewCell
     {
         super.init(frame: frame)
         
-        circleImage = UIImageView(frame: CGRect(x: 0, y: 0, width: frame.size.width - 3, height: frame.size.height - 3))
-        circleImage.contentMode = UIViewContentMode.ScaleAspectFit
-        contentView.addSubview(circleImage)
+        cellImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: frame.size.width - 3, height: frame.size.height - 3))
+        cellImageView.contentMode = UIViewContentMode.ScaleAspectFit
+        contentView.addSubview(cellImageView)
         
         let textFrame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
         dateLabel = UILabel(frame: textFrame)
-        dateLabel.font = UIFont.systemFontOfSize(16)
+        dateLabel.font = UIFont.boldSystemFontOfSize(16)
         dateLabel.textColor = UIColor.whiteColor()
         dateLabel.textAlignment = .Center
         contentView.addSubview(dateLabel)
     }
+    
+    
+    func getImage()
+    {
+        cellImageView.layer.borderWidth = CGFloat(0)
+
+        if dateObject.type == "menstruation"
+        {
+            cellImageView.image = UIImage(named: "Untitled-31")
+        }
+        else if dateObject.type == "ovulation"
+        {
+            cellImageView.image = UIImage(named: "Untitled-6")
+        }
+        else if dateObject.type == "caution"
+        {
+            cellImageView.image = UIImage(named: "Untitled-21")
+        }
+        else
+        {
+            cellImageView.image = UIImage(named: "Untitled-17")
+        }
+        
+        if dateObject.date.isToday()
+        {
+            cellImageView.layer.borderWidth = CGFloat(2)
+            cellImageView.layer.borderColor = UIColor.darkGrayColor().CGColor
+            cellImageView.layer.cornerRadius = CGFloat(self.frame.width / 2)
+        }
+    }
+    
+    
+    func getText()
+    {
+        dateLabel.text = "\(dateObject.date.day.value())"
+    }
 }
+
