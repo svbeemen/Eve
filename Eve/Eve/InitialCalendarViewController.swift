@@ -12,25 +12,23 @@ class InitialCalendarViewController: UIViewController
 {
     var collectionView: CalendarCollectionView?
     
-    let calendarManager: CalendarClass!
+    var calendarManager: CalendarClass
     
-    let dateObjects: [[CycleDate]]!
+    var dateObjects: [[CycleDate]]
     
-    let today: NSDate!
+    let today: NSDate
     
-    @IBOutlet weak var calculateDates: UIBarButtonItem!
-    
-    @IBAction func calculateCycle(sender: UIBarButtonItem)
-    {
+    var shouldScroll: Bool = true
 
-    }
     
-
     required init(coder aDecoder: NSCoder)
     {
+        println("INIT")
         calendarManager = CalendarClass()
         
-        dateObjects = calendarManager.getDates()
+        calendarManager.getDates()
+        
+        dateObjects = calendarManager.calenderDates
         
         today = calendarManager.currentDate
         
@@ -42,21 +40,28 @@ class InitialCalendarViewController: UIViewController
     {
         super.viewDidLoad()
         
+        // instatiate a calendarview view and add to view.
         let layout: CalendarViewFlowLayout = CalendarViewFlowLayout()
         collectionView = CalendarCollectionView(frame: self.view.frame, collectionViewLayout: layout)
         collectionView!.dataSource = self
         collectionView!.delegate = self
         self.view.insertSubview(collectionView!, atIndex: 0)
 
-        
+        // get indexPath of current date and scroll calendar view to show current date.
         var todayIndexSection = today.month.value() + 11
         var todayIndexItem = today.day.value() - 1
         var todayIndexPAth = NSIndexPath(forItem: todayIndexItem, inSection: todayIndexSection)
         self.collectionView!.scrollToItemAtIndexPath(todayIndexPAth, atScrollPosition: UICollectionViewScrollPosition.CenteredVertically, animated: true)
         
+        // instantie an instructionview. Add subview and show over otehr views.
         let welcomeView = InstructionView(effect: UIVisualEffect())
         welcomeView.frame = view.bounds
         view.addSubview(welcomeView)
+        
+        for date in self.calendarManager.menstruationCycle.pastCycleDates
+        {
+            println("PAST IN INITIAL = \(date.date) \(date.type)")
+        }
     }
     
     
@@ -64,13 +69,17 @@ class InitialCalendarViewController: UIViewController
     {
         if(segue.identifier == "predict")
         {
-            calendarManager.menstruationCycle.pastCycleDates = self.calendarManager.selectedDates
-            calendarManager.getAndSetCycleDates()
+            // save set menstruations dates to shared instance under pastMenstruationDates
+            SavedDataManager.sharedInstance.savePastMenstruationDates(self.calendarManager.selectedDates)
             
             var nextViewController = (segue.destinationViewController as! CalendarViewController)
-            nextViewController.calendarManager = self.calendarManager
-            nextViewController.dateObjects = self.dateObjects
             nextViewController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+        }
+        
+        for date in self.calendarManager.menstruationCycle.pastCycleDates
+        {
+            println(date.date)
+            println(date.type)
         }
     }
 }
@@ -88,7 +97,6 @@ extension InitialCalendarViewController: UICollectionViewDataSource
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         var daysInMonth = dateObjects[section].count
-        
         return daysInMonth
     }
 
@@ -96,12 +104,14 @@ extension InitialCalendarViewController: UICollectionViewDataSource
      func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! NewDateCell
-        
         cell.dateObject = dateObjects[indexPath.section][indexPath.item]
         cell.getImage()
         cell.getText()
         
-        println("ccell = \(cell.dateObject)")
+        if calendarManager.currentCalendar.isDateInToday(cell.dateObject.date)
+        {
+            println("cell today = \(cell.dateObject.type)")
+        }
         
         return cell
     }
@@ -110,10 +120,8 @@ extension InitialCalendarViewController: UICollectionViewDataSource
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
     {
         let monthHeader = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Header", forIndexPath: indexPath) as! NewMonthReusableView
-        
         monthHeader.dateObject = self.dateObjects[indexPath.section].first!
         monthHeader.getText()
-
         return monthHeader
     }
 }
@@ -122,6 +130,7 @@ extension InitialCalendarViewController: UICollectionViewDataSource
 
 extension InitialCalendarViewController: UICollectionViewDelegate
 {
+    // let user select date to set as mentruation date if the date is before current date or current date.
     func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool
     {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! NewDateCell
@@ -134,16 +143,51 @@ extension InitialCalendarViewController: UICollectionViewDelegate
         return false
     }
     
-    
+    // add selected cell's dateobject to selected cell array. change image of cell to correspond to cells state. reload view to display new image. 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! NewDateCell
-
         calendarManager.setSelectedDate(cell.dateObject)
-        
         cell.getImage()
-        
         collectionView.reloadData()
+    }
+
+    // infinity scroll
+    func scrollViewDidScroll(scrollView: UIScrollView)
+    {
+        let offsetY = scrollView.contentOffset.y
+        let offsetX = scrollView.contentOffset.x
+        let contentHeight = scrollView.contentSize.height
+        
+        if offsetY > contentHeight - scrollView.frame.size.height
+        {
+            self.calendarManager.lastCalendarDate = self.calendarManager.lastCalendarDate.dateByAddingYears(1)
+            self.calendarManager.getDates()
+            self.dateObjects = self.calendarManager.calenderDates
+            self.collectionView!.reloadData()
+        }
+        
+        if offsetY < 0
+        {
+            if shouldScroll
+            {
+                shouldScroll = false
+                self.calendarManager.firstCalendarDate = self.calendarManager.firstCalendarDate.dateBySubtractingYears(1)
+                self.calendarManager.getDates()
+                calendarManager.menstruationCycle.calculateCycle()
+                self.dateObjects = self.calendarManager.calenderDates
+                self.collectionView!.reloadData()
+                
+                var indexLastDate = NSIndexPath(forItem: 0, inSection: 13)
+                self.collectionView!.scrollToItemAtIndexPath(indexLastDate, atScrollPosition: UICollectionViewScrollPosition.allZeros, animated: true)
+            }
+        }
+        
+        
+        if offsetY > (scrollView.frame.height * 8)
+        {
+            shouldScroll = true
+        }
     }
 }
 

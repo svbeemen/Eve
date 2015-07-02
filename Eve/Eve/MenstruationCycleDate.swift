@@ -13,20 +13,40 @@ class CycleDate: NSObject
 {
     var type: NSString
     var date: NSDate
-    var UUID: NSString
+
     
-    var shouldAlert: Bool {
-        return NSCalendar.currentCalendar().isDateInToday(self.date) // deadline is earlier than current date
-    }
-    
-    
-    init(date: NSDate)
+    init(var date: NSDate)
     {
         self.date = date
         self.type = ""
-        self.UUID = ""
-        
-
+    }
+    
+    
+    required init(coder aDecoder: NSCoder)
+    {
+        self.date = aDecoder.decodeObjectForKey("date") as! NSDate
+        self.type = aDecoder.decodeObjectForKey("type") as! NSString
+    }
+    
+    
+    func encodeWithCoder(aCoder: NSCoder)
+    {
+        aCoder.encodeObject(date, forKey: "date")
+        aCoder.encodeObject(type, forKey: "type")
+    }
+    
+    
+    // NSObjectProtocol
+    override func isEqual(object: AnyObject?) -> Bool
+    {
+        if let object = object as? CycleDate
+        {
+            return self.date == object.date && self.type == object.type
+        }
+        else
+        {
+            return false
+        }
     }
 }
 

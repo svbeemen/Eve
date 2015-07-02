@@ -22,8 +22,6 @@ class CalendarCollectionView: UICollectionView
 
         self.backgroundColor = UIColor.whiteColor()
         
-        println(" hello create collection view")
-        
         self.registerClass(NewDateCell.self, forCellWithReuseIdentifier: "Cell")
         
         self.registerClass(NewMonthReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "Header")

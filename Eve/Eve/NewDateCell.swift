@@ -15,6 +15,9 @@ class NewDateCell: UICollectionViewCell
     var cellImageView: UIImageView!
     
     var dateObject: CycleDate!
+    
+    var logoImageView: UIImageView!
+
 
     
     required init(coder aDecoder: NSCoder)
@@ -31,6 +34,10 @@ class NewDateCell: UICollectionViewCell
         cellImageView.contentMode = UIViewContentMode.ScaleAspectFit
         contentView.addSubview(cellImageView)
         
+        logoImageView = UIImageView(frame: CGRect(x: 0, y: frame.size.width / 2, width: frame.size.width - 3, height: (frame.size.height - 3) / 2))
+        logoImageView.contentMode = UIViewContentMode.ScaleAspectFit
+        contentView.addSubview(logoImageView)
+        
         let textFrame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
         dateLabel = UILabel(frame: textFrame)
         dateLabel.font = UIFont.boldSystemFontOfSize(16)
@@ -46,19 +53,26 @@ class NewDateCell: UICollectionViewCell
 
         if dateObject.type == "menstruation"
         {
-            cellImageView.image = UIImage(named: "Untitled-31")
+            cellImageView.image = UIImage(named: "Menstruation")
+            logoImageView.image = UIImage()
+
         }
         else if dateObject.type == "ovulation"
         {
-            cellImageView.image = UIImage(named: "Untitled-6")
+            cellImageView.image = UIImage(named: "Caution")
+            logoImageView.image = UIImage(named: "Logo")
         }
         else if dateObject.type == "caution"
         {
-            cellImageView.image = UIImage(named: "Untitled-21")
+            cellImageView.image = UIImage(named: "Caution")
+            logoImageView.image = UIImage()
+
         }
-        else
+        else 
         {
-            cellImageView.image = UIImage(named: "Untitled-17")
+            cellImageView.image = UIImage(named: "Normal")
+            logoImageView.image = UIImage()
+
         }
         
         if dateObject.date.isToday()

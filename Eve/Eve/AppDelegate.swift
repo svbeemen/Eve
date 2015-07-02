@@ -12,48 +12,75 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
+
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
     {
-        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Alert | .Badge | .Sound, categories: nil))  // types are UIUserNotificationType members
+//        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Alert | .Badge | .Sound, categories: nil))  // types are UIUserNotificationType members
         
-//       if Settings.sharedInstance.getPastCycleDates().isEmpty
-//       {
-//            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        var savedDates = SavedDataManager.sharedInstance.getPastMenstruationDates()
+        if !savedDates.isEmpty
+        {
+            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+            
+            var storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            var initialViewController = storyboard.instantiateViewControllerWithIdentifier("userCalendar") as! UIViewController
+            
+            self.window?.rootViewController = initialViewController
+            self.window?.makeKeyAndVisible()
+
+        }
+        else
+        {
+            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+            var storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            var initialViewController = storyboard.instantiateViewControllerWithIdentifier("emptyCalendar") as! UIViewController
+                
+            self.window?.rootViewController = initialViewController
+            self.window?.makeKeyAndVisible()
+                
+        }
+//        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Sound|UIUserNotificationType.Alert|UIUserNotificationType.Badge, categories: nil))
 //        
-//            var storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        
-//            var initialViewController = storyboard.instantiateViewControllerWithIdentifier("userCalendar") as! UIViewController
-//        
-//            self.window?.rootViewController = initialViewController
-//        }
-//
+        let notificationType = UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound
+        let settings = UIUserNotificationSettings(forTypes: notificationType, categories: nil)
+        application.registerUserNotificationSettings(settings)
+        
         return true
     }
 
-    func applicationWillResignActive(application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    func applicationWillResignActive(application: UIApplication)
+    {
+
     }
 
-    func applicationDidEnterBackground(application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    func applicationDidEnterBackground(application: UIApplication)
+    {
+
     }
 
-    func applicationWillEnterForeground(application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    func applicationWillEnterForeground(application: UIApplication)
+    {
+        
     }
 
-    func applicationDidBecomeActive(application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    func applicationDidBecomeActive(application: UIApplication)
+    {
+        NSNotificationCenter.defaultCenter().postNotificationName("CycleNotificationsShouldRefresh", object: self)
     }
 
-    func applicationWillTerminate(application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    func applicationWillTerminate(application: UIApplication)
+    {
+        
     }
-
+    
+    // receive a notification that a cycleNitification has been fired. Send notification in app.
+    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification)
+    {
+        NSNotificationCenter.defaultCenter().postNotificationName("CycleNotificationsShouldRefresh", object: self)
+    }
 
 }
 

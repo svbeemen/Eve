@@ -13,8 +13,7 @@ class NewMonthReusableView: UICollectionReusableView
     var dateLabel: UILabel!
     
     var dateObject: CycleDate!
-    
-    
+
     required init(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder)
@@ -25,10 +24,10 @@ class NewMonthReusableView: UICollectionReusableView
     {
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor(patternImage: UIImage(named: "SwatchLightGrey")!)
+        self.backgroundColor = UIColor(patternImage: UIImage(named: "Grey")!)
         let textFrame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
         dateLabel = UILabel(frame: textFrame)
-        dateLabel.font = UIFont.boldSystemFontOfSize(20)
+        dateLabel.font = UIFont(name: "Arial", size: 20)
         dateLabel.textColor = UIColor.whiteColor()
         dateLabel.textAlignment = NSTextAlignment.Center
         self.addSubview(dateLabel)

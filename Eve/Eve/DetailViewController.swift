@@ -1,57 +1,37 @@
 //
-//  DetailViewController.swift
-//  
+//  DetailViewController.swift 
+//  Eve
 //
-//  Created by Sangeeta van Beemen on 24/06/15.
-//
+//  Created by Sangeeta van Beemen on 25/06/15.
+//  Copyright (c) 2015 Sangeeta van Beemen. All rights reserved.
 //
 
 import UIKit
 
 class DetailViewController: UIViewController
 {
-
+    var delegate: changeDateProtocol?
+    
     @IBOutlet weak var dateImageView: UIImageView!
     
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var informationLabel: UILabel!
 
     @IBOutlet weak var setDateButton: UIButton!
+    
+    @IBOutlet weak var dateLabel: UILabel!
     
     var cellObject: NewDateCell!
     
     var calendarManager: CalendarClass!
+
+    @IBOutlet weak var logoImageView: UIImageView!
     
-    var cellDate: CycleDate!
-
-
+    
     @IBAction func setDate(sender: UIButton)
     {
-
-        calendarManager.menstruationCycle.editMenstruationDates(self.cellDate)
-        
-        NSNotificationCenter.defaultCenter().postNotificationName("load", object: nil)
-
-        
-//        if contains(calendarManager.menstruation.pastMenstruationDates, self.cellDate) || contains(calendarManager.menstruation.predictedMenstruationDates, self.cellDate)
-//        {
-//            dateImageView.image = UIImage(named: "LightRed")
-////            cell.circleImage.layer.borderWidth = CGFloat(0)
-//        }
-//        else if contains(calendarManager.menstruation.predictedOvulationDates, self.cellDate)
-//        {
-//            dateImageView.image = UIImage(named: "darkGrey")
-////            cellObject.circleImage.layer.borderWidth = CGFloat(0)
-//        }
-//        else if contains(calendarManager.menstruation.predictedCautionDates, self.cellDate)
-//        {
-//            dateImageView.image = UIImage(named: "lightBlueCircle")
-////            cell.circleImage.layer.borderWidth = CGFloat(0)
-//        }
-//        else
-//        {
-//            dateImageView.image = UIImage(named: "LightGreen")
-////            cell.circleImage.layer.borderWidth = CGFloat(0)
-//
+        cellObject = self.delegate?.changeDate()
+        self.getImage()
+        informationLabel.text = getText()
     }
     
     
@@ -60,48 +40,77 @@ class DetailViewController: UIViewController
         super.viewDidLoad()
         
         dateLabel.text = "\(cellObject.dateObject.date.day.value())"
-        dateImageView.image = cellObject.cellImageView.image
-   
+        getImage()
+        informationLabel.text = getText()
+        
         let tapRecognizer = UITapGestureRecognizer(target: self, action: "viewTapped")
         view.addGestureRecognizer(tapRecognizer)
-        
-        cellDate = cellObject.dateObject
         
         if cellObject.dateObject.date.isLaterThan(calendarManager.currentDate)
         {
             setDateButton.hidden = true
         }
         
+        println("cell date type = \(cellObject.dateObject.type)")
     }
     
     
     func viewTapped()
     {
-//        self.performSegueWithIdentifier("detail", sender: nil)
-
-        NSNotificationCenter.defaultCenter().postNotificationName("load", object: nil)
         dismissViewControllerAnimated(true, completion: nil)
-        
-        
     }
     
     
-    
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    func getImage()
     {
-        println("segue detail back 1")
-        if(segue.identifier == "detail")
+        dateImageView.layer.borderWidth = CGFloat(0)
+        
+        if  cellObject.dateObject.type == "menstruation"
         {
-            println("segue detail back 2")
-
-            var nextViewController = (segue.destinationViewController as! CalendarViewController)
-            
-//            nextViewController.cellObject = cellObject
-            nextViewController.calendarManager = calendarManager
-            nextViewController.calendarView.reloadData()
-            
-//            nextViewController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+            dateImageView.image = UIImage(named: "Menstruation")
+            setDateButton.setTitle("\u{00D7}", forState: UIControlState.Normal)
+        }
+        else if cellObject.dateObject.type == "ovulation"
+        {
+            dateImageView.image = UIImage(named: "Caution")
+            logoImageView.image = UIImage(named: "Logo")
+            setDateButton.setTitle("\u{002B}", forState: UIControlState.Normal)
+        }
+        else if cellObject.dateObject.type == "Caution"
+        {
+            dateImageView.image = UIImage(named: "caution")
+            setDateButton.setTitle("\u{002B}", forState: UIControlState.Normal)
+        }
+        else
+        {
+            dateImageView.image = UIImage(named: "Normal")
+            setDateButton.setTitle("\u{002B}", forState: UIControlState.Normal)
         }
     }
+    
+    
+    func getText() -> String
+    {
+        var text = ""
+        
+        if  cellObject.dateObject.type == "menstruation"
+        {
+            text = "It's not the most pleasant time of the month. But you're changes of getting pregnant is pretty much ziltch. So good luck with the craps and remember all real man doesn't mind sailing the red sea's. Have fun!"
+        }
+        else if cellObject.dateObject.type == "ovulation"
+        {
+            text = "What ever you do today, be safe!! We know it's difficult but remember, if you're not careful now it will no alcohol for nine months. Good luck!"
+        }
+        else if cellObject.dateObject.type == "Caution"
+        {
+            text = "It's danger zone lady! You might feel like and that's great. But be safe!"
+        }
+        else
+        {
+            text = "You're all good to go! Have fun!"
+        }
+        return text
+    }
+    
+    
 }
