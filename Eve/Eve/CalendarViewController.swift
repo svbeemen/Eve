@@ -52,9 +52,8 @@ class CalendarViewController: UIViewController, changeDateProtocol
         today = calendarManager.currentDate
 
         super.viewDidLoad()
-//        CycleNotifications.sharedInstance.loadNotificationSettings()
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshCycleNotifications", name: "CycleNotificationsShouldRefresh", object: nil)
-
 
         // instantiate calendar view and add to view.
         let layout: CalendarViewFlowLayout = CalendarViewFlowLayout()
@@ -68,8 +67,6 @@ class CalendarViewController: UIViewController, changeDateProtocol
         var todayIndexItem = today.day.value() - 1
         var todayIndexPath = NSIndexPath(forItem: todayIndexItem, inSection: todayIndexSection)
         self.calendarView.scrollToItemAtIndexPath(todayIndexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredVertically, animated: true)
-        
-        println("load")
     }
     
     func refreshCycleNotifications()
@@ -82,9 +79,7 @@ class CalendarViewController: UIViewController, changeDateProtocol
         self.calendarManager.menstruationCycle.editMenstruationDates(cellObject.dateObject)
         self.calendarManager.setDateTypes()
         self.calendarView.reloadData()
-        
-        println("CHANGE DATA")
-        
+
         return cellObject
     }
     
@@ -145,12 +140,6 @@ extension CalendarViewController: UICollectionViewDataSource
                 cellObject = cell
             }
         }
-        
-        if calendarManager.currentCalendar.isDateInToday(cell.dateObject.date)
-        {
-            println("cell today = \(cell.dateObject.type)")
-        }
-        
         return cell
     }
     
@@ -173,12 +162,7 @@ extension CalendarViewController: UICollectionViewDelegate
         let cell = calendarView.cellForItemAtIndexPath(indexPath) as! NewDateCell
         cellObject = cell
         cellObjectDate = cellObject.dateObject
-        
-        for date in calendarManager.menstruationCycle.pastCycleDates
-        {
-            println(date.date)
-        }
-        
+
         self.performSegueWithIdentifier("detail", sender: nil)
     }
     

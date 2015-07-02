@@ -28,12 +28,6 @@ class CycleNotifications
     var includeCautionNotifications: Bool
     var notificationDates: [CycleDate]
     
-    var menstruationDates: [CycleDate]!
-    var ovulationDates: [CycleDate]!
-    var cautionDates: [CycleDate]!
-    
-    
-    
     init()
     {
         self.includeMenstruationNotifications = false
@@ -51,22 +45,16 @@ class CycleNotifications
         if let includeMenstruationDates = self.savedInformationManager.defaults.objectForKey("menstruationBool") as? Bool
         {
             self.includeMenstruationNotifications = self.savedInformationManager.defaults.boolForKey("menstruationBool")
-            println("MENS =\(self.includeMenstruationNotifications)")
-            
         }
         
         if let includeOvulationDates = self.savedInformationManager.defaults.objectForKey("ovulationBool") as? Bool
         {
             self.includeOvulationNotifications = self.savedInformationManager.defaults.boolForKey("ovulationBool")
-            println("OVU = \(self.includeOvulationNotifications)")
-
         }
         
         if let includeCautionNotifications = self.savedInformationManager.defaults.objectForKey("cautionBool") as? Bool
         {
             self.includeCautionNotifications = self.savedInformationManager.defaults.boolForKey("cautionBool")
-            println("CAUT \(self.includeCautionNotifications)")
-
         }
         
         if let notificationDates: NSData = self.savedInformationManager.defaults.objectForKey("notificationDates") as? NSData
@@ -111,12 +99,6 @@ class CycleNotifications
                 counter++
             }
         }
-        
-        println("DID SCHEDULE NOTIFICATION")
-        
-        println("SHEDULED NOTIFICATIONS =")
-        println(UIApplication.sharedApplication().scheduledLocalNotifications.count)
-
     }
 
     
@@ -190,7 +172,5 @@ class CycleNotifications
     
         let encodedNotoficationDates = NSKeyedArchiver.archivedDataWithRootObject(notificationDates)
         savedInformationManager.defaults.setObject(encodedNotoficationDates, forKey: "notificationdates")
-        
-        println("SAVE")
     }
 }

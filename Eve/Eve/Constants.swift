@@ -11,6 +11,3 @@ import UIKit
 let COLUMNS = CGFloat(5)
 
 let MONTHNAMES = ["JANUARY", "FEBURARY", "MARCH", "APRIL", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"]
-
-
-//NSCalendar.currentCalendar().standaloneMonthSymbols

@@ -23,15 +23,10 @@ class InitialCalendarViewController: UIViewController
     
     required init(coder aDecoder: NSCoder)
     {
-        println("INIT")
         calendarManager = CalendarClass()
-        
         calendarManager.getDates()
-        
         dateObjects = calendarManager.calenderDates
-        
         today = calendarManager.currentDate
-        
         super.init(coder: aDecoder)
     }
     
@@ -57,11 +52,6 @@ class InitialCalendarViewController: UIViewController
         let welcomeView = InstructionView(effect: UIVisualEffect())
         welcomeView.frame = view.bounds
         view.addSubview(welcomeView)
-        
-        for date in self.calendarManager.menstruationCycle.pastCycleDates
-        {
-            println("PAST IN INITIAL = \(date.date) \(date.type)")
-        }
     }
     
     
@@ -74,12 +64,6 @@ class InitialCalendarViewController: UIViewController
             
             var nextViewController = (segue.destinationViewController as! CalendarViewController)
             nextViewController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
-        }
-        
-        for date in self.calendarManager.menstruationCycle.pastCycleDates
-        {
-            println(date.date)
-            println(date.type)
         }
     }
 }
@@ -107,11 +91,6 @@ extension InitialCalendarViewController: UICollectionViewDataSource
         cell.dateObject = dateObjects[indexPath.section][indexPath.item]
         cell.getImage()
         cell.getText()
-        
-        if calendarManager.currentCalendar.isDateInToday(cell.dateObject.date)
-        {
-            println("cell today = \(cell.dateObject.type)")
-        }
         
         return cell
     }

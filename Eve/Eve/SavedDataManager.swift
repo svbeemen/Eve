@@ -23,14 +23,10 @@ class SavedDataManager
     
     let defaults = NSUserDefaults.standardUserDefaults()
     
-    private let ALERTDATE_KEY = "alertDates"
-    
     private let PAST_KEY = "pastCycleDates"
     
     private let PREDICTED_KEY = "predictedCycleDates"
-    
-    private let SETTINGS_KEY = "userSettings"
-    
+
     private let PASTMENSTRUATIONS_KEY = "pastMenstruationDates"
     
     

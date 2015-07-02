@@ -11,7 +11,6 @@
 		872043F61B2B14B2001526AD /* CVCalendarKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872043F41B2B14B2001526AD /* CVCalendarKitExtensions.swift */; };
 		872043F71B2B14B2001526AD /* CVCalendarKitOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872043F51B2B14B2001526AD /* CVCalendarKitOperators.swift */; };
 		875096621B2887480002B5FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875096611B2887480002B5FB /* AppDelegate.swift */; };
-		875096671B2887480002B5FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 875096651B2887480002B5FB /* Main.storyboard */; };
 		875096691B2887480002B5FB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 875096681B2887480002B5FB /* Images.xcassets */; };
 		8750966C1B2887480002B5FB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8750966A1B2887480002B5FB /* LaunchScreen.xib */; };
 		875096781B2887480002B5FB /* EveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875096771B2887480002B5FB /* EveTests.swift */; };
@@ -21,6 +20,7 @@
 		A90F707B1B3BA03200F806D7 /* NewMonthReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90F707A1B3BA03200F806D7 /* NewMonthReusableView.swift */; };
 		A96BB0A91B39E6DE005271C2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BB0A81B39E6DE005271C2 /* SettingsViewController.swift */; };
 		A96BB0B11B3A39E8005271C2 /* SavedDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BB0B01B3A39E8005271C2 /* SavedDataManager.swift */; };
+		A9AE38751B44C3EB0028839A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9AE38741B44C3EB0028839A /* Main.storyboard */; };
 		A9C01E7E1B441D860038CC73 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C01E7D1B441D860038CC73 /* CalendarViewController.swift */; };
 		A9C01E801B443F380038CC73 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C01E7F1B443F380038CC73 /* DetailViewController.swift */; };
 		A9C034D21B399100001F0F5A /* CalendarCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C034D11B399100001F0F5A /* CalendarCollectionView.swift */; };
@@ -50,7 +50,6 @@
 		8750965C1B2887480002B5FB /* Eve.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eve.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		875096601B2887480002B5FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		875096611B2887480002B5FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		875096661B2887480002B5FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		875096681B2887480002B5FB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8750966B1B2887480002B5FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		875096711B2887480002B5FB /* EveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,6 +62,7 @@
 		A90F707A1B3BA03200F806D7 /* NewMonthReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMonthReusableView.swift; sourceTree = "<group>"; };
 		A96BB0A81B39E6DE005271C2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A96BB0B01B3A39E8005271C2 /* SavedDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedDataManager.swift; sourceTree = "<group>"; };
+		A9AE38741B44C3EB0028839A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A9C01E7D1B441D860038CC73 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		A9C01E7F1B443F380038CC73 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		A9C034D11B399100001F0F5A /* CalendarCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCollectionView.swift; sourceTree = "<group>"; };
@@ -146,8 +146,8 @@
 			isa = PBXGroup;
 			children = (
 				872043F11B2B1127001526AD /* Categories */,
-				875096651B2887480002B5FB /* Main.storyboard */,
 				875096611B2887480002B5FB /* AppDelegate.swift */,
+				A9AE38741B44C3EB0028839A /* Main.storyboard */,
 				A904228A1B3D5931000A015E /* ViewControllers */,
 				A904228D1B3D5A2C000A015E /* Views */,
 				A904228B1B3D5969000A015E /* Models */,
@@ -310,8 +310,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				875096671B2887480002B5FB /* Main.storyboard in Resources */,
 				8750966C1B2887480002B5FB /* LaunchScreen.xib in Resources */,
+				A9AE38751B44C3EB0028839A /* Main.storyboard in Resources */,
 				875096691B2887480002B5FB /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -403,14 +403,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		875096651B2887480002B5FB /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				875096661B2887480002B5FB /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		8750966A1B2887480002B5FB /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -508,6 +500,7 @@
 			baseConfigurationReference = BE14FAA6723F7968962D5266 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -528,6 +521,7 @@
 			baseConfigurationReference = A01E6E5F51A603DB338A4873 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

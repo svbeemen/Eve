@@ -50,8 +50,6 @@ class DetailViewController: UIViewController
         {
             setDateButton.hidden = true
         }
-        
-        println("cell date type = \(cellObject.dateObject.type)")
     }
     
     
@@ -76,9 +74,9 @@ class DetailViewController: UIViewController
             logoImageView.image = UIImage(named: "Logo")
             setDateButton.setTitle("\u{002B}", forState: UIControlState.Normal)
         }
-        else if cellObject.dateObject.type == "Caution"
+        else if cellObject.dateObject.type == "caution"
         {
-            dateImageView.image = UIImage(named: "caution")
+            dateImageView.image = UIImage(named: "Caution")
             setDateButton.setTitle("\u{002B}", forState: UIControlState.Normal)
         }
         else
@@ -101,9 +99,9 @@ class DetailViewController: UIViewController
         {
             text = "What ever you do today, be safe!! We know it's difficult but remember, if you're not careful now it will no alcohol for nine months. Good luck!"
         }
-        else if cellObject.dateObject.type == "Caution"
+        else if cellObject.dateObject.type == "caution"
         {
-            text = "It's danger zone lady! You might feel like and that's great. But be safe!"
+            text = "It's danger zone lady! What ever you do be safe!"
         }
         else
         {
@@ -111,6 +109,4 @@ class DetailViewController: UIViewController
         }
         return text
     }
-    
-    
 }

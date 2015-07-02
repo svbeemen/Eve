@@ -42,12 +42,7 @@ class MenstrualCycle
         
         self.predictedCycleDates = SavedDataManager.sharedInstance.getPredictedCycleDates()
         self.pastCycleDates = SavedDataManager.sharedInstance.getPastCycleDates()
-        
         self.pastMenstruationDates = SavedDataManager.sharedInstance.getPastMenstruationDates()
-//        self.predictedCycleDates = [CycleDate]()
-//        self.pastMenstruationDates = [CycleDate]()
-//        self.pastCycleDates = [CycleDate]()
-
     }
     
     
@@ -210,13 +205,6 @@ class MenstrualCycle
         }
         self.predictedCycleDates = predictedMenstruationsDates + predictedCautionDates + predictedOvulationDates
         self.predictedCycleDates = self.sortDates(self.predictedCycleDates)
-        
-        // save predicted dates and save predicted sadte in cyclenotifications
-        SavedDataManager.sharedInstance.savePredictedCycleDates(self.predictedCycleDates)
-        SavedDataManager.sharedInstance.savePastMenstruationDates(self.pastMenstruationDates)
-        CycleNotifications.sharedInstance.menstruationDates = self.predictedMenstruationsDates
-        CycleNotifications.sharedInstance.ovulationDates = self.predictedOvulationDates
-        CycleNotifications.sharedInstance.cautionDates = self.predictedOvulationDates
     }
     
 

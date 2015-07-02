@@ -26,14 +26,7 @@ class InstructionView: UIVisualEffectView
         var label = UILabel(frame: CGRectMake(120, 80, 300, 400));
         label.center = CGPointMake(UIScreen.mainScreen().bounds.width / 2, UIScreen.mainScreen().bounds.height / 2.5)
         label.textAlignment = NSTextAlignment.Center
-        
-        
-//        Arial Rounded MT Bold 31.0
-        
         label.font = UIFont(name: "Arial", size: 22)
-        
-
-//        label.font = UIFont.boldSystemFontOfSize(20)
         label.text = "Welcome To Eve.                   Please select the dates you last had your period. For the most accurate results please set as many previous period dates as possible."
         label.numberOfLines = 10
         label.textColor = UIColor.darkGrayColor()
