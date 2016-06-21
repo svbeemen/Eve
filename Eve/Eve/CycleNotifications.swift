@@ -102,16 +102,16 @@ class CycleNotifications
     }
 
     
-    func sortNotificationDates(var datesToSort: [CycleDate]) -> [CycleDate]
+    func sortNotificationDates(datesToSort: [CycleDate]) -> [CycleDate]
     {
-        var sortedDates = datesToSort.sorted({ $0.date.compare($1.date) == NSComparisonResult.OrderedAscending })
+        let sortedDates = datesToSort.sort({ $0.date.compare($1.date) == NSComparisonResult.OrderedAscending })
         return sortedDates
     }
     
     
     func scheduleANotification(date: CycleDate)
     {
-        var notification = UILocalNotification()
+        let notification = UILocalNotification()
         notification.alertBody = self.getAlertBodyText(date)
         notification.alertAction = "open"
         notification.fireDate = date.date
@@ -151,7 +151,7 @@ class CycleNotifications
         
         if let newNotificationDate = notificationDates.first
         {
-            while UIApplication.sharedApplication().scheduledLocalNotifications.count < 64
+            while UIApplication.sharedApplication().scheduledLocalNotifications!.count < 64
             {
                 self.sortNotificationDates(notificationDates)
                 let newNotificationDate = notificationDates.first!

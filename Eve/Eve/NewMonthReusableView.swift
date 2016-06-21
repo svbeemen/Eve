@@ -14,9 +14,9 @@ class NewMonthReusableView: UICollectionReusableView
     
     var dateObject: CycleDate!
 
-    required init(coder aDecoder: NSCoder)
+    required init?(coder aDecoder: NSCoder)
     {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
     }
     
     
@@ -37,6 +37,7 @@ class NewMonthReusableView: UICollectionReusableView
     
     func getText()
     {
+        print(dateObject.date.month.value())
         dateLabel.text = "\(MONTHNAMES[dateObject.date.month.value() - 1])  \(dateObject.date.year.value())"
     }
 }

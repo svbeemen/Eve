@@ -35,9 +35,9 @@ class CalendarViewController: UIViewController, changeDateProtocol
     }
     
     
-    required init(coder aDecoder: NSCoder)
+    required init?(coder aDecoder: NSCoder)
     {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
     }
     
     override func viewDidLoad()
@@ -63,9 +63,9 @@ class CalendarViewController: UIViewController, changeDateProtocol
         self.view.insertSubview(calendarView!, atIndex: 0)
         
         // get index path of current date and scroll in calendar view to show current date
-        var todayIndexSection = today.month.value() + 11
-        var todayIndexItem = today.day.value() - 1
-        var todayIndexPath = NSIndexPath(forItem: todayIndexItem, inSection: todayIndexSection)
+        let todayIndexSection = today.month.value() + 11
+        let todayIndexItem = today.day.value() - 1
+        let todayIndexPath = NSIndexPath(forItem: todayIndexItem, inSection: todayIndexSection)
         self.calendarView.scrollToItemAtIndexPath(todayIndexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredVertically, animated: true)
     }
     
@@ -95,7 +95,7 @@ class CalendarViewController: UIViewController, changeDateProtocol
         }
         else if (segue.identifier == "settings")
         {
-            var settingsViewController = (segue.destinationViewController as! SettingsViewController)
+            let settingsViewController = (segue.destinationViewController as! SettingsViewController)
             settingsViewController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
         }
     }
@@ -196,8 +196,8 @@ extension CalendarViewController: UICollectionViewDelegate
                 self.dateObjects = self.calendarManager.calenderDates
                 self.calendarView.reloadData()
 
-                var indexLastDate = NSIndexPath(forItem: 0, inSection: 13)
-                self.calendarView.scrollToItemAtIndexPath(indexLastDate, atScrollPosition: UICollectionViewScrollPosition.allZeros, animated: true)
+                let indexLastDate = NSIndexPath(forItem: 0, inSection: 13)
+                self.calendarView.scrollToItemAtIndexPath(indexLastDate, atScrollPosition: UICollectionViewScrollPosition(), animated: true)
             }
         }
         

@@ -21,13 +21,13 @@ class InitialCalendarViewController: UIViewController
     var shouldScroll: Bool = true
 
     
-    required init(coder aDecoder: NSCoder)
+    required init?(coder aDecoder: NSCoder)
     {
         calendarManager = CalendarClass()
         calendarManager.getDates()
         dateObjects = calendarManager.calenderDates
         today = calendarManager.currentDate
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
     }
     
     
@@ -43,9 +43,9 @@ class InitialCalendarViewController: UIViewController
         self.view.insertSubview(collectionView!, atIndex: 0)
 
         // get indexPath of current date and scroll calendar view to show current date.
-        var todayIndexSection = today.month.value() + 11
-        var todayIndexItem = today.day.value() - 1
-        var todayIndexPAth = NSIndexPath(forItem: todayIndexItem, inSection: todayIndexSection)
+        let todayIndexSection = today.month() + 11
+        let todayIndexItem = today.day() - 1
+        let todayIndexPAth = NSIndexPath(forItem: todayIndexItem, inSection: todayIndexSection)
         self.collectionView!.scrollToItemAtIndexPath(todayIndexPAth, atScrollPosition: UICollectionViewScrollPosition.CenteredVertically, animated: true)
         
         // instantie an instructionview. Add subview and show over otehr views.
@@ -62,7 +62,7 @@ class InitialCalendarViewController: UIViewController
             // save set menstruations dates to shared instance under pastMenstruationDates
             SavedDataManager.sharedInstance.savePastMenstruationDates(self.calendarManager.selectedDates)
             
-            var nextViewController = (segue.destinationViewController as! CalendarViewController)
+            let nextViewController = (segue.destinationViewController as! CalendarViewController)
             nextViewController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
         }
     }
@@ -80,7 +80,7 @@ extension InitialCalendarViewController: UICollectionViewDataSource
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        var daysInMonth = dateObjects[section].count
+        let daysInMonth = dateObjects[section].count
         return daysInMonth
     }
 
@@ -157,8 +157,8 @@ extension InitialCalendarViewController: UICollectionViewDelegate
                 self.dateObjects = self.calendarManager.calenderDates
                 self.collectionView!.reloadData()
                 
-                var indexLastDate = NSIndexPath(forItem: 0, inSection: 13)
-                self.collectionView!.scrollToItemAtIndexPath(indexLastDate, atScrollPosition: UICollectionViewScrollPosition.allZeros, animated: true)
+                let indexLastDate = NSIndexPath(forItem: 0, inSection: 13)
+                self.collectionView!.scrollToItemAtIndexPath(indexLastDate, atScrollPosition: UICollectionViewScrollPosition(), animated: true)
             }
         }
         

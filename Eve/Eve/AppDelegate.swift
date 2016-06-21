@@ -16,14 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
     {
-        var savedDates = SavedDataManager.sharedInstance.getPastMenstruationDates()
+        let savedDates = SavedDataManager.sharedInstance.getPastMenstruationDates()
         if !savedDates.isEmpty
         {
             self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
             
-            var storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
-            var initialViewController = storyboard.instantiateViewControllerWithIdentifier("userCalendar") as! UIViewController
+            let initialViewController = storyboard.instantiateViewControllerWithIdentifier("userCalendar") 
             
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()
@@ -32,19 +32,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         else
         {
             self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-            var storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
-            var initialViewController = storyboard.instantiateViewControllerWithIdentifier("emptyCalendar") as! UIViewController
+            let initialViewController = storyboard.instantiateViewControllerWithIdentifier("emptyCalendar") 
                 
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()
                 
         }
+
 //        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Sound|UIUserNotificationType.Alert|UIUserNotificationType.Badge, categories: nil))
         
-        let notificationType = UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound
-        let settings = UIUserNotificationSettings(forTypes: notificationType, categories: nil)
-        application.registerUserNotificationSettings(settings)
+//        let notificationType = UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound
+//        let settings = UIUserNotificationSettings(forTypes: notificationType, categories: nil)
+//        application.registerUserNotificationSettings(settings)
         
         return true
     }
@@ -74,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    // receive a notification that a cycleNitification has been fired. Send notification in app.
+    // receive a notification that a cycleNotification has been fired. Send notification in app.
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification)
     {
         NSNotificationCenter.defaultCenter().postNotificationName("CycleNotificationsShouldRefresh", object: self)

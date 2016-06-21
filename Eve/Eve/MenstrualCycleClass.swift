@@ -92,9 +92,9 @@ class MenstrualCycle
             {
                 if nextDate.date.daysFrom(date.date) != 1
                 {
-                    var startDate = date.date.dateByAddingDays(1)
+                    let startDate = date.date.dateByAddingDays(1)
                     
-                    var endDate = nextDate.date.dateBySubtractingDays(1)
+                    let endDate = nextDate.date.dateBySubtractingDays(1)
                     
                     startEndDates[startDate] = endDate
                 }
@@ -104,7 +104,7 @@ class MenstrualCycle
     }
     
     
-    // calculate average legth of menstruation and length of time 
+    // calculate average length of menstruation and length of time 
     // between menstruations, for more accurate predictions.
     // defualt settings to ensure a realistic outcome
     func getAverageLengthOfMenstruation()
@@ -115,7 +115,7 @@ class MenstrualCycle
         }
         
         var totalDaysOfMenstruation = 0
-        var numberOfMenstruations = self.pastFirstLastDatesMenstruation.count
+        let numberOfMenstruations = self.pastFirstLastDatesMenstruation.count
         
         for (startDate, endDate) in self.pastFirstLastDatesMenstruation
         {
@@ -145,7 +145,7 @@ class MenstrualCycle
         }
         
         var totalDaysOfRestPeriod = 0
-        var numberOfRestPeriods = self.pastFirstLastDatesRestPeriod.count
+        let numberOfRestPeriods = self.pastFirstLastDatesRestPeriod.count
         
         for (startDate, endDate) in self.pastFirstLastDatesRestPeriod
         {
@@ -211,13 +211,13 @@ class MenstrualCycle
     // adds and deletes menstruationdate when done so by the user
     func editMenstruationDates(selectedDate: CycleDate)
     {
-        if contains(self.pastMenstruationDates, selectedDate)
+        if self.pastMenstruationDates.contains(selectedDate)
         {
             self.pastMenstruationDates = self.pastMenstruationDates.filter( {$0 != selectedDate} )
         }
         else
         {
-            var newMenstruationDate = CycleDate(date: selectedDate.date)
+            let newMenstruationDate = CycleDate(date: selectedDate.date)
             newMenstruationDate.type = "menstruation"
             self.pastMenstruationDates.append(newMenstruationDate)
         }
@@ -227,14 +227,14 @@ class MenstrualCycle
     
     
     // sort list of dates from past to future
-    func sortDates(var datesToSort: [CycleDate]) -> [CycleDate]
+    func sortDates(datesToSort: [CycleDate]) -> [CycleDate]
     {
-        var sortedDates = datesToSort.sorted({ $0.date.compare($1.date) == NSComparisonResult.OrderedAscending })
+        let sortedDates = datesToSort.sort({ $0.date.compare($1.date) == NSComparisonResult.OrderedAscending })
         return sortedDates
     }
     
     
-    // call all functions necessary to calculate teh cycle
+    // call all functions necessary to calculate the cycle
     func calculateCycle()
     {
         if self.pastMenstruationDates.isEmpty
