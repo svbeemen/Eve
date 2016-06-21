@@ -15,7 +15,7 @@ class CycleDate: NSObject
     var date: NSDate
 
     
-    init(var date: NSDate)
+    init(date: NSDate)
     {
         self.date = date
         self.type = ""

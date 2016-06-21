@@ -41,11 +41,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
         }
 
-//        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Sound|UIUserNotificationType.Alert|UIUserNotificationType.Badge, categories: nil))
-        
-//        let notificationType = UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound
-//        let settings = UIUserNotificationSettings(forTypes: notificationType, categories: nil)
-//        application.registerUserNotificationSettings(settings)
+        // OLD CODE - DIDNT WORK
+        //        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Sound|       UIUserNotificationType.Alert|UIUserNotificationType.Badge, categories: nil))
+        //        let notificationType = UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound
+        //        let notificationType = UIUserNotificationType[.Alert, .Badge, .Sound]
+        //        let settings = UIUserNotificationSettings(forTypes: notificationType, categories: nil)
+
+        // register app for local notifications and specify type of alert.
+        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+
+        application.registerUserNotificationSettings(settings)
         
         return true
     }

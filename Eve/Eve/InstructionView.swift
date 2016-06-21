@@ -20,7 +20,7 @@ class InstructionView: UIVisualEffectView
     {
         super.init(effect: UIBlurEffect(style: UIBlurEffectStyle.Light))
         
-        let tapRegonizer = UITapGestureRecognizer(target: self, action: "viewTapped")
+        let tapRegonizer = UITapGestureRecognizer(target: self, action: #selector(InstructionView.viewTapped))
         self.addGestureRecognizer(tapRegonizer)
         
         let label = UILabel(frame: CGRectMake(120, 80, 300, 400));

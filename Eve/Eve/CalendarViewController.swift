@@ -53,7 +53,9 @@ class CalendarViewController: UIViewController, changeDateProtocol
 
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshCycleNotifications", name: "CycleNotificationsShouldRefresh", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CalendarViewController.refreshCycleNotifications), name: "CycleNotificationsShouldRefresh", object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: CalendarViewController.refreshCycleNotifications(), name: "CycleNotificationsShouldRefresh", object: nil)
+
 
         // instantiate calendar view and add to view.
         let layout: CalendarViewFlowLayout = CalendarViewFlowLayout()

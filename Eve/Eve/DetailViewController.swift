@@ -43,7 +43,7 @@ class DetailViewController: UIViewController
         getImage()
         informationLabel.text = getText()
         
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: "viewTapped")
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(DetailViewController.viewTapped))
         view.addGestureRecognizer(tapRecognizer)
         
         if cellObject.dateObject.date.isLaterThan(calendarManager.currentDate)

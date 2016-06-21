@@ -96,7 +96,7 @@ class CycleNotifications
             {
                 scheduleANotification(notificationDate)
                 notificationDates = notificationDates.filter({$0.date != notificationDate.date })
-                counter++
+                counter += 1
             }
         }
     }
