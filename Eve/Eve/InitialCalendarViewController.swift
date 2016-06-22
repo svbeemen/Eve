@@ -135,7 +135,8 @@ extension InitialCalendarViewController: UICollectionViewDelegate
     func scrollViewDidScroll(scrollView: UIScrollView)
     {
         let offsetY = scrollView.contentOffset.y
-        let offsetX = scrollView.contentOffset.x
+//        DO NOT USE THE OFFSET X ANYWHERE 
+//        let offsetX = scrollView.contentOffset.x
         let contentHeight = scrollView.contentSize.height
         
         if offsetY > contentHeight - scrollView.frame.size.height
