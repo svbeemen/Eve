@@ -8,42 +8,28 @@
 
 import Foundation
 
-
 class CalendarClass
 {
     var currentDate: NSDate
-
     var currentCalendar: NSCalendar
-    
     var calenderDates: [[CycleDate]]
-
     var selectedDates: [CycleDate]
-    
     var menstruationCycle: MenstrualCycle!
-    
     var firstCalendarDate: NSDate!
-    
     var lastCalendarDate: NSDate!
-
 
     init()
     {
         self.currentDate = NSDate()
-
         self.currentCalendar = NSCalendar.currentCalendar()
-        
         self.calenderDates = [[CycleDate]]()
-        
         self.selectedDates = [CycleDate]()
-        
         self.firstCalendarDate = self.currentDate.firstYearDate().dateBySubtractingYears(1)
-        
         self.lastCalendarDate = self.currentDate.lastYearDate().dateByAddingYears(1)
-        
         self.menstruationCycle = MenstrualCycle(currentDate: self.currentDate, endPredictionDate: self.lastCalendarDate)
     }
-
     
+    // Calculate dates for calendar
     func getDates()
     {
         let startCalendarDate = CycleDate(date: self.firstCalendarDate)
@@ -55,7 +41,6 @@ class CalendarClass
             let daysInMonth = startCalendarDate.date.daysInMonth()
             var datesInMonth = [CycleDate]()
             
-            // Believe I should adjust to recommended change
             for _ in 0 ..< daysInMonth
             {
                 let date = CycleDate(date: startCalendarDate.date)
@@ -67,8 +52,7 @@ class CalendarClass
         }
     }
 
-
-    // adds and deletes selected date to menstruation array
+    // Adds and deletes selected date to menstruation array.
     func setSelectedDate(selectedDate: CycleDate)
     {
         if self.selectedDates.contains(selectedDate)
@@ -83,9 +67,8 @@ class CalendarClass
         }
     }
     
-    
-    // call the calculate cycle function menstrualCycleClass
-    // set the type date of the predicted dates to the calendar dates.
+    // Calls function to calculate cycle in menstrualCycleClass
+    // Sets the type date of the predicted dates to the calendar dates.
     func setDateTypes()
     {
         let datesTypes = self.menstruationCycle.predictedCycleDates + self.menstruationCycle.pastMenstruationDates + self.menstruationCycle.pastCycleDates
@@ -99,7 +82,7 @@ class CalendarClass
             }
         }
         
-        // set date type to cycle date if it is one
+        // set date type
         for dates in datesTypes
         {
             for months in self.calenderDates
@@ -115,7 +98,35 @@ class CalendarClass
         }
     }
     
-    // remove pased predicted dates to pastPredicted dates
+    // Retrieve selected date and set type.
+    func getSelectedDate()
+    {
+        // reset date type
+        for months in calenderDates
+        {
+            for days in months
+            {
+                days.type = ""
+            }
+        }
+        
+        // set selected date type
+        for dates in self.selectedDates
+        {
+            for months in self.calenderDates
+            {
+                for calandardays in months
+                {
+                    if currentCalendar.isDate(dates.date, inSameDayAsDate: calandardays.date)
+                    {
+                        calandardays.type = "menstruation"
+                    }
+                }
+            }
+        }
+    }
+    
+    // Remove pased dates from predicted cycle dates, add to pastPredicted dates array.
     func refreshPastedDates()
     {
         if self.menstruationCycle.predictedCycleDates.isEmpty
@@ -137,6 +148,7 @@ class CalendarClass
                 }
             }
         }
+        
         SavedDataManager.sharedInstance.savePastMenstruationDates(self.menstruationCycle.pastMenstruationDates)
         SavedDataManager.sharedInstance.savePastCycleDates(self.menstruationCycle.pastCycleDates)
     }

@@ -11,14 +11,12 @@ import UIKit
 class NewMonthReusableView: UICollectionReusableView
 {
     var dateLabel: UILabel!
-    
     var dateObject: CycleDate!
 
     required init?(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder)!
     }
-    
     
     override init(frame: CGRect)
     {
@@ -35,9 +33,9 @@ class NewMonthReusableView: UICollectionReusableView
         self.layer.cornerRadius = CGFloat(15)
     }
     
+    // Get text for month label
     func getText()
     {
-        print(dateObject.date.month.value())
         dateLabel.text = "\(MONTHNAMES[dateObject.date.month.value() - 1])  \(dateObject.date.year.value())"
     }
 }

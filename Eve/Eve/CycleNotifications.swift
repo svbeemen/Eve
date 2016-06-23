@@ -18,11 +18,9 @@ class CycleNotifications
             static let instance : CycleNotifications = CycleNotifications()
         }
         
-        print("Instantiate CycleNotifications")
         return Static.instance
     }
 
-    
     let savedInformationManager = SavedDataManager.sharedInstance
     
     var includeMenstruationNotifications: Bool
@@ -39,9 +37,7 @@ class CycleNotifications
         self.notificationDates = [CycleDate]()
     }
     
-    
-    
-    // get saved information
+    // Retrieve saved notification settings & dates.
     func loadNotificationSettings()
     {
         if (self.savedInformationManager.defaults.objectForKey("menstruationBool") as? Bool) != nil
@@ -58,8 +54,6 @@ class CycleNotifications
         {
             self.includeCautionNotifications = self.savedInformationManager.defaults.boolForKey("cautionBool")
         }
-        
-        //        if let notificationDates: NSData = self.savedInformationManager.defaults.objectForKey("notificationDates") as? NSData
 
         if (self.savedInformationManager.defaults.objectForKey("notificationDates") as? NSData) != nil
         {
@@ -68,8 +62,7 @@ class CycleNotifications
         }
     }
     
-    
-    // sort which dates to include and then schedlue them. save the remaining dates
+    // Cancel old notification and schedule new notifications.
     func scheduleCycleNotifications(menstruationDates: [CycleDate], ovulationDates: [CycleDate], cautionDates: [CycleDate])
     {
         self.notificationDates = [CycleDate]()
@@ -78,21 +71,16 @@ class CycleNotifications
         if includeMenstruationNotifications
         {
             notificationDates += menstruationDates
-            print("schedule menstruation notifications")
         }
         
         if includeOvulationNotifications
         {
             notificationDates += ovulationDates
-            print("schedule ovulation notifications")
-
         }
         
         if includeCautionNotifications
         {
             notificationDates += cautionDates
-            print("schedule caution notifications")
-
         }
         
         self.notificationDates = self.sortNotificationDates(notificationDates)
@@ -105,19 +93,18 @@ class CycleNotifications
                 scheduleANotification(notificationDate)
                 notificationDates = notificationDates.filter({$0.date != notificationDate.date })
                 counter += 1
-                print("schedule all notifications")
             }
         }
     }
 
-    
+    // Sort notification dates by ascending order.
     func sortNotificationDates(datesToSort: [CycleDate]) -> [CycleDate]
     {
         let sortedDates = datesToSort.sort({ $0.date.compare($1.date) == NSComparisonResult.OrderedAscending })
         return sortedDates
     }
     
-    
+    // Set and schedule a notification.
     func scheduleANotification(date: CycleDate)
     {
         let notification = UILocalNotification()
@@ -126,13 +113,10 @@ class CycleNotifications
         notification.fireDate = date.date
         notification.soundName = UILocalNotificationDefaultSoundName
         notification.category = "EVE_CATEGORY"
-        
-        print(notification)
-        
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     
-    
+    // Get text for notification
     func getAlertBodyText(alertDate: CycleDate) -> String
     {
         var bodyText = ""
@@ -152,7 +136,7 @@ class CycleNotifications
         return bodyText
     }
     
-    
+    // Refresh notifications
     func refreshNotifications()
     {
         if (savedInformationManager.defaults.objectForKey("notificationdates") as? NSData) != nil
@@ -175,15 +159,13 @@ class CycleNotifications
         savedInformationManager.defaults.setObject(encodedNotoficationDates, forKey: "notificationdates")
     }
     
-    
+    // Save settings of notification buttons and save notification dates.
     func saveNotificationSettings()
     {
         savedInformationManager.defaults.setBool(self.includeMenstruationNotifications, forKey: "menstruationBool")
         savedInformationManager.defaults.setBool(self.includeOvulationNotifications, forKey: "ovulationBool")
         savedInformationManager.defaults.setBool(self.includeCautionNotifications, forKey: "cautionBool")
-    
         let encodedNotoficationDates = NSKeyedArchiver.archivedDataWithRootObject(notificationDates)
         savedInformationManager.defaults.setObject(encodedNotoficationDates, forKey: "notificationdates")
-        print("saving notification settings")
     }
 }

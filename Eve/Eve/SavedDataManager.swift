@@ -20,32 +20,21 @@ class SavedDataManager
         return Static.instance
     }
     
-    
     let defaults = NSUserDefaults.standardUserDefaults()
-    
     private let PAST_KEY = "pastCycleDates"
-    
     private let PREDICTED_KEY = "predictedCycleDates"
-
     private let PASTMENSTRUATIONS_KEY = "pastMenstruationDates"
     
-    
-    // PREDICTED CYCLE DATES
-    // save predicted cycle dates
+    // Save predicted cycle dates
     func savePredictedCycleDates(predictedCycleDates: [CycleDate])
     {
         let myData = NSKeyedArchiver.archivedDataWithRootObject(predictedCycleDates)
         defaults.setObject(myData, forKey: PREDICTED_KEY)
     }
     
-    
-    // get saved predicted cycle dates or return empty array
+    // Retrieve saved predicted cycle dates or return empty array if their are no saved dates.
     func getPredictedCycleDates() -> [CycleDate]
     {
-        
-        // Believe I should adjust to recommended change
-//        if let savedDated: NSData = defaults.objectForKey(PREDICTED_KEY) as? NSData
-//         if (self.savedInformationManager.defaults.objectForKey("ovulationBool") as? Bool) != nil
         if (defaults.objectForKey(PREDICTED_KEY) as? NSData) != nil
         {
             let savedDated: NSData = defaults.objectForKey(PREDICTED_KEY) as! NSData
@@ -56,20 +45,16 @@ class SavedDataManager
         return [CycleDate]()
     }
 
-    
-    // PAST CYCLE DATES
-    // save past cycle dates
+    // Save past cycle dates.
     func savePastCycleDates(pastCycleDates: [CycleDate])
     {
         let myData = NSKeyedArchiver.archivedDataWithRootObject(pastCycleDates)
         defaults.setObject(myData, forKey: PAST_KEY)
     }
     
-    // get saved past cycle dates or return empty array
+    // Retrieve saved past cycle dates or return empty array if their are no saved dates.
     func getPastCycleDates() -> [CycleDate]
     {
-        // Believe I should adjust to recommended change
-//        if let savedDated: NSData = defaults.objectForKey(PAST_KEY) as? NSData
         if (defaults.objectForKey(PAST_KEY) as? NSData) != nil
         {
             let savedDated: NSData = defaults.objectForKey(PAST_KEY) as! NSData
@@ -79,20 +64,16 @@ class SavedDataManager
         return [CycleDate]()
     }
     
-    
-    // PAST MENSTRUATIONDATES
-    // save past menstruation date
+    // Save past menstruation date
     func savePastMenstruationDates(pastMenstruationDates: [CycleDate])
     {
         let myData = NSKeyedArchiver.archivedDataWithRootObject(pastMenstruationDates)
         defaults.setObject(myData, forKey: PASTMENSTRUATIONS_KEY)
     }
     
-    // get past menstruation dates or return empty array
+    // Retrieve past menstruation dates or return empty array if their are no saved dates.
     func getPastMenstruationDates() -> [CycleDate]
     {
-        // Believe I should adjust to recommended change
-//        if let savedDated: NSData = defaults.objectForKey(PASTMENSTRUATIONS_KEY) as? NSData
         if (defaults.objectForKey(PASTMENSTRUATIONS_KEY) as? NSData) != nil
         {
             let savedDated: NSData = defaults.objectForKey(PASTMENSTRUATIONS_KEY) as! NSData

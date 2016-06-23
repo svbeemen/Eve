@@ -11,13 +11,9 @@ import UIKit
 class SettingsViewController: UIViewController
 {
     @IBOutlet weak var backButton: UIButton!
-    
     @IBOutlet weak var ovulationSwitch: UISwitch!
-    
     @IBOutlet weak var cautionSwitch: UISwitch!
-    
     @IBOutlet weak var menstruationSwitch: UISwitch!
-    
     
     override func viewDidLoad()
     {
@@ -29,14 +25,18 @@ class SettingsViewController: UIViewController
         cautionSwitch.on = CycleNotifications.sharedInstance.includeCautionNotifications
     }
     
+    override func viewWillDisappear(animated: Bool)
+    {
+        CycleNotifications.sharedInstance.saveNotificationSettings()
+    }
     
+    // Go back to main calanderview
     @IBAction func goBack(sender: UIButton)
     {
         dismissViewControllerAnimated(true, completion: nil)
-
     }
-    
 
+    // Save state of ovulation notifications.
     @IBAction func changeOvulationSwitchState(sender: UISwitch)
     {
         if ovulationSwitch.on
@@ -49,7 +49,7 @@ class SettingsViewController: UIViewController
         }
     }
     
-
+    // Save state of caution notifications.
     @IBAction func changeCautionSwitchState(sender: UISwitch)
     {
         if cautionSwitch.on
@@ -62,7 +62,7 @@ class SettingsViewController: UIViewController
         }
     }
     
-
+    // Save state of menstruation notifications.
     @IBAction func changeMenstruationSwitchStat(sender: UISwitch)
     {
         if menstruationSwitch.on

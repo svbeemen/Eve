@@ -11,21 +11,13 @@ import UIKit
 class DetailViewController: UIViewController
 {
     var delegate: changeDateProtocol?
-    
     @IBOutlet weak var dateImageView: UIImageView!
-    
     @IBOutlet weak var informationLabel: UILabel!
-
     @IBOutlet weak var setDateButton: UIButton!
-    
     @IBOutlet weak var dateLabel: UILabel!
-    
-    var cellObject: NewDateCell!
-    
-    var calendarManager: CalendarClass!
-
     @IBOutlet weak var logoImageView: UIImageView!
-    
+    var cellObject: NewDateCell!
+    var calendarManager: CalendarClass!
     
     @IBAction func setDate(sender: UIButton)
     {
@@ -33,7 +25,6 @@ class DetailViewController: UIViewController
         self.getImage()
         informationLabel.text = getText()
     }
-    
     
     override func viewDidLoad()
     {
@@ -52,13 +43,13 @@ class DetailViewController: UIViewController
         }
     }
     
-    
+    // Instructionview disappears when tapped.
     func viewTapped()
     {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    
+    // Get image for date type.
     func getImage()
     {
         dateImageView.layer.borderWidth = CGFloat(0)
@@ -86,7 +77,7 @@ class DetailViewController: UIViewController
         }
     }
     
-    
+    // Get text for date type. 
     func getText() -> String
     {
         var text = ""

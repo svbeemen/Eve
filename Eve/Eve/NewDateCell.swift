@@ -11,20 +11,14 @@ import UIKit
 class NewDateCell: UICollectionViewCell
 {
     var dateLabel: UILabel!
-    
     var cellImageView: UIImageView!
-    
     var dateObject: CycleDate!
-    
     var logoImageView: UIImageView!
-
-
     
     required init?(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder)!
     }
-    
     
     override init(frame: CGRect)
     {
@@ -46,7 +40,7 @@ class NewDateCell: UICollectionViewCell
         contentView.addSubview(dateLabel)
     }
     
-    
+    // Get image for date type.
     func getImage()
     {
         cellImageView.layer.borderWidth = CGFloat(0)
@@ -75,6 +69,7 @@ class NewDateCell: UICollectionViewCell
 
         }
         
+        // Circle current date.
         if dateObject.date.isToday()
         {
             cellImageView.layer.borderWidth = CGFloat(2)
@@ -83,7 +78,7 @@ class NewDateCell: UICollectionViewCell
         }
     }
     
-    
+    // Get date for the date label. 
     func getText()
     {
         dateLabel.text = "\(dateObject.date.day.value())"

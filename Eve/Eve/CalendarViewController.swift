@@ -13,21 +13,16 @@ protocol changeDateProtocol
     func changeDate() -> NewDateCell
 }
 
-
 class CalendarViewController: UIViewController, changeDateProtocol
 {
     var nextViewController: DetailViewController?
-    
     var calendarManager: CalendarClass!
     var dateObjects: [[CycleDate]]!
     var today: NSDate!
-    
     var calendarView: CalendarCollectionView!
     var cellObject: NewDateCell!
     var cellObjectDate: CycleDate!
-    
     var shouldScroll: Bool = true
-
     @IBOutlet weak var settingsButton: UIButton!
     
     
@@ -38,7 +33,7 @@ class CalendarViewController: UIViewController, changeDateProtocol
     
     override func viewDidLoad()
     {
-        // instatiate instance calandar class, get dates to show in calendar view, calculate cycle and set date type accordingly.
+        // Instatiate instance calandar class, get dates to show in calendarview, calculate cycle and set date type accordingly.
         calendarManager = CalendarClass()
         calendarManager.getDates()
         calendarManager.refreshPastedDates()
@@ -50,17 +45,15 @@ class CalendarViewController: UIViewController, changeDateProtocol
         super.viewDidLoad()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CalendarViewController.refreshCycleNotifications), name: "CycleNotificationsShouldRefresh", object: nil)
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: CalendarViewController.refreshCycleNotifications(), name: "CycleNotificationsShouldRefresh", object: nil)
 
-
-        // instantiate calendar view and add to view.
+        // Instantiate calendarview and add to view.
         let layout: CalendarViewFlowLayout = CalendarViewFlowLayout()
         calendarView = CalendarCollectionView(frame: self.view.frame, collectionViewLayout: layout)
         calendarView!.dataSource = self
         calendarView!.delegate = self
         self.view.insertSubview(calendarView!, atIndex: 0)
         
-        // get index path of current date and scroll in calendar view to show current date
+        // Get index path of current date and scroll in calendar view to show current date.
         let todayIndexSection = today.month.value() + 11
         let todayIndexItem = today.day.value() - 1
         let todayIndexPath = NSIndexPath(forItem: todayIndexItem, inSection: todayIndexSection)
@@ -81,6 +74,7 @@ class CalendarViewController: UIViewController, changeDateProtocol
         return cellObject
     }
     
+    // View single date.
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
         if(segue.identifier == "detail")
@@ -104,7 +98,6 @@ class CalendarViewController: UIViewController, changeDateProtocol
     }
 }
 
-
 extension CalendarViewController: UICollectionViewDataSource
 {
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int
@@ -112,12 +105,10 @@ extension CalendarViewController: UICollectionViewDataSource
         return dateObjects.count
     }
     
-    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         return dateObjects[section].count
     }
-    
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
@@ -136,7 +127,6 @@ extension CalendarViewController: UICollectionViewDataSource
         return cell
     }
     
-    
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
     {
         let monthHeader = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "Header", forIndexPath: indexPath) as! NewMonthReusableView
@@ -147,7 +137,6 @@ extension CalendarViewController: UICollectionViewDataSource
     }
 }
 
-
 extension CalendarViewController: UICollectionViewDelegate
 {
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
@@ -155,17 +144,13 @@ extension CalendarViewController: UICollectionViewDelegate
         let cell = calendarView.cellForItemAtIndexPath(indexPath) as! NewDateCell
         cellObject = cell
         cellObjectDate = cellObject.dateObject
-
         self.performSegueWithIdentifier("detail", sender: nil)
     }
     
-    
-    // infinity scroll
+    // Infinite Scroll
     func scrollViewDidScroll(scrollView: UIScrollView)
     {
         let offsetY = scrollView.contentOffset.y
-        // Not sure
-
         let contentHeight = scrollView.contentSize.height
         
         if offsetY > contentHeight - scrollView.frame.size.height
@@ -189,13 +174,12 @@ extension CalendarViewController: UICollectionViewDelegate
                 calendarManager.setDateTypes()
                 self.dateObjects = self.calendarManager.calenderDates
                 self.calendarView.reloadData()
-
                 let indexLastDate = NSIndexPath(forItem: 0, inSection: 13)
                 self.calendarView.scrollToItemAtIndexPath(indexLastDate, atScrollPosition: UICollectionViewScrollPosition(), animated: true)
             }
         }
         
-        if offsetY > (scrollView.frame.height * 8)
+        if offsetY > (scrollView.frame.minY)
         {
             shouldScroll = true
         }

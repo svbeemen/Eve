@@ -14,13 +14,11 @@ class CycleDate: NSObject
     var type: NSString
     var date: NSDate
 
-    
     init(date: NSDate)
     {
         self.date = date
         self.type = ""
     }
-    
     
     required init(coder aDecoder: NSCoder)
     {
@@ -34,7 +32,6 @@ class CycleDate: NSObject
         aCoder.encodeObject(date, forKey: "date")
         aCoder.encodeObject(type, forKey: "type")
     }
-    
     
     // NSObjectProtocol
     override func isEqual(object: AnyObject?) -> Bool

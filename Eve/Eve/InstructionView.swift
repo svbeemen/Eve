@@ -15,7 +15,6 @@ class InstructionView: UIVisualEffectView
         super.init(coder: aDecoder)!
     }
     
-    
     override init(effect: UIVisualEffect?)
     {
         super.init(effect: UIBlurEffect(style: UIBlurEffectStyle.Light))
@@ -34,7 +33,6 @@ class InstructionView: UIVisualEffectView
         self.addSubview(label)
     }
     
-
     func viewTapped()
     {
         self.removeFromSuperview()
