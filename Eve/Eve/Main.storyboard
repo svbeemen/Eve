@@ -77,7 +77,6 @@
                                     <color key="titleColor" red="0.19878479957553333" green="0.19478093892948156" blue="0.20641966536868683" alpha="0.83000000000000007" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="goToSettings:" destination="sNb-bu-BeB" eventType="touchUpInside" id="3N0-s1-OGl"/>
                                     <segue destination="rdm-S9-vir" kind="presentation" identifier="settings" id="oQx-D6-F0S"/>
                                 </connections>
                             </button>

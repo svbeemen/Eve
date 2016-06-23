@@ -54,8 +54,9 @@ class CalendarClass
         {
             let daysInMonth = startCalendarDate.date.daysInMonth()
             var datesInMonth = [CycleDate]()
-
-            for index in 0 ..< daysInMonth
+            
+            // Believe I should adjust to recommended change
+            for _ in 0 ..< daysInMonth
             {
                 let date = CycleDate(date: startCalendarDate.date)
                 datesInMonth.append(date)

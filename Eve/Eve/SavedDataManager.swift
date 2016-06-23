@@ -42,7 +42,11 @@ class SavedDataManager
     // get saved predicted cycle dates or return empty array
     func getPredictedCycleDates() -> [CycleDate]
     {
-        if let savedDated: NSData = defaults.objectForKey(PREDICTED_KEY) as? NSData
+        
+        // Believe I should adjust to recommended change
+//        if let savedDated: NSData = defaults.objectForKey(PREDICTED_KEY) as? NSData
+//         if (self.savedInformationManager.defaults.objectForKey("ovulationBool") as? Bool) != nil
+        if (defaults.objectForKey(PREDICTED_KEY) as? NSData) != nil
         {
             let savedDated: NSData = defaults.objectForKey(PREDICTED_KEY) as! NSData
             let myData = NSKeyedUnarchiver.unarchiveObjectWithData(savedDated) as! [CycleDate]
@@ -64,7 +68,9 @@ class SavedDataManager
     // get saved past cycle dates or return empty array
     func getPastCycleDates() -> [CycleDate]
     {
-        if let savedDated: NSData = defaults.objectForKey(PAST_KEY) as? NSData
+        // Believe I should adjust to recommended change
+//        if let savedDated: NSData = defaults.objectForKey(PAST_KEY) as? NSData
+        if (defaults.objectForKey(PAST_KEY) as? NSData) != nil
         {
             let savedDated: NSData = defaults.objectForKey(PAST_KEY) as! NSData
             let myData = NSKeyedUnarchiver.unarchiveObjectWithData(savedDated) as! [CycleDate]
@@ -85,7 +91,9 @@ class SavedDataManager
     // get past menstruation dates or return empty array
     func getPastMenstruationDates() -> [CycleDate]
     {
-        if let savedDated: NSData = defaults.objectForKey(PASTMENSTRUATIONS_KEY) as? NSData
+        // Believe I should adjust to recommended change
+//        if let savedDated: NSData = defaults.objectForKey(PASTMENSTRUATIONS_KEY) as? NSData
+        if (defaults.objectForKey(PASTMENSTRUATIONS_KEY) as? NSData) != nil
         {
             let savedDated: NSData = defaults.objectForKey(PASTMENSTRUATIONS_KEY) as! NSData
             let myData = NSKeyedUnarchiver.unarchiveObjectWithData(savedDated) as! [CycleDate]

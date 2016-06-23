@@ -17,6 +17,8 @@ class CycleNotifications
         {
             static let instance : CycleNotifications = CycleNotifications()
         }
+        
+        print("Instantiate CycleNotifications")
         return Static.instance
     }
 
@@ -42,25 +44,26 @@ class CycleNotifications
     // get saved information
     func loadNotificationSettings()
     {
-        if let includeMenstruationDates = self.savedInformationManager.defaults.objectForKey("menstruationBool") as? Bool
+        if (self.savedInformationManager.defaults.objectForKey("menstruationBool") as? Bool) != nil
         {
             self.includeMenstruationNotifications = self.savedInformationManager.defaults.boolForKey("menstruationBool")
         }
         
-        if let includeOvulationDates = self.savedInformationManager.defaults.objectForKey("ovulationBool") as? Bool
+        if (self.savedInformationManager.defaults.objectForKey("ovulationBool") as? Bool) != nil
         {
             self.includeOvulationNotifications = self.savedInformationManager.defaults.boolForKey("ovulationBool")
         }
         
-        if let includeCautionNotifications = self.savedInformationManager.defaults.objectForKey("cautionBool") as? Bool
+        if (self.savedInformationManager.defaults.objectForKey("cautionBool") as? Bool) != nil
         {
             self.includeCautionNotifications = self.savedInformationManager.defaults.boolForKey("cautionBool")
         }
         
-        if let notificationDates: NSData = self.savedInformationManager.defaults.objectForKey("notificationDates") as? NSData
+        //        if let notificationDates: NSData = self.savedInformationManager.defaults.objectForKey("notificationDates") as? NSData
+
+        if (self.savedInformationManager.defaults.objectForKey("notificationDates") as? NSData) != nil
         {
             let encodedNotificationDates = self.savedInformationManager.defaults.objectForKey("notificationDates") as! NSData
-            
             self.notificationDates = NSKeyedUnarchiver.unarchiveObjectWithData(encodedNotificationDates) as! [CycleDate]
         }
     }
@@ -75,16 +78,21 @@ class CycleNotifications
         if includeMenstruationNotifications
         {
             notificationDates += menstruationDates
+            print("schedule menstruation notifications")
         }
         
         if includeOvulationNotifications
         {
             notificationDates += ovulationDates
+            print("schedule ovulation notifications")
+
         }
         
         if includeCautionNotifications
         {
             notificationDates += cautionDates
+            print("schedule caution notifications")
+
         }
         
         self.notificationDates = self.sortNotificationDates(notificationDates)
@@ -97,6 +105,7 @@ class CycleNotifications
                 scheduleANotification(notificationDate)
                 notificationDates = notificationDates.filter({$0.date != notificationDate.date })
                 counter += 1
+                print("schedule all notifications")
             }
         }
     }
@@ -117,6 +126,9 @@ class CycleNotifications
         notification.fireDate = date.date
         notification.soundName = UILocalNotificationDefaultSoundName
         notification.category = "EVE_CATEGORY"
+        
+        print(notification)
+        
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     
@@ -143,13 +155,13 @@ class CycleNotifications
     
     func refreshNotifications()
     {
-        if let encodedNotificationDates = savedInformationManager.defaults.objectForKey("notificationdates") as? NSData
+        if (savedInformationManager.defaults.objectForKey("notificationdates") as? NSData) != nil
         {
             let encodedNotificationDates = savedInformationManager.defaults.objectForKey("notificationdates") as! NSData
             self.notificationDates = NSKeyedUnarchiver.unarchiveObjectWithData(encodedNotificationDates) as! [CycleDate]
         }
         
-        if let newNotificationDate = notificationDates.first
+        if notificationDates.first != nil
         {
             while UIApplication.sharedApplication().scheduledLocalNotifications!.count < 64
             {
@@ -172,5 +184,6 @@ class CycleNotifications
     
         let encodedNotoficationDates = NSKeyedArchiver.archivedDataWithRootObject(notificationDates)
         savedInformationManager.defaults.setObject(encodedNotoficationDates, forKey: "notificationdates")
+        print("saving notification settings")
     }
 }

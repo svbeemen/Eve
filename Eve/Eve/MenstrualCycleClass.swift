@@ -196,7 +196,8 @@ class MenstrualCycle
             predictedCautionDates.append(cautionDate)
             
             myLastMenstruationDate = CycleDate(date: myLastMenstruationDate.date.dateByAddingDays(self.lengthOfRestPeriod - 1))
-            for index in 0 ..< self.lengthOfMenstruation
+            // Believe I should adjust to recommended change
+            for _ in 0 ..< self.lengthOfMenstruation
             {
                 myLastMenstruationDate = CycleDate(date: myLastMenstruationDate.date.dateByAddingDays(1))
                 myLastMenstruationDate.type = "menstruation"

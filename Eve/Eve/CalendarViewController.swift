@@ -29,10 +29,6 @@ class CalendarViewController: UIViewController, changeDateProtocol
     var shouldScroll: Bool = true
 
     @IBOutlet weak var settingsButton: UIButton!
-    @IBAction func goToSettings(sender: UIButton)
-    {
-        self.performSegueWithIdentifier("settings", sender: nil)
-    }
     
     
     required init?(coder aDecoder: NSCoder)
@@ -94,11 +90,6 @@ class CalendarViewController: UIViewController, changeDateProtocol
             nextViewController!.cellObject = cellObject
             nextViewController!.calendarManager = calendarManager
             nextViewController!.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
-        }
-        else if (segue.identifier == "settings")
-        {
-            let settingsViewController = (segue.destinationViewController as! SettingsViewController)
-            settingsViewController.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
         }
     }
     
@@ -173,7 +164,8 @@ extension CalendarViewController: UICollectionViewDelegate
     func scrollViewDidScroll(scrollView: UIScrollView)
     {
         let offsetY = scrollView.contentOffset.y
-        let offsetX = scrollView.contentOffset.x
+        // Not sure
+
         let contentHeight = scrollView.contentSize.height
         
         if offsetY > contentHeight - scrollView.frame.size.height
