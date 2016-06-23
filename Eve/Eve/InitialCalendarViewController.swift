@@ -156,12 +156,3 @@ extension InitialCalendarViewController: UICollectionViewDelegate
         }
     }
 }
-
-
-
-
-
-
-
-
-

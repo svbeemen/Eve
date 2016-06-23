@@ -25,7 +25,6 @@ class CalendarViewController: UIViewController, changeDateProtocol
     var shouldScroll: Bool = true
     @IBOutlet weak var settingsButton: UIButton!
     
-    
     required init?(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder)!

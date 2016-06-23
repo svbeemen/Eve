@@ -33,7 +33,7 @@ class NewMonthReusableView: UICollectionReusableView
         self.layer.cornerRadius = CGFloat(15)
     }
     
-    // Get text for month label
+    // Get text for month label.
     func getText()
     {
         dateLabel.text = "\(MONTHNAMES[dateObject.date.month.value() - 1])  \(dateObject.date.year.value())"

@@ -153,7 +153,3 @@ class CalendarClass
         SavedDataManager.sharedInstance.savePastCycleDates(self.menstruationCycle.pastCycleDates)
     }
 }
-
-   
-
-

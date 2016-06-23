@@ -49,7 +49,6 @@ class NewDateCell: UICollectionViewCell
         {
             cellImageView.image = UIImage(named: "Menstruation")
             logoImageView.image = UIImage()
-
         }
         else if dateObject.type == "ovulation"
         {
@@ -60,13 +59,11 @@ class NewDateCell: UICollectionViewCell
         {
             cellImageView.image = UIImage(named: "Caution")
             logoImageView.image = UIImage()
-
         }
         else 
         {
             cellImageView.image = UIImage(named: "Normal")
             logoImageView.image = UIImage()
-
         }
         
         // Circle current date.
@@ -84,4 +81,3 @@ class NewDateCell: UICollectionViewCell
         dateLabel.text = "\(dateObject.date.day.value())"
     }
 }
-

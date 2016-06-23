@@ -46,6 +46,3 @@ class CycleDate: NSObject
         }
     }
 }
-
-
-
