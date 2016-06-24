@@ -1,16 +1,14 @@
-
 Eve
 ===
 
 **An app to help women keep track of their cycle. Eve has the intention to be
 used in a contraceptive manner.**
 
-
 In a day and age were health and quality of food are becoming more and more
 important it isn't surprising that women are thinking twice about hormonal
-contraceptives. In the western world most girls start tacking the pill
-around age 16. By the time they are 25 they have been pumping extra hormones in
-their body for almost 10 years. Many women are looking for more natural and
+contraceptives. In the western world most girls start tacking the pill around
+age 16. By the time they are 25 they have been pumping extra hormones in their
+body for almost 10 years. Many women are looking for more natural and
 traditional forms of family planning such as the calendar-based method. The
 calendar-based method is already a widely used method for women trying to have a
 baby and their are plenty of apps to help these women keep track of their cycle
@@ -27,8 +25,8 @@ they are fertile it will display world disasters such as volcanos erupting and
 nuclear bombs exploding. It will be a self-learning app that with user input
 will become better at accurately predicting the users cycle.
 
+ 
 
-[View initial sketch](Design/initialSketch.jpg)
  
 
 ### Features
@@ -67,7 +65,7 @@ The user can set what to be informed on concerning her cycle, how and when:
 
  
 
-### Potential Problems 
+### Potential Problems
 
 -   Connecting to the native calendar of the platform 
 
@@ -94,39 +92,47 @@ overload of features making it difficult to navigate through. 
 
  
 
-### Development Plan 
+### Development Plan
 
 **week 1 **
 
-    -   compleet visual en technical design document 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-   compleet visual en technical design document 
 
-    -   prototype of user interface 
+-   prototype of user interface 
 
-    -   create a user 
+-   create a user 
 
-    -   add data concerning user’s cycle
+-   add data concerning user’s cycle
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **week 2**
 
-    -   connect to phone’s date/calendar settings 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-   connect to phone’s date/calendar settings 
 
-    -   correct calculation of cycle with user input
+-   correct calculation of cycle with user input
 
-    -   add margins for extra information (information users inputs later on)
+-   add margins for extra information (information users inputs later on)
 
-    -   recalculate cycle with this extra information  
+-   recalculate cycle with this extra information  
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **week 3 **
 
-    -   calculate when to notify user on other contraceptive 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-   calculate when to notify user on other contraceptive 
 
-    -   send notifications on cycle en contraceptives
+-   send notifications on cycle en contraceptives
 
-    -   edit settings to send notifications according to user’s preference
-        settings 
+-   edit settings to send notifications according to user’s preference
+    settings 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **week 4**
 
-    -   fine tune full working app
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-   fine tune full working app
 
-    -   edit design elements 
+-   edit design elements 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
