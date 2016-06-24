@@ -28,7 +28,7 @@
 		A9C034DC1B399E00001F0F5A /* CalendarClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C034DB1B399E00001F0F5A /* CalendarClass.swift */; };
 		A9C034DE1B39B47F001F0F5A /* CalendarViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C034DD1B39B47F001F0F5A /* CalendarViewFlowLayout.swift */; };
 		A9CE76901B3C36410072ABE0 /* MenstrualCycleClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CE768F1B3C36410072ABE0 /* MenstrualCycleClass.swift */; };
-		A9CE76921B3CA7340072ABE0 /* MenstruationCycleDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CE76911B3CA7340072ABE0 /* MenstruationCycleDate.swift */; };
+		A9CE76921B3CA7340072ABE0 /* CycleDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CE76911B3CA7340072ABE0 /* CycleDate.swift */; };
 		A9FB8DD11B41A07700FE484D /* CycleNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FB8DD01B41A07700FE484D /* CycleNotifications.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,7 +70,7 @@
 		A9C034DB1B399E00001F0F5A /* CalendarClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarClass.swift; sourceTree = "<group>"; };
 		A9C034DD1B39B47F001F0F5A /* CalendarViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewFlowLayout.swift; sourceTree = "<group>"; };
 		A9CE768F1B3C36410072ABE0 /* MenstrualCycleClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenstrualCycleClass.swift; sourceTree = "<group>"; };
-		A9CE76911B3CA7340072ABE0 /* MenstruationCycleDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenstruationCycleDate.swift; sourceTree = "<group>"; };
+		A9CE76911B3CA7340072ABE0 /* CycleDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleDate.swift; sourceTree = "<group>"; };
 		A9FB8DD01B41A07700FE484D /* CycleNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleNotifications.swift; sourceTree = "<group>"; };
 		B804BDD271057CCFABFBA517 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE14FAA6723F7968962D5266 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -222,7 +222,7 @@
 		A9C01E811B4449750038CC73 /* SubClasses */ = {
 			isa = PBXGroup;
 			children = (
-				A9CE76911B3CA7340072ABE0 /* MenstruationCycleDate.swift */,
+				A9CE76911B3CA7340072ABE0 /* CycleDate.swift */,
 				A9C034DD1B39B47F001F0F5A /* CalendarViewFlowLayout.swift */,
 			);
 			name = SubClasses;
@@ -380,7 +380,7 @@
 				A9C034DE1B39B47F001F0F5A /* CalendarViewFlowLayout.swift in Sources */,
 				872043F71B2B14B2001526AD /* CVCalendarKitOperators.swift in Sources */,
 				A9C034DC1B399E00001F0F5A /* CalendarClass.swift in Sources */,
-				A9CE76921B3CA7340072ABE0 /* MenstruationCycleDate.swift in Sources */,
+				A9CE76921B3CA7340072ABE0 /* CycleDate.swift in Sources */,
 				A90F70751B3B6FD600F806D7 /* InitialCalendarViewController.swift in Sources */,
 				A90F70711B3B436A00F806D7 /* InstructionView.swift in Sources */,
 				875096621B2887480002B5FB /* AppDelegate.swift in Sources */,

@@ -84,19 +84,19 @@ class DetailViewController: UIViewController
         
         if  cellObject.dateObject.type == "menstruation"
         {
-            text = "It's not the most pleasant time of the month. But you're changes of getting pregnant is pretty much ziltch. So good luck with the craps and remember all real man doesn't mind sailing the red sea's. Have fun!"
+            text = "Good luck with the cramps. You are safe to have as much fun as you please!"
         }
         else if cellObject.dateObject.type == "ovulation"
         {
-            text = "What ever you do today, be safe!! We know it's difficult but remember, if you're not careful now it will no alcohol for nine months. Good luck!"
+            text = "Whatever you do today, be safe!"
         }
         else if cellObject.dateObject.type == "caution"
         {
-            text = "It's danger zone lady! What ever you do be safe!"
+            text = "It's danger zone lady. Keep calm and be safe!"
         }
         else
         {
-            text = "You're all good to go! Have fun!"
+            text = "You're all good to go!"
         }
         return text
     }

@@ -123,15 +123,15 @@ class CycleNotifications
 
         if alertDate.type == "menstruation"
         {
-            bodyText = "MENSTRUATION DAY! It's not the most pleasant time of the month, but at least your changes of getting pregnant is pretty much zitch to non! Good luck with the cramps."
+            bodyText = "MENSTRUATION DAY! It might not be the most pleasant time of the month, but thankfully you are not pregnant. Good luck!"
         }
         else if alertDate.type == "caution"
         {
-            bodyText = "CAUTION DAY! It's time to watch out and be safe. If can't resist just think of crying babies, dirty nappies and no alcohol for 9 months. Have a great day!"
+            bodyText = "CAUTION DAY! It's time to watch out and be safe. Have a great day!"
         }
         else if alertDate.type == "ovulation"
         {
-            bodyText = "OVULATION DAY! What ever you do today, be safe!"
+            bodyText = "OVULATION DAY! Whatever you do today, be safe! If you are not safe now, 9 months of sobriety are awaiting you. "
         }
         return bodyText
     }
